@@ -23,11 +23,13 @@ uses these files.
 | [Census TIGER 2025](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html) `ADDRFEAT` | Address range on each side of each street segment, and the face it borders |
 | Census TIGER 2025 `FACES` | Each face's Census block and ZCTA |
 | [UC Berkeley's Statewide Database](https://statewidedatabase.org/) `c<county>_p26_rg_blk_map.csv` | Registered voter counts by precinct and Census block, June 2026 primary |
+| County precinct map, where `counties.json` lists one | Each precinct's shape |
 
 ## How they're built
 
-- A block's precinct is the one with at least 90% of its voters.
-- A side gets no range when its block has no voters or no precinct reaches 90%.
+- A side whose whole length falls in one precinct on the county's map gets that precinct.
+- Otherwise it gets its block's precinct: the one with at least 90% of the block's voters.
+- A side with neither gets no range.
 - Next-door segments on one side with the same precinct merge, when their
   numbers are within 100 of each other.
 
@@ -42,4 +44,4 @@ Python 3, standard library only.
 
 ## Next
 
-County precinct maps, to answer addresses where a precinct line splits a block.
+A precinct map for Santa Clara County.

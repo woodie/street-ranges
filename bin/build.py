@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """Street ranges from public data: each side of a Census street segment gets
-the precinct of the Census block it faces. Writes out/<county>/<zip>.json as
+its precinct from the county's precinct map, or else the precinct of the Census
+block it faces. Writes out/<county>/<zip>.json as
 {street: [[low, high, precinct], ...]}. See README.md.
 
 Usage: bin/build.py [county ...]    # all counties in counties.json by default
 """
 import csv
+import itertools
 import json
 import os
 import re
@@ -13,6 +15,8 @@ import shutil
 import struct
 import sys
 from collections import Counter, defaultdict
+
+from precinct_map import PrecinctMap, read_lines
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SHARE = 0.90  # a block's precinct needs this share of its voters
@@ -80,23 +84,27 @@ def block_precincts(path, prefix):
     return out
 
 
-def build(county, fips, max_gap=MAX_GAP):
+def build(county, fips, max_gap=MAX_GAP, source=None):
     """[zip, street, low, high, precinct] rows, counts of sides by outcome, and every (zip, street)."""
     directory = os.path.join(REPO, "sources", county)
+    source = source or counties()[county].get("precinct_map")
+    places = PrecinctMap(os.path.join(directory, "precinct_map.json"), county, source["field"]) if source else None
+    lines = read_lines(os.path.join(directory, f"tl_2025_06{fips}_addrfeat.zip"), f"tl_2025_06{fips}_addrfeat.shp") if places else itertools.repeat(None)
     blocks = block_precincts(os.path.join(directory, f"c{fips}_p26_rg_blk_map.csv"), county)
     faces = {r["TFID"]: (r["TRACTCE20"] + r["BLOCKCE20"], r["ZCTA5CE20"])
              for r in read_dbf(os.path.join(directory, f"tl_2025_06{fips}_faces.dbf"))}
     sides, outcome = defaultdict(list), Counter()
-    for r in read_dbf(os.path.join(directory, f"tl_2025_06{fips}_addrfeat.dbf")):
+    for r, line in zip(read_dbf(os.path.join(directory, f"tl_2025_06{fips}_addrfeat.dbf")), lines):
         for s in "LR":
             low, high = r[f"{s}FROMHN"], r[f"{s}TOHN"]
             if not (low.isdigit() and high.isdigit()):
                 continue
             low, high = sorted((int(low), int(high)))
             block, zcta = faces.get(r[f"TFID{s}"], (None, None))
-            precinct = blocks.get(block)
-            outcome["no voters" if block not in blocks else "split block" if precinct is None
-                    else "both parities" if r[f"PARITY{s}"] == "B" else "ok"] += 1
+            mapped = places.side(line, s) if places else None
+            precinct = mapped or blocks.get(block)
+            outcome["both parities" if r[f"PARITY{s}"] == "B" else "map" if mapped else "block" if precinct
+                    else "no voters" if block not in blocks else "split block"] += 1
             if r[f"PARITY{s}"] == "B":
                 precinct = None  # a lookup picks a side by the low number's parity
             sides[(r[f"ZIP{s}"] or zcta, normalize_street(r["FULLNAME"]), low % 2)].append([low, high, precinct])

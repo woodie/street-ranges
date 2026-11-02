@@ -6,6 +6,7 @@ Usage: bin/download.py [county ...]    # all counties in counties.json by defaul
 import json
 import os
 import sys
+import urllib.parse
 import urllib.request
 import zipfile
 
@@ -26,20 +27,44 @@ def fetch(url, directory):
     return path
 
 
-def download(county, fips):
+def get_json(url):
+    with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "street-ranges"})) as response:
+        return json.load(response)
+
+
+def fetch_precinct_map(source, directory):
+    """All the county's precinct shapes, a page at a time, in TIGER's coordinates."""
+    path = os.path.join(directory, "precinct_map.json")
+    if os.path.exists(path):
+        return
+    print(source["url"])
+    features = []
+    while True:
+        query = {"where": "1=1", "outFields": source["field"], "outSR": 4269, "f": "json", "resultOffset": len(features)}
+        page = get_json(f"{source['url']}?{urllib.parse.urlencode(query)}")
+        features += page["features"]
+        if not page.get("exceededTransferLimit"):
+            break
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(features, f)
+
+
+def download(county, fips, precinct_map=None):
     directory = os.path.join(REPO, "sources", county)
     os.makedirs(directory, exist_ok=True)
     fetch(SWDB.format(fips=fips), directory)
     for layer in ("ADDRFEAT", "FACES"):
         with zipfile.ZipFile(fetch(TIGER.format(layer=layer, fips=fips, name=layer.lower()), directory)) as z:
             z.extractall(directory, [n for n in z.namelist() if n.endswith(".dbf")])
+    if precinct_map:
+        fetch_precinct_map(precinct_map, directory)
 
 
 def main():
     with open(os.path.join(REPO, "counties.json"), encoding="utf-8") as f:
         counties = json.load(f)
     for county in sys.argv[1:] or counties:
-        download(county, counties[county]["fips"])
+        download(county, counties[county]["fips"], counties[county].get("precinct_map"))
 
 
 if __name__ == "__main__":

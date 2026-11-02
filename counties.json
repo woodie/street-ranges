@@ -1,4 +1,8 @@
 {
-  "41": {"name": "San Mateo County", "fips": "081"},
+  "41": {
+    "name": "San Mateo County",
+    "fips": "081",
+    "precinct_map": {"url": "https://gis.smcgov.org/maps25/rest/services/ACRE/ACRE_GIS/MapServer/0/query", "field": "PrecinctID"}
+  },
   "43": {"name": "Santa Clara County", "fips": "085"}
 }
