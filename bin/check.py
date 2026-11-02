@@ -21,7 +21,7 @@ def check(rows, streets, known, prefix):
             for low, high, precinct in runs:
                 for n in {low, high}:
                     if (zip_code, street) not in streets:
-                        result["street not in Census"] += 1
+                        result["street not listed"] += 1
                         continue
                     found = {p for lo, hi, p in ranges.get((zip_code, street), []) if lo % 2 == n % 2 and lo <= n <= hi}
                     result["no range" if not found else "ambiguous" if len(found) > 1

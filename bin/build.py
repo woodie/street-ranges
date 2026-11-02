@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Street ranges from public data: each side of a Census street segment gets
-its precinct from the county's precinct map, or else the precinct of the Census
-block it faces. Writes out/<county>/<zip>.json as
+"""Street ranges from public data. Real addresses come first: the county's address
+points placed on its precinct map. For other numbers, each side of a Census street
+segment gets its precinct from the map, or else the precinct of the block it faces. Writes out/<county>/<zip>.json as
 {street: [[low, high, precinct], ...]}. See README.md.
 
 Usage: bin/build.py [county ...]    # all counties in counties.json by default
@@ -84,6 +84,54 @@ def block_precincts(path, prefix):
     return out
 
 
+def point_ranges(path, places, source):
+    """(zip, street, parity) -> runs of real addresses in one precinct, and the numbers in two precincts."""
+    homes = defaultdict(set)
+    with open(path, encoding="utf-8") as f:
+        for feature in json.load(f):
+            address, zip_code = (feature["attributes"][source[k]] or "" for k in ("address", "zip"))
+            parsed = re.match(r"(\d+)\S*(?:\s+1/2)?\s+(?:[A-Za-z]\s+)?(.+)$", address.strip())
+            precinct = places.at(feature["geometry"]["x"], feature["geometry"]["y"]) if "geometry" in feature else None
+            if parsed and zip_code.strip() and precinct:
+                homes[zip_code.strip()[:5], normalize_street(parsed[2]), int(parsed[1])].add(precinct)
+    sides, split = defaultdict(list), defaultdict(list)
+    for (zip_code, street, number), precincts in sorted(homes.items()):
+        side, precinct = (zip_code, street, number % 2), precincts.pop() if len(precincts) == 1 else None
+        runs = sides[side]
+        if precinct is None:
+            split[side].append(number)
+            runs.append([number, number, None])  # ends the run
+        elif runs and runs[-1][2] == precinct:
+            runs[-1][1] = number
+        else:
+            runs.append([number, number, precinct])
+    return {side: [r for r in runs if r[2]] for side, runs in sides.items()}, split
+
+
+def clip(low, high, taken):
+    """The parts of low-high outside the taken [start, end] spans, sorted."""
+    parts = []
+    for start, end in taken:
+        if end >= low and start <= high:
+            if start > low:
+                parts.append([low, start - 2])
+            low = end + 2
+    return parts + [[low, high]] if low <= high else parts
+
+
+def merge_rows(rows, max_gap):
+    """Join a side's neighboring ranges in one precinct, so clipping leaves no extra pieces."""
+    merged = []
+    for row in sorted(rows, key=lambda r: (r[0], r[1], r[2] % 2, r[2], r[3])):
+        last = merged[-1] if merged else None
+        if (last and last[:2] == row[:2] and last[2] % 2 == row[2] % 2 and last[4] == row[4]
+                and row[2] - last[3] <= max_gap):
+            last[3] = max(last[3], row[3])
+        else:
+            merged.append(list(row))
+    return merged
+
+
 def build(county, fips, max_gap=MAX_GAP, source=None):
     """[zip, street, low, high, precinct] rows, counts of sides by outcome, and every (zip, street)."""
     directory = os.path.join(REPO, "sources", county)
@@ -119,7 +167,19 @@ def build(county, fips, max_gap=MAX_GAP, source=None):
                 merged.append([low, high, precinct])
         for name in filter(None, (street, spelled_out(street))):
             rows += [[zip_code, name, low, high, p] for low, high, p in merged if p and zip_code]
-    return sorted(rows), outcome, {(z, s) for z, s, _ in sides}
+    streets = {(row[0], row[1]) for row in rows} | {(z, s) for z, s, _ in sides}
+    points = counties()[county].get("address_points")
+    if places and points:
+        runs, split = point_ranges(os.path.join(directory, "address_points.json"), places, points)
+        tiger, rows = rows, []
+        for zip_code, street, low, high, precinct in tiger:
+            side = (zip_code, street, low % 2)
+            taken = sorted([r[:2] for r in runs.get(side, [])] + [[n, n] for n in split.get(side, [])])
+            rows += [[zip_code, street, a, b, precinct] for a, b in clip(low, high, taken)]
+        rows += [[z, s, low, high, p] for (z, s, _), side_runs in runs.items() for low, high, p in side_runs]
+        rows = merge_rows(rows, max_gap)
+        streets |= {(z, s) for z, s, _ in runs}
+    return sorted(rows), outcome, streets
 
 
 def write(county, rows):

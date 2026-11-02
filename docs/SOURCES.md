@@ -19,12 +19,9 @@ San Mateo, looked up against 16,319 known ranges (31,092 tests):
 | Method | Right | Wrong | No answer | Right when it answers |
 | --- | --- | --- | --- | --- |
 | Address points on the map, alone | 85.3% | 54 | 4,507 | 99.80% |
-| Address points, then TIGER + map + block rule (not built yet) | 96.4% | 156 | 954 | 99.48% |
-| TIGER + map + block rule (`out/41` today) | 90.8% | 358 | 2,502 | 98.75% |
+| Address points, then TIGER + map + block rule (`out/41` today) | 96.4% | 160 | 952 | 99.47% |
+| TIGER + map + block rule | 90.8% | 358 | 2,502 | 98.75% |
 | Block rule alone | 72.8% | 182 | 8,276 | 99.20% |
-
-These come from one test script. `bin/check.py` gives 90.6% for today's method, because it
-counts spelled-out street names as not in Census.
 
 Santa Clara's PDFs have no coordinates, but they do print house numbers. Reading
 those and matching them to the county's address points lines a map up, and then

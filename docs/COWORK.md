@@ -15,10 +15,10 @@ and how to verify the ranges.
 
 ## Sources by county
 
-| County | Number | Precinct map |
-| --- | --- | --- |
-| San Mateo | 41 | County GIS layer (`counties.json`) |
-| Santa Clara | 43 | None yet: the county's maps are PDFs |
+| County | Number | Precinct map | Address points |
+| --- | --- | --- | --- |
+| San Mateo | 41 | County GIS layer (`counties.json`) | County GIS layer |
+| Santa Clara | 43 | None yet: the county's maps are PDFs | Not used until there's a map |
 
 To add a map, put its query URL and precinct field in `counties.json`, or get
 its shapes into `sources/<county>/precinct_map.json` some other way, in TIGER's
@@ -27,6 +27,10 @@ coordinates.
 ## How a side gets its precinct
 
 `bin/build.py`, with `bin/precinct_map.py`:
+
+First, real addresses: each county address point placed on the map, with runs on
+one side of a street in one precinct becoming ranges. An address in two precincts
+stays out. Census ranges are then clipped around those. For what's left:
 
 1. Five points along the side, 15 meters off the centerline, are placed on the
    map. If they all land in one precinct, the side gets it.
@@ -39,11 +43,12 @@ Tried on San Mateo (2026-11-01), each end of 16,319 known ranges, 31,092 tests:
 | --- | --- | --- | --- | --- |
 | Block rule only | 15,437 | 72.8% | 182 | 99.2% |
 | Map, whole sides only | 19,329 | 89.2% | 314 | 98.9% |
-| Map, then block rule (used) | 19,503 | 90.6% | 358 | 98.7% |
+| Map, then block rule | 19,503 | 90.6% | 358 | 98.7% |
 | Map, splitting mixed sides by house number | 21,098 | 92.5% | 735 | 97.5% |
 
-The same numbers come from `bin/check.py KNOWN.json 41`, given a file of known
-ranges. Offsets of 10 and 25 meters did no better than 15.
+With address points first (used), `bin/check.py KNOWN.json 41 --prefix` gives
+96.4% right and 160 wrong. Earlier rows are from the same check before address
+points. Offsets of 10 and 25 meters did no better than 15.
 
 Merging stops at a gap of 100 numbers, so an odd segment stays visible: one
 street numbered up to 500 keeps a separate 1900-1998. Limits from 4 to 1,000 barely moved the

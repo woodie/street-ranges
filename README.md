@@ -24,14 +24,18 @@ uses these files.
 | Census TIGER 2025 `FACES` | Each face's Census block and ZCTA |
 | [UC Berkeley's Statewide Database](https://statewidedatabase.org/) `c<county>_p26_rg_blk_map.csv` | Registered voter counts by precinct and Census block, June 2026 primary |
 | County precinct map, where `counties.json` lists one | Each precinct's shape |
+| County address points, where `counties.json` lists them | Real addresses and where they are |
 
 ## How they're built
 
-- A side whose whole length falls in one precinct on the county's map gets that precinct.
+- Real addresses come first: each address point placed on the county's map, with
+  runs of house numbers in one precinct on one side of a street becoming ranges.
+- The rest of a street comes from Census, around those ranges. A side whose whole
+  length falls in one precinct on the county's map gets that precinct.
 - Otherwise it gets its block's precinct: the one with at least 90% of the block's voters.
 - A side with neither gets no range.
-- Next-door segments on one side with the same precinct merge, when their
-  numbers are within 100 of each other.
+- Neighboring ranges on one side with the same precinct merge, when their numbers
+  are within 100 of each other.
 
 ## Running
 

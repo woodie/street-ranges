@@ -2,7 +2,8 @@
   "41": {
     "name": "San Mateo County",
     "fips": "081",
-    "precinct_map": {"url": "https://gis.smcgov.org/maps25/rest/services/ACRE/ACRE_GIS/MapServer/0/query", "field": "PrecinctID"}
+    "precinct_map": {"url": "https://gis.smcgov.org/maps25/rest/services/ACRE/ACRE_GIS/MapServer/0/query", "field": "PrecinctID"},
+    "address_points": {"url": "https://gis.smcgov.org/maps25/rest/services/PLANNING/PLN_LAYERS_DMZ/MapServer/33/query", "address": "SITUS_ADDR", "zip": "ZIPCODE"}
   },
   "43": {"name": "Santa Clara County", "fips": "085"}
 }
