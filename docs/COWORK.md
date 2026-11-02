@@ -2,7 +2,8 @@
 
 Street ranges from public data, for anyone building an address-to-precinct
 lookup. This repo is public, so these notes stay on what the repo does today.
-`README.md` has the format and how to run it.
+`README.md` has the format and how to run it; `docs/SOURCES.md` has the sources
+and how to verify the ranges.
 
 ## What stays out
 
