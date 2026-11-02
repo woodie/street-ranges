@@ -29,6 +29,9 @@ STREET_WORDS = {
     "SEVENTH": "7TH", "EIGHTH": "8TH", "NINTH": "9TH", "TENTH": "10TH", "ELEVENTH": "11TH", "TWELFTH": "12TH",
 }
 UNIT = r"\s+(?:(?:APT|UNIT|STE|SUITE|SPC|OFC|BLDG|RM|FL|LOT|TRLR|LOWR|UPPR|REAR|FRNT|BSMT|PH)\b|#).*$"
+# A bare unit after a street type ("E OKEEFE ST 4"); E, N, S and W stay, since they can be part of a name.
+TRAILING_UNIT = (r"(?<=\s(?:ST|RD|DR|CT|LN|PL))|(?<=\s(?:AVE|WAY|CIR|TER|TRL|ALY|PLZ|RUN|ROW))|(?<=\s(?:BLVD|PKWY|LOOP|WALK|PATH|MALL|EXPY|PIKE))")
+TRAILING_UNIT = rf"(?:{TRAILING_UNIT})\s+(?:\d+[A-Z]?|[A-DF-MO-RT-VX-Z])$"
 # Census abbreviates Spanish street types nobody types ("CLL SUENO" is Calle Sueno).
 SPELLED = {"CLL": "CALLE", "CAM": "CAMINO", "PSO": "PASEO", "VIS": "VISTA", "AVE": "AVENIDA"}
 
@@ -42,7 +45,7 @@ def normalize_street(street):
     words = [STREET_WORDS.get(w, w) for w in re.sub(UNIT, "", re.sub(r"[.'’]", "", street.upper())).split()]
     if words and words[0] == "SAINT":
         words[0] = "ST"
-    return re.sub(r"^ALAMEDA DE LAS PULGAS$", "ALAMEDA", " ".join(words))
+    return re.sub(r"^ALAMEDA DE LAS PULGAS$", "ALAMEDA", re.sub(TRAILING_UNIT, "", " ".join(words)))
 
 
 def spelled_out(street):
