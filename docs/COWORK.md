@@ -72,14 +72,20 @@ point cost more right answers than it saved wrong ones, so flag, don't filter.
 
 ## Known oddities
 
-- `out/` lists every zipcode Census gives a side, so a few files hold only a
-  stray block or two (94128, 95006, 94134).
+- TIGER gives some sides a zipcode outside the county or a typo (93133 for 95133).
+  `counties.json` lists each county's zipcodes, and the build reports the rest.
 - 38 precincts in `out/41` have no voters in the June 2026 file: the map answers
   where the block rule couldn't. An app needs races for them, or falls back.
-- Precinct lines are as of each source. The Statewide Database publishes after
+- Precinct lines are as of each source. The Statewide Database (SWDB) publishes after
   each election. San Mateo's layer has no date of its own, but the county's
   Precinct Lookup uses it and labels it current as of October 2026.
 
 ## Commits and pushes
 
 Woodie pushes, or says yes first. Keep comments to one line.
+
+## Showing pages
+
+Open local pages in Woodie's regular Chrome: `open -a "Google Chrome" URL`.
+Never use Claude's embedded browser, for showing or testing: it stays hidden and
+asks a long run of questions. Test with curl or scripts instead.

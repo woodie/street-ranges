@@ -192,13 +192,17 @@ def readable(streets):
     return "{\n" + ",\n".join(blocks) + "\n}\n"
 
 
-def write(county, rows):
+def write(county, rows, zipcodes):
+    """One file per listed zipcode, and the rest reported: TIGER has typos and strays."""
     directory = os.path.join(REPO, "out", county)
     shutil.rmtree(directory, ignore_errors=True)
     os.makedirs(directory)
     by_zip = defaultdict(lambda: defaultdict(list))
     for zip_code, street, low, high, precinct in rows:
         by_zip[zip_code][street].append([low, high, precinct])
+    strays = {z: by_zip.pop(z) for z in sorted(set(by_zip) - set(zipcodes))}
+    for zip_code, streets in strays.items():
+        print(f"not a listed zipcode, left out: {zip_code} ({', '.join(sorted(streets))})")
     for zip_code, streets in by_zip.items():
         with open(os.path.join(directory, f"{zip_code}.json"), "w", encoding="utf-8") as f:
             f.write(readable(streets))
@@ -211,7 +215,7 @@ def main():
         rows, outcome, _ = build(county, known[county]["fips"])
         total = sum(outcome.values())
         print(known[county]["name"], "street sides:", ", ".join(f"{k} {v} ({v / total:.1%})" for k, v in outcome.most_common()))
-        print(f"{len(rows)} ranges in {write(county, rows)} zipcodes -> out/{county}/")
+        print(f"{len(rows)} ranges in {write(county, rows, known[county]['zipcodes'])} zipcodes -> out/{county}/")
 
 
 if __name__ == "__main__":
