@@ -93,7 +93,9 @@ def point_ranges(path, places, source):
     with open(path, encoding="utf-8") as f:
         for feature in json.load(f):
             address, zip_code = (feature["attributes"][source[k]] or "" for k in ("address", "zip"))
-            parsed = re.match(r"(\d+)\S*(?:\s+1/2)?\s+(?:(?![NSEWnsew]\s)[A-Za-z]\s+)?(.+)$", address.strip())
+            # "8881/2 Green St" is 888 1/2.
+            address = re.sub(r"^(\d+)1/2\b", r"\1 1/2", address.strip())
+            parsed = re.match(r"(\d+)\S*(?:\s+1/2)?\s+(?:(?![NSEWnsew]\s)[A-Za-z]\s+)?(.+)$", address)
             precinct = places.at(feature["geometry"]["x"], feature["geometry"]["y"]) if "geometry" in feature else None
             if parsed and zip_code.strip() and precinct:
                 homes[zip_code.strip()[:5], normalize_street(parsed[2]), int(parsed[1])].add(precinct)
