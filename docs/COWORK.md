@@ -5,6 +5,25 @@ lookup. This repo is public, so these notes stay on what the repo does today.
 `README.md` has the format and how to run it; `docs/SOURCES.md` has the sources
 and how to verify the ranges.
 
+## Where things stand (2026-11-02)
+
+| County | Number | Built from | Files |
+| --- | --- | --- | --- |
+| San Francisco | 38 | The county's Street Data Extract | 27 zipcodes, 10,882 ranges |
+| San Mateo | 41 | County shapes and address points, then TIGER | 30 zipcodes, 22,005 ranges |
+| Santa Clara | 43 | County shapefile and address points, then TIGER | 63 zipcodes, 57,982 ranges |
+
+The lookup page is live at https://woodie.github.io/street-ranges/. Next:
+
+- Trim TIGER ranges that run past a street's real addresses (`OAK CT` to 1998).
+- Clean up street names holding unit ranges (`CURTIS ST 100-201`) and check bare ones
+  (`S CT`, `N DR`), using the checklist below. `W O CONNOR ST` and `W OCONNOR ST` are
+  one street. 94101 is listed for San Francisco but has no usable addresses.
+- Mark which ranges rest on real addresses and which on TIGER alone.
+- Report an address that sits far from the rest of its zipcode, and two different
+  streets sharing a name in one zipcode.
+- Work out each county's zipcode list from Census, reporting what address points add.
+
 ## What stays out
 
 - Races and endorsements. Output is streets, house numbers and precincts only;
@@ -89,6 +108,7 @@ unit in one. Both have happened:
 | Fix | Mistake | Size | Known ranges |
 | --- | --- | --- | --- |
 | Keep N, S, E and W | A lone letter was treated as a unit, so "2100 N 1ST ST" became "1ST ST" | About 51,000 address records | Right 96.4% to 96.6%, wrong 160 to 140 |
+| Spell street types one way | "Clarion Alley" missed `CLARION ALY`, and `NEXUS LP` was a second name for `NEXUS LOOP` | Six words, last word only; 12 names merged or renamed | No change |
 | Strip a bare unit | "190 E Okeefe St 4" became a street named "E OKEEFE ST 4" | 904 names, 875 fewer ranges | No change |
 
 Before changing a cleanup rule:

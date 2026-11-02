@@ -30,6 +30,8 @@ STREET_WORDS = {
     "FIRST": "1ST", "SECOND": "2ND", "THIRD": "3RD", "FOURTH": "4TH", "FIFTH": "5TH", "SIXTH": "6TH",
     "SEVENTH": "7TH", "EIGHTH": "8TH", "NINTH": "9TH", "TENTH": "10TH", "ELEVENTH": "11TH", "TWELFTH": "12TH",
 }
+# Street types only as the last word, so HILL RD and PLAZA N keep their names.
+LAST_WORDS = {"ALLEY": "ALY", "PLAZA": "PLZ", "HILL": "HL", "SQUARE": "SQ", "CROSSING": "XING", "LP": "LOOP"}
 UNIT = r"\s+(?:(?:APT|UNIT|STE|SUITE|SPC|OFC|BLDG|RM|FL|LOT|TRLR|LOWR|UPPR|REAR|FRNT|BSMT|PH)\b|#).*$"
 # A bare unit after a street type ("E OKEEFE ST 4"); E, N, S and W stay, since they can be part of a name.
 TRAILING_UNIT = (r"(?<=\s(?:ST|RD|DR|CT|LN|PL))|(?<=\s(?:AVE|WAY|CIR|TER|TRL|ALY|PLZ|RUN|ROW))|(?<=\s(?:BLVD|PKWY|LOOP|WALK|PATH|MALL|EXPY|PIKE))")
@@ -47,7 +49,9 @@ def normalize_street(street):
     words = [STREET_WORDS.get(w, w) for w in re.sub(UNIT, "", re.sub(r"[.'’]", "", street.upper())).split()]
     if words and words[0] == "SAINT":
         words[0] = "ST"
-    return re.sub(r"^ALAMEDA DE LAS PULGAS$", "ALAMEDA", re.sub(TRAILING_UNIT, "", " ".join(words)))
+    street = re.sub(r"^ALAMEDA DE LAS PULGAS$", "ALAMEDA", re.sub(TRAILING_UNIT, "", " ".join(words)))
+    head, _, last = street.rpartition(" ")
+    return f"{head} {LAST_WORDS[last]}" if head and last in LAST_WORDS else street
 
 
 def spelled_out(street):
@@ -105,7 +109,7 @@ def point_ranges(path, places, source):
             address = re.sub(r"^(\d+)1/2\b", r"\1 1/2", address.strip())
             parsed = re.match(r"(\d+)(?!\d)(?!(?i:st|nd|rd|th)\b)\S*(?:\s+1/2)?\s+(?:(?![NSEWnsew]\s)[A-Za-z]\s+(?=\S+\s))?(.+)$", address)
             precinct = places.at(feature["geometry"]["x"], feature["geometry"]["y"]) if "geometry" in feature else None
-            if parsed and zip_code.strip() and precinct:
+            if parsed and int(parsed[1]) and zip_code.strip() and precinct:
                 homes[zip_code.strip()[:5], normalize_street(parsed[2]), int(parsed[1])].add(precinct)
     sides, split = defaultdict(list), defaultdict(list)
     for (zip_code, street, number), precincts in sorted(homes.items()):

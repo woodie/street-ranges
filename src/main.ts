@@ -39,12 +39,23 @@ const STREET_WORDS: Record<string, string> = {
   TWELFTH: '12TH'
 }
 
+// Street types only as the last word, so HILL RD and PLAZA N keep their names.
+const LAST_WORDS: Record<string, string> = {
+  ALLEY: 'ALY',
+  PLAZA: 'PLZ',
+  HILL: 'HL',
+  SQUARE: 'SQ',
+  CROSSING: 'XING',
+  LP: 'LOOP'
+}
+
 const UNIT = /\s+(?:(?:APT|UNIT|STE|SUITE|SPC|OFC|BLDG|RM|FL|LOT|TRLR|LOWR|UPPR|REAR|FRNT|BSMT|PH)\b|#).*$/
 
 export function normalizeStreet (street: string): string {
   const words = street.toUpperCase().replace(/[.'’]/g, '').replace(UNIT, '')
     .split(/\s+/).filter(Boolean).map((word) => STREET_WORDS[word] ?? word)
   if (words[0] === 'SAINT') words[0] = 'ST'
+  if (words.length > 1) words[words.length - 1] = LAST_WORDS[words[words.length - 1]] ?? words[words.length - 1]
   return words.join(' ').replace(/^ALAMEDA DE LAS PULGAS$/, 'ALAMEDA')
 }
 

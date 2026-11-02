@@ -44,6 +44,30 @@ describe('normalizeStreet', () => {
     })
   })
 
+  context('when the street type is one San Francisco abbreviates', () => {
+    beforeEach(() => { typed = 'Clarion Alley' })
+
+    it('abbreviates it', () => {
+      expect(street).toBe('CLARION ALY')
+    })
+  })
+
+  context('when the type word starts the name', () => {
+    beforeEach(() => { typed = 'Hill Rd' })
+
+    it('keeps the name', () => {
+      expect(street).toBe('HILL RD')
+    })
+  })
+
+  context('when the type word is the whole name', () => {
+    beforeEach(() => { typed = 'Plaza' })
+
+    it('keeps the name', () => {
+      expect(street).toBe('PLAZA')
+    })
+  })
+
   context('when the direction and number are spelled out', () => {
     beforeEach(() => { typed = 'West Third Street' })
 
