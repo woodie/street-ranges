@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Range Review</title>
+<style>
+:root { color-scheme: light dark; --text: #1c1c1e; --muted: #6c6c70; --line: #d8d8dc; --bg: #fff; --on: #1c1c1e; --on-text: #fff; }
+@media (prefers-color-scheme: dark) { :root { --text: #f2f2f7; --muted: #a0a0a6; --line: #3a3a3c; --bg: #1c1c1e; --on: #f2f2f7; --on-text: #1c1c1e; } }
+body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.4 -apple-system, BlinkMacSystemFont, sans-serif; }
+header { position: sticky; top: 0; background: var(--bg); border-bottom: 1px solid var(--line); padding: 12px 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+h1 { font-size: 17px; margin: 0; }
+main { max-width: 900px; margin: 0 auto; padding: 0 16px 48px; }
+section { border-bottom: 1px solid var(--line); padding: 16px 0; }
+h2 { font-size: 15px; margin: 0 0 8px; }
+.muted, .why { color: var(--muted); font-weight: normal; }
+.row { display: grid; grid-template-columns: 1fr auto; gap: 8px; padding: 8px 0; align-items: center; }
+.row.done .what { color: var(--muted); }
+.pick { display: flex; flex-wrap: wrap; gap: 4px; justify-content: flex-end; }
+button { font: inherit; padding: 4px 10px; border: 1px solid var(--line); border-radius: 6px; background: transparent; color: inherit; cursor: pointer; }
+button.on { background: var(--on); color: var(--on-text); border-color: var(--on); }
+.all { justify-content: flex-start; margin-bottom: 4px; }
+.add { margin-top: 8px; }
+.add form { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+.add input { font: inherit; width: 90px; padding: 4px; border: 1px solid var(--line); border-radius: 6px; background: transparent; color: inherit; }
+.add input[name=street] { width: 180px; }
+@media (max-width: 600px) { .row { grid-template-columns: 1fr; } .pick { justify-content: flex-start; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Range review</h1>
+  <span id="progress" class="muted"></span>
+  <select id="filter">
+    <option value="differ">Different council or school races</option>
+    <option value="all">Everything</option>
+    <option value="two">Claimed by two maps</option>
+    <option value="changed">Map vs Census</option>
+    <option value="failed">Unused maps</option>
+  </select>
+  <button id="save">Download corrections</button>
+</header>
+<main id="list"></main>
+<script>
+const DATA = __DATA__;
+const KEY = "range-review-43";
+const idOf = (r) => [r.zip, r.street, r.low, r.high].join("|");
+
+function load() {
+  const found = {};
+  for (const c of DATA.corrections) found[idOf(c)] = c;
+  try { Object.assign(found, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) {}
+  return found;
+}
+const decisions = load();
+function remember() { try { localStorage.setItem(KEY, JSON.stringify(decisions)); } catch (e) {} }
+
+function mapLink(p) {
+  const info = DATA.dates[p];
+  if (!info) { const s = document.createElement("span"); s.textContent = `${p} (no county map)`; return s; }
+  const a = document.createElement("a");
+  a.href = `pdfs/pct${p}.pdf`;
+  a.target = "_blank";
+  a.textContent = p;
+  a.title = `County file dated ${info.modified}${info.current ? "" : ", newer than the local copy"}`;
+  return a;
+}
+function store(row, precinct) {
+  const number = Number(precinct);
+  const date = (DATA.dates[number] || {}).modified || "";
+  decisions[idOf(row)] = { zip: row.zip, street: row.street, low: row.low, high: row.high,
+    precinct: `43${String(number).padStart(7, "0")}`, map: String(number), map_date: date };
+  remember();
+}
+function decide(row, precinct) { store(row, precinct); render(); }
+function line(row) {
+  const div = document.createElement("div");
+  const chosen = decisions[idOf(row)];
+  div.className = "row" + (chosen ? " done" : "");
+  const what = document.createElement("div");
+  what.className = "what";
+  const numbers = row.low === row.high ? row.low : `${row.low}–${row.high}`;
+  const side = row.low % 2 ? "odd" : "even";
+  what.append(`${numbers} ${row.street}, ${row.zip} `);
+  const note = document.createElement("span");
+  note.className = "muted";
+  note.textContent = `${side}, ${row.count} address${row.count === 1 ? "" : "es"}, ${row.kind === "two" ? "two maps" : "map vs Census"}${row.differ ? ", races differ" : ""}`;
+  what.append(note, document.createElement("br"), "Maps: ");
+  row.choices.forEach((p, i) => { if (i) what.append(", "); what.append(mapLink(p)); });
+  const pick = document.createElement("div");
+  pick.className = "pick";
+  for (const p of row.choices) {
+    const b = document.createElement("button");
+    b.textContent = p;
+    if (chosen && Number(chosen.map) === p) b.className = "on";
+    b.onclick = () => decide(row, p);
+    pick.append(b);
+  }
+  div.append(what, pick);
+  return div;
+}
+function allButtons(precinct, rows) {
+  const div = document.createElement("div");
+  div.className = "pick all";
+  const wins = document.createElement("button");
+  wins.textContent = `Map ${precinct} is right on all`;
+  wins.onclick = () => { rows.forEach((r) => store(r, precinct)); render(); };
+  const loses = document.createElement("button");
+  loses.textContent = "The other map is right on all";
+  loses.onclick = () => { rows.forEach((r) => { if (r.choices.length === 2) store(r, r.choices.find((p) => p !== precinct)); }); render(); };
+  div.append(wins, loses);
+  return div;
+}
+function addForm(precinct) {
+  const d = document.createElement("details");
+  d.className = "add";
+  const s = document.createElement("summary");
+  s.textContent = "Add a range";
+  const f = document.createElement("form");
+  f.innerHTML = '<input name="zip" placeholder="ZIP" required pattern="\\d{5}"><input name="street" placeholder="STREET" required><input name="low" placeholder="Low" required pattern="\\d+"><input name="high" placeholder="High" required pattern="\\d+"><input name="precinct" placeholder="Precinct" required pattern="\\d+"><button>Add</button>';
+  f.elements.precinct.value = precinct;
+  f.onsubmit = (e) => {
+    e.preventDefault();
+    const v = Object.fromEntries(new FormData(f));
+    decide({ zip: v.zip, street: v.street.trim().toUpperCase(), low: Number(v.low), high: Number(v.high) }, v.precinct);
+  };
+  d.append(s, f);
+  return d;
+}
+function render() {
+  const filter = document.getElementById("filter").value;
+  const sections = new Map();
+  const shows = (r) => filter === "all" || (filter === "differ" ? r.differ : r.kind === filter);
+  for (const r of DATA.rows) if (shows(r)) {
+    const p = r.choices[0];
+    if (!sections.has(p)) sections.set(p, { rows: [], why: null });
+    sections.get(p).rows.push(r);
+  }
+  if (filter === "all" || filter === "failed") for (const f of DATA.failed) {
+    if (!sections.has(f.precinct)) sections.set(f.precinct, { rows: [], why: null });
+    sections.get(f.precinct).why = f.why;
+  }
+  const order = [...sections.entries()].sort((a, b) => b[1].rows.filter((r) => r.differ).length - a[1].rows.filter((r) => r.differ).length || a[0] - b[0]);
+  const list = document.getElementById("list");
+  list.replaceChildren();
+  for (const [p, s] of order) {
+    const sec = document.createElement("section");
+    const h = document.createElement("h2");
+    h.append("Precinct ", mapLink(p));
+    const info = DATA.dates[p];
+    if (info) { const m = document.createElement("span"); m.className = "muted"; m.textContent = ` · county file ${info.modified}${info.current ? "" : " · local copy is out of date"}`; h.append(m); }
+    sec.append(h);
+    if (s.why) { const w = document.createElement("div"); w.className = "why"; w.textContent = s.why; sec.append(w); }
+    if (s.rows.length > 1) sec.append(allButtons(p, s.rows));
+    s.rows.forEach((r) => sec.append(line(r)));
+    sec.append(addForm(p));
+    list.append(sec);
+  }
+  const done = DATA.rows.filter((r) => decisions[idOf(r)]).length;
+  document.getElementById("progress").textContent = `${done} of ${DATA.rows.length} settled`;
+}
+function save() {
+  const cols = ["zip", "street", "low", "high", "precinct", "map", "map_date"];
+  const text = [cols.join(","), ...Object.values(decisions).map((c) => cols.map((k) => c[k]).join(","))].join("\n") + "\n";
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([text], { type: "text/csv" }));
+  a.download = "43.csv";
+  a.click();
+}
+document.getElementById("filter").onchange = render;
+document.getElementById("save").onclick = save;
+render();
+</script>
+</body>
+</html>

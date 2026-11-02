@@ -90,7 +90,7 @@ def point_ranges(path, places, source):
     with open(path, encoding="utf-8") as f:
         for feature in json.load(f):
             address, zip_code = (feature["attributes"][source[k]] or "" for k in ("address", "zip"))
-            parsed = re.match(r"(\d+)\S*(?:\s+1/2)?\s+(?:[A-Za-z]\s+)?(.+)$", address.strip())
+            parsed = re.match(r"(\d+)\S*(?:\s+1/2)?\s+(?:(?![NSEWnsew]\s)[A-Za-z]\s+)?(.+)$", address.strip())
             precinct = places.at(feature["geometry"]["x"], feature["geometry"]["y"]) if "geometry" in feature else None
             if parsed and zip_code.strip() and precinct:
                 homes[zip_code.strip()[:5], normalize_street(parsed[2]), int(parsed[1])].add(precinct)
@@ -183,10 +183,10 @@ def build(county, fips, max_gap=MAX_GAP, source=None):
 
 
 def readable(streets):
-    """JSON with one range per line, a street's even side then its odd side."""
+    """JSON with one range per line, each street in house-number order."""
     blocks = []
     for street in sorted(streets):
-        ranges = sorted(streets[street], key=lambda r: (r[0] % 2, r[0]))
+        ranges = sorted(streets[street], key=lambda r: r[:2])
         lines = ",\n".join(f"    {json.dumps(r)}" for r in ranges)
         blocks.append(f"  {json.dumps(street)}: [\n{lines}\n  ]")
     return "{\n" + ",\n".join(blocks) + "\n}\n"

@@ -22,7 +22,7 @@ uses these files.
 | --- | --- |
 | [Census TIGER 2025](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html) `ADDRFEAT` | Address range on each side of each street segment, and the face it borders |
 | Census TIGER 2025 `FACES` | Each face's Census block and ZCTA |
-| [UC Berkeley's Statewide Database](https://statewidedatabase.org/) `c<county>_p26_rg_blk_map.csv` | Registered voter counts by precinct and Census block, June 2026 primary |
+| [Statewide Database (SWDB)](https://statewidedatabase.org/) `c<county>_p26_rg_blk_map.csv` | Registered voter counts by precinct and Census block, June 2026 primary |
 | County precinct map, where `counties.json` lists one | Each precinct's shape |
 | County address points, where `counties.json` lists them | Real addresses and where they are |
 
@@ -43,6 +43,16 @@ uses these files.
     bin/build.py       # into out/
 
 `bin/check.py` compares the ranges with any file of known ranges.
+
+## Corrections
+
+The county's precinct map settles any disagreement. `corrections/<county>.csv`
+holds what a person read off a map: the numbers, the precinct, and the map and
+its date. `bin/corrections.py` applies them last, so a rebuild keeps them, and
+warns when a map has changed since it was checked.
+
+`bin/review.py` builds a local page of what needs checking, linked to local
+copies of the maps. `bin/map_dates.py` compares those copies with the county's.
 
 Python 3, standard library only.
 

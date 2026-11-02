@@ -9,7 +9,7 @@ How the ranges are built, how they could get better, and how to tell.
 | Precinct shapes | Which precinct a place is in | Oct 2026, Aug 2026 | GIS layer | PDF per precinct, no coordinates | Listing dates; `Last-Modified` |
 | County address points | Real house numbers and where they are | Unknown; June 2020 | 236,649 | About 504,000 | None seen |
 | Census TIGER 2025 | Possible numbers on each side of a street | 2025 | Yes | Yes | New each year |
-| UC Berkeley Statewide Database | Voters by precinct and block | June 2026 | Yes | Yes | After each election |
+| Statewide Database (SWDB) | Voters by precinct and block | June 2026 | Yes | Yes | After each election |
 | County-published ranges | The real answer | Not yet | | | |
 
 ## Methods, best first

@@ -56,9 +56,9 @@ def download(county, fips, precinct_map=None, address_points=None):
     for layer in ("ADDRFEAT", "FACES"):
         with zipfile.ZipFile(fetch(TIGER.format(layer=layer, fips=fips, name=layer.lower()), directory)) as z:
             z.extractall(directory, [n for n in z.namelist() if n.endswith(".dbf")])
-    if precinct_map:
+    if precinct_map and "url" in precinct_map:
         fetch_layer(precinct_map["url"], [precinct_map["field"]], os.path.join(directory, "precinct_map.json"))
-    if address_points:
+    if address_points and "url" in address_points:
         fetch_layer(address_points["url"], [address_points["address"], address_points["zip"]], os.path.join(directory, "address_points.json"))
 
 
