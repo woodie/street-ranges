@@ -17,6 +17,7 @@ and how to verify the ranges.
 
 | County | Number | Precinct map | Address points |
 | --- | --- | --- | --- |
+| San Francisco | 38 | Not needed: the county's Street Data Extract gives each address's precinct | In the extract |
 | San Mateo | 41 | County GIS layer (`counties.json`) | County GIS layer |
 | Santa Clara | 43 | County shapefile, free by request (`bin/county_shapes.py`) | County GIS layer, from June 2020 |
 
@@ -106,6 +107,12 @@ Before changing a cleanup rule:
 
 Keep a rule narrow. A rule that needs a street type before the unit can't touch
 `AVE A`, while one that strips any last word would.
+
+## Reading a street extract
+
+`extract_rows` in `bin/build.py` reads only the street, house number, zipcode and
+precinct. The file has other per-address columns that must never reach `out/` or
+this repo, so don't add fields without checking. `sources/` stays out of git.
 
 ## Lookup page
 

@@ -3,6 +3,8 @@
 
 Usage: bin/spec_addresses.py    # needs sources/ from bin/download.py
 """
+import csv
+import glob
 import json
 import os
 import re
@@ -14,6 +16,14 @@ from build import REPO, normalize_street, counties
 def known_addresses():
     found = set()
     for county, config in counties().items():
+        if "street_extract" in config:
+            path = sorted(glob.glob(os.path.join(REPO, "sources", county, config["street_extract"])))[-1]
+            with open(path, encoding="latin-1", newline="") as f:
+                for row in csv.DictReader(f, delimiter="\t"):
+                    if (row["lHouseNumLo"] or "").isdigit():
+                        street = " ".join(row[k] or "" for k in ("sPreDir", "szStreetName", "sStreetSuffix", "sPostDir"))
+                        found.add((normalize_street(street), int(row["lHouseNumLo"])))
+            continue
         fields = config["address_points"]["address"]
         fields = fields if isinstance(fields, list) else [fields]
         with open(os.path.join(REPO, "sources", county, "address_points.json"), encoding="utf-8") as f:

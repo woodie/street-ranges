@@ -30,6 +30,11 @@ no coordinates, to line each map up with the address points. Against the county'
 shapes, the maps used matched on over 99.9% of addresses. The numbers in the table
 above predate fixes that made small differences; see `docs/COWORK.md`.
 
+San Francisco needs no method: its Street Data Extract (Oct 2026) gives each address's
+precinct, and ranges are runs of those. The county's own precinct shapes match it on
+99.996% of addresses and SWDB's June shapes on 99.98%, though the county may set
+precincts from those shapes, so that isn't an independent test.
+
 ## How to verify
 
 1. **Known ranges.** `bin/check.py` measures a method against any file of known

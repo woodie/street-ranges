@@ -68,6 +68,8 @@ def main():
     with open(os.path.join(REPO, "counties.json"), encoding="utf-8") as f:
         counties = json.load(f)
     for county in sys.argv[1:] or counties:
+        if "street_extract" in counties[county]:
+            continue  # the county's site blocks scripts, so a person downloads the file
         download(county, counties[county]["fips"], counties[county].get("precinct_map"), counties[county].get("address_points"))
 
 

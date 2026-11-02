@@ -7,6 +7,7 @@ segment gets its precinct from the map, or else the precinct of the block it fac
 Usage: bin/build.py [county ...]    # all counties in counties.json by default
 """
 import csv
+import glob
 import itertools
 import json
 import os
@@ -21,6 +22,7 @@ from precinct_map import PrecinctMap, read_lines
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SHARE = 0.90  # a block's precinct needs this share of its voters
 MAX_GAP = 100  # next-door segments merge only when their numbers are this close
+NOT_HOMES = {"Exception Address", "Mail Drop", "Drop Box", "No-Residence"}
 STREET_WORDS = {
     "STREET": "ST", "AVENUE": "AVE", "AV": "AVE", "ROAD": "RD", "DRIVE": "DR", "LANE": "LN", "COURT": "CT",
     "PLACE": "PL", "CIRCLE": "CIR", "BOULEVARD": "BLVD", "TERRACE": "TER", "PARKWAY": "PKWY", "HIGHWAY": "HWY",
@@ -143,9 +145,41 @@ def merge_rows(rows, max_gap):
     return merged
 
 
+def extract_rows(path, county, max_gap=MAX_GAP):
+    """Rows from an elections office's address table: only the street, house number, zipcode and precinct are read."""
+    homes = defaultdict(set)
+    with open(path, encoding="latin-1", newline="") as f:
+        for row in csv.DictReader(f, delimiter="\t"):
+            number = (row["lHouseNumLo"] or "").strip()
+            # Numbers run from 1, and these types aren't places a voter lives or looks up.
+            if not number.isdigit() or int(number) == 0 or row["szAddrTypeDesc"] in NOT_HOMES or not row["sPrecinctID"]:
+                continue
+            street = normalize_street(" ".join(row[k] or "" for k in ("sPreDir", "szStreetName", "sStreetSuffix", "sPostDir")))
+            homes[row["sZip"].strip(), street, int(number)].add(county + row["sPrecinctID"].strip().zfill(4))
+    rows = []
+    for (zip_code, street, number), precincts in sorted(homes.items(), key=lambda item: (item[0][0], item[0][1], item[0][2] % 2, item[0][2])):
+        rows.append([zip_code, street, number, number, precincts.pop() if len(precincts) == 1 else None])
+    stops = {(z, s, n) for z, s, n, _, p in rows if p is None}
+    merged = []
+    for row in rows:
+        last = merged[-1] if merged else None
+        if row[4] is None:
+            continue
+        if (last and last[:2] == row[:2] and last[2] % 2 == row[2] % 2 and last[4] == row[4] and row[2] - last[3] <= max_gap
+                and not any((row[0], row[1], n) in stops for n in range(last[3] + 2, row[2], 2))):
+            last[3] = row[2]
+        else:
+            merged.append(row)
+    return merged
+
+
 def build(county, fips, max_gap=MAX_GAP, source=None):
     """[zip, street, low, high, precinct] rows, counts of sides by outcome, and every (zip, street)."""
     directory = os.path.join(REPO, "sources", county)
+    extract = counties()[county].get("street_extract")
+    if extract:
+        rows = extract_rows(sorted(glob.glob(os.path.join(directory, extract)))[-1], county, max_gap)
+        return sorted(rows), Counter(address=sum((r[3] - r[2]) // 2 + 1 for r in rows)), {(r[0], r[1]) for r in rows}
     source = source or counties()[county].get("precinct_map")
     places = PrecinctMap(os.path.join(directory, "precinct_map.json"), county, source["field"]) if source else None
     lines = read_lines(os.path.join(directory, f"tl_2025_06{fips}_addrfeat.zip"), f"tl_2025_06{fips}_addrfeat.shp") if places else itertools.repeat(None)

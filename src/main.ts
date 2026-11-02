@@ -4,7 +4,7 @@ export type Load = (county: string, zip: string) => Promise<Streets | null>
 export interface Address { number: number, street: string, zip: string | null }
 export type Env = Pick<typeof globalThis, 'document' | 'fetch'>
 
-const COUNTIES: Record<string, string> = { 41: 'San Mateo County', 43: 'Santa Clara County' }
+const COUNTIES: Record<string, string> = { 38: 'San Francisco County', 41: 'San Mateo County', 43: 'Santa Clara County' }
 
 const STREET_WORDS: Record<string, string> = {
   STREET: 'ST',
@@ -86,7 +86,7 @@ export async function lookup (text: string, load: Load): Promise<string> {
   if (!zip) return 'Please include the zip code.'
   const files = await Promise.all(Object.keys(COUNTIES).map((county) => load(county, zip)))
   const known = files.filter((file) => file !== null)
-  if (!known.length) return `Sorry, ${zip} isn't in San Mateo or Santa Clara County.`
+  if (!known.length) return `Sorry, ${zip} isn't in San Francisco, San Mateo or Santa Clara County.`
   const found = new Set(known.flatMap((streets) => precinctsIn(streets, address)))
   if (found.size > 1) return "There's more than one match. Please add St, Ave, etc."
   const [precinct] = found

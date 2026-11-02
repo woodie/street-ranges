@@ -11,8 +11,8 @@ A range is a run of house numbers on one side of a street, all in one precinct:
 ## Output
 
 `out/<county>/<zip>.json`, one file per zipcode. The folder is California's
-county number, which also starts each precinct number: 41 is San Mateo
-County, 43 is Santa Clara County. A zipcode that crosses a county line has a
+county number, which also starts each precinct number: 38 is San Francisco
+County, 41 is San Mateo County, 43 is Santa Clara County. A zipcode that crosses a county line has a
 file in each county. Which races a precinct votes in is left to whatever app
 uses these files.
 
@@ -25,10 +25,12 @@ uses these files.
 | [Statewide Database (SWDB)](https://statewidedatabase.org/) `c<county>_p26_rg_blk_map.csv` | Registered voter counts by precinct and Census block, June 2026 primary |
 | County precinct shapes, where `counties.json` lists them | Each precinct's shape |
 | County address points, where `counties.json` lists them | Real addresses and where they are |
+| County street extract, where `counties.json` lists one | Each address's precinct, from the county's elections office |
 
 ## How they're built
 
-- Real addresses come first: each address point placed on the county's map, with
+- Where a county publishes its street extract, the ranges come straight from it.
+- Otherwise real addresses come first: each address point placed on the county's map, with
   runs of house numbers in one precinct on one side of a street becoming ranges.
 - The rest of a street comes from Census, around those ranges. A side whose whole
   length falls in one precinct on the county's map gets that precinct.
@@ -49,6 +51,11 @@ Santa Clara's precinct shapes come by request, free from the Registrar of Voters
 Convert the shapefile before building:
 
     bin/county_shapes.py sources/43/county_shapes/Precinct_Boundaries
+
+San Francisco publishes its address table as the Street Data Extract
+([datasets](https://sfelections.org/tools/election_data/datasets.php)). Its site blocks
+scripts, so save the file in `sources/38/`. The build reads only the street, house
+number, zipcode and precinct.
 
 ## Corrections
 

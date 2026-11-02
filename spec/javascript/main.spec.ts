@@ -17,6 +17,7 @@ const DALY_CITY: Streets = {
   'S LYCETT ST': [[101, 199, '4156050']]
 }
 const SAN_JOSE: Streets = { 'BAMBI LN': [[2301, 2699, '430007904'], [2530, 2698, '430007904']] }
+const NORTH_BEACH: Streets = { 'VALLEJO ST': [[801, 1085, '387309'], [806, 1070, '387309']] }
 const EAST_PALO_ALTO: Streets = {
   'NEWELL RD': [[2, 198, '4140010']],
   'W BAYSHORE RD': [[2400, 2598, '4140010']]
@@ -146,6 +147,7 @@ describe('lookup', () => {
 
   beforeEach(() => {
     files = {
+      '38/94133': NORTH_BEACH,
       '41/94025': MENLO_PARK,
       '41/94015': DALY_CITY,
       '43/95116': SAN_JOSE,
@@ -161,6 +163,14 @@ describe('lookup', () => {
 
     it('gives the short precinct and county', () => {
       expect(answer).toBe('Precinct 44007, San Mateo County')
+    })
+  })
+
+  context('with a San Francisco address', () => {
+    beforeEach(() => { text = '977 Vallejo St, San Francisco, CA 94133' })
+
+    it('gives the precinct and county', () => {
+      expect(answer).toBe('Precinct 7309, San Francisco County')
     })
   })
 
@@ -284,10 +294,10 @@ describe('lookup', () => {
   })
 
   context('with a zip code in neither county', () => {
-    beforeEach(() => { text = '99 Nowhere Ln 94105' })
+    beforeEach(() => { text = '99 Nowhere Ln 90210' })
 
     it('says so', () => {
-      expect(answer).toBe("Sorry, 94105 isn't in San Mateo or Santa Clara County.")
+      expect(answer).toBe("Sorry, 90210 isn't in San Francisco, San Mateo or Santa Clara County.")
     })
   })
 })
@@ -318,7 +328,7 @@ describe('start', () => {
     })
 
     it('asks for each county\'s file for that zip code', () => {
-      expect(fetchFile.mock.calls.map(([url]) => url)).toEqual(['out/41/95116.json', 'out/43/95116.json'])
+      expect(fetchFile.mock.calls.map(([url]) => url)).toEqual(['out/38/95116.json', 'out/41/95116.json', 'out/43/95116.json'])
     })
 
     it('never sends the street or house number', () => {
