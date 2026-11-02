@@ -80,6 +80,33 @@ point cost more right answers than it saved wrong ones, so flag, don't filter.
   each election. San Mateo's layer has no date of its own, but the county's
   Precinct Lookup uses it and labels it current as of October 2026.
 
+## Cleaning up addresses safely
+
+Address cleanup can fail two ways: it removes part of a real name, or it leaves a
+unit in one. Both have happened:
+
+| Fix | Mistake | Size | Known ranges |
+| --- | --- | --- | --- |
+| Keep N, S, E and W | A lone letter was treated as a unit, so "2100 N 1ST ST" became "1ST ST" | About 51,000 address records | Right 96.4% to 96.6%, wrong 160 to 140 |
+| Strip a bare unit | "190 E Okeefe St 4" became a street named "E OKEEFE ST 4" | 904 names, 875 fewer ranges | No change |
+
+Before changing a cleanup rule:
+
+1. **Search all of `out/` for the pattern**, not just the example, and count the hits.
+2. **Look for proof the rule is right.** 903 of the 904 unit names also had the plain
+   street listed in the same zipcode.
+3. **List what must not change, and test it:** `AVE A`, `LN 13 E`, `STATE RTE 17`,
+   `HWY 9` and `RED OAK DR E` all stay as they are.
+4. **Run the rule over TIGER's street names.** A rule meant for address lists
+   shouldn't change any.
+5. **Rebuild every county and compare.** `bin/check.py` shows whether right and wrong
+   moved, and the diff in `out/` shows which zipcodes changed.
+6. **Expect the size of the change to match the mistake.** A cleanup that changes
+   more than it should is a bug.
+
+Keep a rule narrow. A rule that needs a street type before the unit can't touch
+`AVE A`, while one that strips any last word would.
+
 ## Commits and pushes
 
 Woodie pushes, or says yes first. Keep comments to one line.
