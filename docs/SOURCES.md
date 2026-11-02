@@ -6,7 +6,8 @@ How the ranges are built, how they could get better, and how to tell.
 
 | Source | Gives | As of | San Mateo | Santa Clara | Change signal |
 | --- | --- | --- | --- | --- | --- |
-| Precinct shapes | Which precinct a place is in | Oct 2026, Aug 2026 | GIS layer | PDF per precinct, no coordinates | Listing dates; `Last-Modified` |
+| Precinct shapes | Which precinct a place is in | Oct 2026, Nov 2026 election | GIS layer | Shapefile, free by request | Listing dates; file date |
+| SWDB precinct shapes | The last election's precincts, for any California county | June 2026 | Matches the county on 99.90% of addresses | 98.28% | After each election |
 | County address points | Real house numbers and where they are | Unknown; June 2020 | 236,649 | About 504,000 | None seen |
 | Census TIGER 2025 | Possible numbers on each side of a street | 2025 | Yes | Yes | New each year |
 | Statewide Database (SWDB) | Voters by precinct and block | June 2026 | Yes | Yes | After each election |
@@ -19,14 +20,15 @@ San Mateo, looked up against 16,319 known ranges (31,092 tests):
 | Method | Right | Wrong | No answer | Right when it answers |
 | --- | --- | --- | --- | --- |
 | Address points on the map, alone | 85.3% | 54 | 4,507 | 99.80% |
-| Address points, then TIGER + map + block rule (`out/41` today) | 96.4% | 160 | 952 | 99.47% |
+| Address points, then TIGER + map + block rule (`out/41` today) | 96.6% | 140 | 927 | 99.5% |
 | TIGER + map + block rule | 90.8% | 358 | 2,502 | 98.75% |
 | Block rule alone | 72.8% | 182 | 8,276 | 99.20% |
 
-Santa Clara's PDFs have no coordinates, but they do print house numbers. Reading
-those and matching them to the county's address points lines a map up, and then
-each point is on the precinct's yellow area or not. Seven trial maps agreed with
-the block rule on 99.6% of 5,300 points; rural maps are weakest. Not built yet.
+Santa Clara uses the same method as San Mateo, since the county provided its shapes.
+Before that, ranges came from reading house numbers on its precinct PDFs, which have
+no coordinates, to line each map up with the address points. Against the county's
+shapes, the maps used matched on over 99.9% of addresses. The numbers in the table
+above predate fixes that made small differences; see `docs/COWORK.md`.
 
 ## How to verify
 

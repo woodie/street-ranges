@@ -16,9 +16,15 @@ from map_dates import MAPS
 
 def apply(rows, corrections):
     """Rows with each correction's numbers taken from any other range on that side."""
+    served = defaultdict(list)
+    for zip_code, street, low, high, precinct in rows:
+        served[zip_code, street, low % 2, precinct].append((low, high))
     fixes = defaultdict(list)
     for c in corrections:
-        fixes[c["zip"], c["street"], int(c["low"]) % 2].append([int(c["low"]), int(c["high"]), c["precinct"]])
+        low, high = int(c["low"]), int(c["high"])
+        # A correction the ranges already agree with would only split them.
+        if not any(a <= low and high <= b for a, b in served[c["zip"], c["street"], low % 2, c["precinct"]]):
+            fixes[c["zip"], c["street"], low % 2].append([low, high, c["precinct"]])
     out = []
     for zip_code, street, low, high, precinct in rows:
         taken = sorted(f[:2] for f in fixes.get((zip_code, street, low % 2), []))

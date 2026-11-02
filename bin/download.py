@@ -59,7 +59,9 @@ def download(county, fips, precinct_map=None, address_points=None):
     if precinct_map and "url" in precinct_map:
         fetch_layer(precinct_map["url"], [precinct_map["field"]], os.path.join(directory, "precinct_map.json"))
     if address_points and "url" in address_points:
-        fetch_layer(address_points["url"], [address_points["address"], address_points["zip"]], os.path.join(directory, "address_points.json"))
+        address = address_points["address"]
+        fetch_layer(address_points["url"], [*(address if isinstance(address, list) else [address]), address_points["zip"]],
+                    os.path.join(directory, "address_points.json"))
 
 
 def main():

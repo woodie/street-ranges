@@ -92,10 +92,16 @@ def point_ranges(path, places, source):
     homes = defaultdict(set)
     with open(path, encoding="utf-8") as f:
         for feature in json.load(f):
-            address, zip_code = (feature["attributes"][source[k]] or "" for k in ("address", "zip"))
-            # "8881/2 Green St" is 888 1/2.
+            attributes = feature["attributes"]
+            fields = source["address"] if isinstance(source["address"], list) else [source["address"]]
+            # The first field is the house number, when an address comes in parts.
+            address = " ".join(str(attributes.get(f) or "").strip() for f in fields).strip()
+            if not str(attributes.get(fields[0]) or "").strip():
+                continue
+            zip_code = attributes[source["zip"]] or ""
+            # "8881/2 Green St" is 888 1/2, and " 91st St" has no house number.
             address = re.sub(r"^(\d+)1/2\b", r"\1 1/2", address.strip())
-            parsed = re.match(r"(\d+)\S*(?:\s+1/2)?\s+(?:(?![NSEWnsew]\s)[A-Za-z]\s+)?(.+)$", address)
+            parsed = re.match(r"(\d+)(?!\d)(?!(?i:st|nd|rd|th)\b)\S*(?:\s+1/2)?\s+(?:(?![NSEWnsew]\s)[A-Za-z]\s+(?=\S+\s))?(.+)$", address)
             precinct = places.at(feature["geometry"]["x"], feature["geometry"]["y"]) if "geometry" in feature else None
             if parsed and zip_code.strip() and precinct:
                 homes[zip_code.strip()[:5], normalize_street(parsed[2]), int(parsed[1])].add(precinct)
@@ -214,10 +220,22 @@ def write(county, rows, zipcodes):
     return len(by_zip)
 
 
+def corrected(county, rows):
+    """Rows with what a person read off a map applied last, so a rebuild keeps it."""
+    from corrections import apply
+
+    path = os.path.join(REPO, "corrections", f"{county}.csv")
+    if not os.path.exists(path):
+        return rows
+    with open(path, encoding="utf-8") as f:
+        return apply(rows, list(csv.DictReader(f)))
+
+
 def main():
     known = counties()
     for county in sys.argv[1:] or known:
         rows, outcome, _ = build(county, known[county]["fips"])
+        rows = corrected(county, rows)
         total = sum(outcome.values())
         print(known[county]["name"], "street sides:", ", ".join(f"{k} {v} ({v / total:.1%})" for k, v in outcome.most_common()))
         print(f"{len(rows)} ranges in {write(county, rows, known[county]['zipcodes'])} zipcodes -> out/{county}/")

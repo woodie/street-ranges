@@ -2,7 +2,7 @@
 
 Street ranges turn a street address into a precinct, right in the browser,
 so the address never leaves the voter's device. This repo builds them from
-public data only.
+public data. Try it at https://woodie.github.io/street-ranges/ (`public/`, built from `src/`).
 
 A range is a run of house numbers on one side of a street, all in one precinct:
 
@@ -23,7 +23,7 @@ uses these files.
 | [Census TIGER 2025](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html) `ADDRFEAT` | Address range on each side of each street segment, and the face it borders |
 | Census TIGER 2025 `FACES` | Each face's Census block and ZCTA |
 | [Statewide Database (SWDB)](https://statewidedatabase.org/) `c<county>_p26_rg_blk_map.csv` | Registered voter counts by precinct and Census block, June 2026 primary |
-| County precinct map, where `counties.json` lists one | Each precinct's shape |
+| County precinct shapes, where `counties.json` lists them | Each precinct's shape |
 | County address points, where `counties.json` lists them | Real addresses and where they are |
 
 ## How they're built
@@ -40,9 +40,15 @@ uses these files.
 ## Running
 
     bin/download.py    # into sources/ (gitignored)
-    bin/build.py       # into out/
+    bin/build.py       # into out/, with corrections applied
 
 `bin/check.py` compares the ranges with any file of known ranges.
+
+Santa Clara's precinct shapes come by request, free from the Registrar of Voters
+([form](https://vote.santaclaracounty.gov/precinct-data-and-gis-maps), Option 2).
+Convert the shapefile before building:
+
+    bin/county_shapes.py sources/43/county_shapes/Precinct_Boundaries
 
 ## Corrections
 
@@ -56,6 +62,7 @@ copies of the maps. `bin/map_dates.py` compares those copies with the county's.
 
 Python 3, standard library only.
 
-## Next
+## Publishing
 
-A precinct map for Santa Clara County.
+Pushing changes to `public/` or `out/` deploys the lookup page to GitHub Pages
+(`.github/workflows/pages.yml`).

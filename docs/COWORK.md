@@ -18,7 +18,7 @@ and how to verify the ranges.
 | County | Number | Precinct map | Address points |
 | --- | --- | --- | --- |
 | San Mateo | 41 | County GIS layer (`counties.json`) | County GIS layer |
-| Santa Clara | 43 | None yet: the county's maps are PDFs | Not used until there's a map |
+| Santa Clara | 43 | County shapefile, free by request (`bin/county_shapes.py`) | County GIS layer, from June 2020 |
 
 To add a map, put its query URL and precinct field in `counties.json`, or get
 its shapes into `sources/<county>/precinct_map.json` some other way, in TIGER's
@@ -106,6 +106,14 @@ Before changing a cleanup rule:
 
 Keep a rule narrow. A rule that needs a street type before the unit can't touch
 `AVE A`, while one that strips any last word would.
+
+## Lookup page
+
+`public/` is the page at https://woodie.github.io/street-ranges/, with `public/main.js`
+built from `src/main.ts` and committed. It copies the guide's address matching, exact
+ranges only, and fetches `out/<county>/<zip>.json` from both counties. Keep it to one
+input and one answer. Races stay out. `make check` lints, type-checks, runs the specs
+at 100% coverage and confirms `main.js` is current.
 
 ## Commits and pushes
 
