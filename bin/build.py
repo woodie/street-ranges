@@ -182,6 +182,16 @@ def build(county, fips, max_gap=MAX_GAP, source=None):
     return sorted(rows), outcome, streets
 
 
+def readable(streets):
+    """JSON with one range per line, a street's even side then its odd side."""
+    blocks = []
+    for street in sorted(streets):
+        ranges = sorted(streets[street], key=lambda r: (r[0] % 2, r[0]))
+        lines = ",\n".join(f"    {json.dumps(r)}" for r in ranges)
+        blocks.append(f"  {json.dumps(street)}: [\n{lines}\n  ]")
+    return "{\n" + ",\n".join(blocks) + "\n}\n"
+
+
 def write(county, rows):
     directory = os.path.join(REPO, "out", county)
     shutil.rmtree(directory, ignore_errors=True)
@@ -191,7 +201,7 @@ def write(county, rows):
         by_zip[zip_code][street].append([low, high, precinct])
     for zip_code, streets in by_zip.items():
         with open(os.path.join(directory, f"{zip_code}.json"), "w", encoding="utf-8") as f:
-            json.dump(streets, f, separators=(",", ":"), sort_keys=True)
+            f.write(readable(streets))
     return len(by_zip)
 
 
