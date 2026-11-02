@@ -71,7 +71,8 @@ point cost more right answers than it saved wrong ones, so flag, don't filter.
 - 38 precincts in `out/41` have no voters in the June 2026 file: the map answers
   where the block rule couldn't. An app needs races for them, or falls back.
 - Precinct lines are as of each source. The Statewide Database publishes after
-  each election; the county layer shows no update date.
+  each election. San Mateo's layer has no date of its own, but the county's
+  Precinct Lookup uses it and labels it current as of October 2026.
 
 ## Commits and pushes
 
