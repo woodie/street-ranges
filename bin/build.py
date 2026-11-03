@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Street ranges from public data. Real addresses come first: the county's address
 points placed on its precinct map. For other numbers, each side of a Census street
-segment gets its precinct from the map, or else the precinct of the block it faces. Writes out/<county>/<zip>.json as
+segment gets its precinct from the map, or else the precinct of the block it faces. Writes counties/<county>/streets/<zip>.json as
 {street: [[low, high, precinct], ...]}. See README.md.
 
 Usage: bin/build.py [county ...]    # all counties in counties.json by default
@@ -243,7 +243,7 @@ def readable(streets):
 
 def write(county, rows, zipcodes):
     """One file per listed zipcode, and the rest reported: TIGER has typos and strays."""
-    directory = os.path.join(REPO, "out", county)
+    directory = os.path.join(REPO, "counties", county, "streets")
     shutil.rmtree(directory, ignore_errors=True)
     os.makedirs(directory)
     by_zip = defaultdict(lambda: defaultdict(list))
@@ -259,13 +259,13 @@ def write(county, rows, zipcodes):
 
 
 def write_index():
-    """out/index.json: each county's name and zipcode files, so an app needn't guess."""
+    """counties/index.json: each county's name and zipcode files, so an app needn't guess."""
     entries = []
     for county, config in sorted(counties().items()):
-        files = sorted(glob.glob(os.path.join(REPO, "out", county, "*.json")))
+        files = sorted(glob.glob(os.path.join(REPO, "counties", county, "streets", "*.json")))
         zipcodes = [os.path.basename(path)[:-5] for path in files]
         entries.append(f'  "{county}": {{"name": {json.dumps(config["name"])}, "zipcodes": {json.dumps(zipcodes)}}}')
-    with open(os.path.join(REPO, "out", "index.json"), "w", encoding="utf-8") as f:
+    with open(os.path.join(REPO, "counties", "index.json"), "w", encoding="utf-8") as f:
         f.write("{\n" + ",\n".join(entries) + "\n}\n")
 
 
@@ -287,7 +287,7 @@ def main():
         rows = corrected(county, rows)
         total = sum(outcome.values())
         print(known[county]["name"], "street sides:", ", ".join(f"{k} {v} ({v / total:.1%})" for k, v in outcome.most_common()))
-        print(f"{len(rows)} ranges in {write(county, rows, known[county]['zipcodes'])} zipcodes -> out/{county}/")
+        print(f"{len(rows)} ranges in {write(county, rows, known[county]['zipcodes'])} zipcodes -> counties/{county}/streets/")
     write_index()
 
 

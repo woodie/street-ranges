@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
-    paths: [public/**, out/**, .github/workflows/pages.yml]
+    paths: [public/**, counties/**, .github/workflows/pages.yml]
   workflow_dispatch:
 
 permissions:
@@ -24,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
-      - run: cp -R out public/counties
+      - run: cp -R counties public/counties
       - uses: actions/upload-pages-artifact@v3
         with:
           path: public

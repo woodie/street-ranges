@@ -371,9 +371,9 @@ describe('start', () => {
     fetchFile = vi.fn(async (url: string) => reply(
       ({
         'counties/index.json': indexOf(['43/95116', '43/95117']),
-        'counties/43/95116.json': SAN_JOSE,
-        'counties/maps/43/index.json': { 7904: '95116' },
-        'counties/maps/43/95116.json': { 7904: '<svg></svg>' }
+        'counties/43/streets/95116.json': SAN_JOSE,
+        'counties/43/maps/index.json': { 7904: '95116' },
+        'counties/43/maps/95116.json': { 7904: '<svg></svg>' }
       } as Record<string, unknown>)[url] ?? null))
     typed = '2501 Bambi Ln 95116'
     history.replaceState(null, '', '/')
@@ -402,7 +402,7 @@ describe('start', () => {
     })
 
     it('asks for the index, then only the file for that zip code', () => {
-      expect(fetchFile.mock.calls.map(([url]) => url)).toEqual(['counties/index.json', 'counties/43/95116.json', 'counties/maps/43/95116.json'])
+      expect(fetchFile.mock.calls.map(([url]) => url)).toEqual(['counties/index.json', 'counties/43/streets/95116.json', 'counties/43/maps/95116.json'])
     })
 
     it('never sends the street or house number', () => {
@@ -666,7 +666,7 @@ describe('start', () => {
     })
 
     it('never asks for the street ranges', () => {
-      expect(fetchFile.mock.calls.map(([url]) => url)).toEqual(['counties/index.json', 'counties/maps/43/index.json', 'counties/maps/43/95116.json'])
+      expect(fetchFile.mock.calls.map(([url]) => url)).toEqual(['counties/index.json', 'counties/43/maps/index.json', 'counties/43/maps/95116.json'])
     })
 
     context('when the visitor resets', () => {

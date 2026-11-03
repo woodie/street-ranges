@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Precinct maps, drawn ahead of time so the page needs no map service. Each is an SVG of the precinct's
 outline and nearby streets, with labels on the streets along its border. Run after bin/build.py, since a
-map is only kept for a precinct with ranges. Writes out/maps/<county>/<zip>.json as {number: svg} and
-out/maps/<county>/index.json as {number: zip}, for links that name a precinct. See docs/COWORK.md.
+map is only kept for a precinct with ranges. Writes counties/<county>/maps/<zip>.json as {number: svg} and
+counties/<county>/maps/index.json as {number: zip}, for links that name a precinct. See docs/COWORK.md.
 
 Usage: bin/maps.py [county ...]    # all counties in counties.json with a precinct map and TIGER streets
 """
@@ -197,7 +197,7 @@ def drawn(job):
 def precinct_zipcodes(county):
     """Each precinct number with ranges, as shown on the page, and the zipcodes it has them in."""
     zipcodes = defaultdict(set)
-    for path_ in glob.glob(os.path.join(REPO, "out", county, "*.json")):
+    for path_ in glob.glob(os.path.join(REPO, "counties", county, "streets", "*.json")):
         with open(path_, encoding="utf-8") as f:
             for ranges in json.load(f).values():
                 for _, _, precinct in ranges:
@@ -230,7 +230,7 @@ def build_county(county, config):
 
 
 def write_county(county, svgs, zipcodes):
-    directory = os.path.join(REPO, "out", "maps", county)
+    directory = os.path.join(REPO, "counties", county, "maps")
     shutil.rmtree(directory, ignore_errors=True)
     os.makedirs(directory)
     by_zip = defaultdict(dict)
@@ -246,7 +246,7 @@ def write_county(county, svgs, zipcodes):
     index = {number: min(zipcodes[number]) for number in sorted(svgs, key=int)}
     with open(os.path.join(directory, "index.json"), "w", encoding="utf-8") as f:
         f.write(json.dumps(index, indent=0) + "\n")
-    print(f"out/maps/{county}/: {len(by_zip)} zipcodes, {sum(s[2] for s in sizes) / 1e6:.1f} MB, {sum(s[0] for s in sizes) / 1e6:.1f} MB compressed, "
+    print(f"counties/{county}/maps/: {len(by_zip)} zipcodes, {sum(s[2] for s in sizes) / 1e6:.1f} MB, {sum(s[0] for s in sizes) / 1e6:.1f} MB compressed, "
           f"largest {max(sizes)[1]} at {max(sizes)[2] / 1e3:.0f} KB ({max(sizes)[0] / 1e3:.0f} KB compressed)")
 
 

@@ -28,7 +28,7 @@ The lookup page is live at https://woodie.github.io/street-ranges/. Next:
 
 - Races and endorsements. Output is streets, house numbers, precincts and precinct
   maps only; whatever app uses the files adds its own races and can report mismatches then.
-- Downloads. `sources/` is gitignored; `out/` is committed, so a rebuild shows
+- Downloads. `sources/` is gitignored; `counties/` is committed, so a rebuild shows
   up as a diff.
 - Anything but public data.
 
@@ -94,7 +94,7 @@ point cost more right answers than it saved wrong ones, so flag, don't filter.
 
 - TIGER gives some sides a zipcode outside the county or a typo (93133 for 95133).
   `counties.json` lists each county's zipcodes, and the build reports the rest.
-- 38 precincts in `out/41` have no voters in the June 2026 file: the map answers
+- 38 precincts in `counties/41` have no voters in the June 2026 file: the map answers
   where the block rule couldn't. An app needs races for them, or falls back.
 - Precinct lines are as of each source. The Statewide Database (SWDB) publishes after
   each election. San Mateo's layer has no date of its own, but the county's
@@ -113,7 +113,7 @@ unit in one. Both have happened:
 
 Before changing a cleanup rule:
 
-1. **Search all of `out/` for the pattern**, not just the example, and count the hits.
+1. **Search all of `counties/` for the pattern**, not just the example, and count the hits.
 2. **Look for proof the rule is right.** 903 of the 904 unit names also had the plain
    street listed in the same zipcode.
 3. **List what must not change, and test it:** `AVE A`, `LN 13 E`, `STATE RTE 17`,
@@ -121,7 +121,7 @@ Before changing a cleanup rule:
 4. **Run the rule over TIGER's street names.** A rule meant for address lists
    shouldn't change any.
 5. **Rebuild every county and compare.** `bin/check.py` shows whether right and wrong
-   moved, and the diff in `out/` shows which zipcodes changed.
+   moved, and the diff in `counties/` shows which zipcodes changed.
 6. **Expect the size of the change to match the mistake.** A cleanup that changes
    more than it should is a bug.
 
@@ -131,7 +131,7 @@ Keep a rule narrow. A rule that needs a street type before the unit can't touch
 ## Reading a street extract
 
 `extract_rows` in `bin/build.py` reads only the street, house number, zipcode and
-precinct. The file has other per-address columns that must never reach `out/` or
+precinct. The file has other per-address columns that must never reach `counties/` or
 this repo, so don't add fields without checking. `sources/` stays out of git.
 
 ## Lookup page
@@ -139,9 +139,9 @@ this repo, so don't add fields without checking. `sources/` stays out of git.
 `public/` is the page at https://woodie.github.io/street-ranges/, with `public/main.js`
 built from `src/main.ts` and committed. It copies the guide's address matching, exact
 ranges only, and reads `counties/index.json` for the counties and their zipcodes, then fetches
-`counties/<county>/<zip>.json` from each county listing that zipcode. County names live
+`counties/<county>/streets/<zip>.json` from each county listing that zipcode. County names live
 there, not in the code. The deploy
-copies `out/` to `counties/`, and those public URLs should stay put. Keep it to one
+copies `counties/` as it is, and those public URLs should stay put. Keep it to one
 input and one answer, with the precinct's map when there is one. Races stay out. `make check` lints, type-checks, runs the specs
 at 100% coverage and confirms `main.js` is current.
 
@@ -152,9 +152,9 @@ no map service. An SVG has the outline, the TIGER streets within about 150 meter
 and straight labels on up to five streets along the border. A street gets a label when
 it runs within 30 meters of at least 5% of the border; ramps don't.
 
-Maps are stored by zipcode in `out/maps/<county>/<zip>.json`, the zipcode the page
+Maps are stored by zipcode in `counties/<county>/maps/<zip>.json`, the zipcode the page
 already asked for, so a map shows the server nothing new. A precinct in two zipcodes is
-in both files. `out/maps/<county>/index.json` gives one zipcode for each precinct, for links.
+in both files. `counties/<county>/maps/index.json` gives one zipcode for each precinct, for links.
 
 Copy link gives `#41-44007`, county and precinct. It opens that precinct with the same
 text in the box, and typing it works too, though the page doesn't say so. The URL only

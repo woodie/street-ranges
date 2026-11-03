@@ -143,12 +143,12 @@ export function start ({ document, fetch }: Env = globalThis): void {
     return reply.json()
   })
   // A county with no maps is not a failure.
-  const getMaps = (path: string) => fetch(`counties/maps/${path}.json`).then((reply) => reply.ok ? reply.json() : {})
+  const getMaps = (path: string) => fetch(`counties/${path}.json`).then((reply) => reply.ok ? reply.json() : {})
   const source: Source = {
     index: () => get('index'),
-    file: (county, zip) => get(`${county}/${zip}`),
-    mapIndex: (county) => getMaps(`${county}/index`),
-    maps: (county, zip) => getMaps(`${county}/${zip}`).catch(() => ({}))
+    file: (county, zip) => get(`${county}/streets/${zip}`),
+    mapIndex: (county) => getMaps(`${county}/maps/index`),
+    maps: (county, zip) => getMaps(`${county}/maps/${zip}`).catch(() => ({}))
   }
   const clearHash = () => history.replaceState(null, '', location.pathname + location.search)
   const hideMap = () => {

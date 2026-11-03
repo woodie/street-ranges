@@ -17,14 +17,14 @@ A range is a run of house numbers on one side of a street, all in one precinct:
 
 ## Output
 
-Everything in `out/` is published under `https://woodie.github.io/street-ranges/counties/`.
+Everything in `counties/` is published under `https://woodie.github.io/street-ranges/counties/`.
 
 | File | What it holds |
 | --- | --- |
 | `index.json` | Each county's name and zipcodes |
-| `<county>/<zip>.json` | The ranges for one zipcode |
-| `maps/<county>/<zip>.json` | An SVG map of each precinct in that zipcode, as `{"44007": "<svg ...>"}` |
-| `maps/<county>/index.json` | A zipcode for each precinct |
+| `<county>/streets/<zip>.json` | The ranges for one zipcode |
+| `<county>/maps/<zip>.json` | An SVG map of each precinct in that zipcode, as `{"44007": "<svg ...>"}` |
+| `<county>/maps/index.json` | A zipcode for each precinct |
 
 The county is California's county number, which also starts each precinct number: 38 is
 San Francisco, 41 is San Mateo, 43 is Santa Clara. A zipcode that crosses a county line has a
@@ -56,8 +56,8 @@ file in each county. Which races a precinct votes in is left to whatever app use
 ## Running
 
     bin/download.py    # into sources/, which is gitignored
-    bin/build.py       # into out/, with corrections applied
-    bin/maps.py        # into out/maps/, after the build
+    bin/build.py       # into counties/, with corrections applied
+    bin/maps.py        # into each county's maps/, after the build
 
 Python 3, standard library only. `bin/check.py` compares the ranges with any file of known ranges.
 
@@ -86,4 +86,4 @@ copies of the maps. `bin/map_dates.py` compares those copies with the county's.
 ## Publishing
 
 The sample app is `public/`, with `public/main.js` built from `src/`. Pushing changes to `public/`
-or `out/` deploys it to GitHub Pages, using `.github/workflows/pages.yml`.
+or `counties/` deploys it to GitHub Pages, using `.github/workflows/pages.yml`.

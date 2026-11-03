@@ -20,7 +20,7 @@ San Mateo, looked up against 16,319 known ranges (31,092 tests):
 | Method | Right | Wrong | No answer | Right when it answers |
 | --- | --- | --- | --- | --- |
 | Address points on the map, alone | 85.3% | 54 | 4,507 | 99.80% |
-| Address points, then TIGER + map + block rule (`out/41` today) | 96.6% | 140 | 927 | 99.5% |
+| Address points, then TIGER + map + block rule (`counties/41` today) | 96.6% | 140 | 927 | 99.5% |
 | TIGER + map + block rule | 90.8% | 358 | 2,502 | 98.75% |
 | Block rule alone | 72.8% | 182 | 8,276 | 99.20% |
 
@@ -38,7 +38,7 @@ precincts from those shapes, so that isn't an independent test.
 ## How to verify
 
 1. **Known ranges.** `bin/check.py` measures a method against any file of known
-   ranges. Only counts come out, and nothing from that file enters `out/`.
+   ranges. Only counts come out, and nothing from that file enters `counties/`.
 2. **Agreement between methods.** Where address points and TIGER agree, 24,751
    tests had 9 wrong. They disagree on 286 tests, about half of them wrong, which
    makes a short list to review, and the main check where nothing else is known.
