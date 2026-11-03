@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Precinct maps, drawn ahead of time so the page needs no map service. Each is an SVG of the precinct's
-outline and nearby streets, with labels on the streets along its border. Run after bin/build.py, since a
+outline and the streets inside it, with labels on the streets along its border. Run after bin/build.py, since a
 map is only kept for a precinct with ranges. Writes counties/<county>/maps/<zip>.json as {number: svg} and
 counties/<county>/maps/index.json as {number: zip}, for links that name a precinct. See docs/COWORK.md.
 
@@ -25,10 +25,11 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BORDER_METERS = 30  # a street this close to the outline runs along it
 BORDER_SHARE = 0.05  # a label needs this share of the border
 MOST_LABELS = 5
-STREETS_METERS = 150  # streets this far past the outline stay, for context
 SIZE = 800  # the longer side of the drawing
 MARGIN = 0.1  # around the precinct, as a share of its longer side
 SMOOTHING = 1.5  # drawing units a simplified line can move
+SHORTEST = 6  # drawing units; a shorter piece of street inside the outline is left out
+BACKGROUND, PRECINCT, STREET = "#f6f5f5", "#ffff80", "#a0693c"
 FONT = 26
 FONT_WIDTH = 0.68  # of the font size, for capitals
 STYLE = (f"text{{font:{FONT}px -apple-system,Helvetica,sans-serif;text-anchor:middle;dominant-baseline:middle}}"
@@ -96,6 +97,40 @@ def inside(p, rings):
 def path(points, close=False):
     corners = " ".join(f"{round(x)} {round(y)}" for x, y in points)
     return f"M{corners}{'z' if close else ''}"
+
+
+def crossings(a, b, ring):
+    """Fractions along a-b where it crosses the ring."""
+    found = []
+    dx, dy = b[0] - a[0], b[1] - a[1]
+    for (x1, y1), (x2, y2) in zip(ring, ring[1:]):
+        ex, ey = x2 - x1, y2 - y1
+        denominator = dx * ey - dy * ex
+        if denominator:
+            t = ((x1 - a[0]) * ey - (y1 - a[1]) * ex) / denominator
+            u = ((x1 - a[0]) * dy - (y1 - a[1]) * dx) / denominator
+            if 0 < t < 1 and 0 <= u <= 1:
+                found.append(t)
+    return found
+
+
+def inside_pieces(line, rings):
+    """The parts of a line inside the rings."""
+    pieces, piece = [], []
+    for a, b in zip(line, line[1:]):
+        cuts = sorted({0, 1, *(t for ring in rings for t in crossings(a, b, ring))})
+        for t1, t2 in zip(cuts, cuts[1:]):
+            start = (a[0] + (b[0] - a[0]) * t1, a[1] + (b[1] - a[1]) * t1)
+            end = (a[0] + (b[0] - a[0]) * t2, a[1] + (b[1] - a[1]) * t2)
+            if inside(((start[0] + end[0]) / 2, (start[1] + end[1]) / 2), rings):
+                piece = piece or [start]
+                piece.append(end)
+            elif piece:
+                pieces.append(piece)
+                piece = []
+    if piece:
+        pieces.append(piece)
+    return [p for p in pieces if sum(math.dist(a, b) for a, b in zip(p, p[1:])) >= SHORTEST]
 
 
 def border_points(ring):
@@ -168,7 +203,7 @@ def draw(rings):
     ratio = SIZE / (max(across, down) + 2 * margin)
     scale = lambda p: ((p[0] + margin) * ratio, (p[1] + margin) * ratio)
     width, height = round((across + 2 * margin) * ratio), round((down + 2 * margin) * ratio)
-    reach_x, reach_y = (STREETS_METERS + 50) / per_x, (STREETS_METERS + 50) / per_y
+    reach_x, reach_y = (BORDER_METERS + 50) / per_x, (BORDER_METERS + 50) / per_y
     nearby = [(name, [meters(p) for p in line]) for name, line, (a, b, c, d) in streets
               if a <= x1 + reach_x and b >= x0 - reach_x and c <= y1 + reach_y and d >= y0 - reach_y]
     named = [(name, line, bounds(line)) for name, line in nearby if name]
@@ -178,14 +213,14 @@ def draw(rings):
     counts = Counter(owners)
     names = [n for n, count in counts.most_common()
              if n and not n.endswith("Rmp") and count / len(owners) >= BORDER_SHARE][:MOST_LABELS]
-    rough = [simplify(ring, 15) for ring in plain]
-    near = lambda p: inside(p, rough) or any(segment_distance(p, a, b) <= STREETS_METERS for ring in rough for a, b in zip(ring, ring[1:]))
-    roads = "".join(path(simplify([scale(p) for p in line], SMOOTHING)) for _, line in nearby if any(near(p) for p in line))
-    outline = "".join(path(simplify([scale(p) for p in ring], SMOOTHING), True) for ring in plain)
+    drawn = [simplify([scale(p) for p in ring], SMOOTHING) for ring in plain]
+    outline = "".join(path(ring, True) for ring in drawn)
+    roads = "".join(path(piece) for _, line in nearby for piece in inside_pieces(simplify([scale(p) for p in line], SMOOTHING), drawn))
     labels = "".join(f'<text x="{x}" y="{y}" class="h">{t}</text><text x="{x}" y="{y}">{t}</text>'
                      for x, y, t in place_labels(names, owners, points, named, scale, width, height))
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}"><style>{STYLE}</style>'
-            f'<path d="{outline}" fill="#eee"/><path d="{roads}" fill="none" stroke="#999" stroke-width="3"/>'
+            f'<rect width="{width}" height="{height}" fill="{BACKGROUND}"/><path d="{outline}" fill="{PRECINCT}"/>'
+            f'<path d="{roads}" fill="none" stroke="{STREET}" stroke-width="3"/>'
             f'<path d="{outline}" fill="none" stroke="#000" stroke-width="4"/>{labels}</svg>')
 
 
