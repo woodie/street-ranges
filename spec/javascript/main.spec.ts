@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { justBeforeEach } from 'penultimate'
 import { lookup, normalizeStreet, parseAddress, start } from '../../src/main.ts'
-import type { Address, Load, Streets } from '../../src/main.ts'
+import type { Address, Index, Source, Streets } from '../../src/main.ts'
 
 const MENLO_PARK: Streets = {
   'OCONNOR ST': [[1, 233, '4144007'], [2, 498, '4144007'], [235, 483, '4144031'], [485, 499, '4144043']],
@@ -27,7 +27,15 @@ const PALO_ALTO: Streets = {
   'W BAYSHORE RD': [[2450, 2586, '430002102']]
 }
 
-const filesFor = (files: Record<string, Streets>): Load => async (county, zip) => files[`${county}/${zip}`] ?? null
+const NAMES: Record<string, string> = { 38: 'San Francisco County', 41: 'San Mateo County', 43: 'Santa Clara County' }
+const indexOf = (paths: string[]): Index => Object.fromEntries(Object.keys(NAMES).map((county) => [county, {
+  name: NAMES[county],
+  zipcodes: paths.filter((path) => path.startsWith(`${county}/`)).map((path) => path.slice(3))
+}]))
+const sourceFor = (files: Record<string, Streets>): Source => ({
+  index: async () => indexOf(Object.keys(files)),
+  file: async (county, zip) => files[`${county}/${zip}`]
+})
 const settled = () => new Promise((resolve) => setTimeout(resolve, 0))
 
 describe('normalizeStreet', () => {
@@ -180,7 +188,7 @@ describe('lookup', () => {
     }
   })
 
-  justBeforeEach(async () => { answer = await lookup(text, filesFor(files)) })
+  justBeforeEach(async () => { answer = await lookup(text, sourceFor(files)) })
 
   context('with a San Mateo address', () => {
     beforeEach(() => { text = "238 O'Connor Street, Menlo Park, CA 94025" })
@@ -344,7 +352,7 @@ describe('start', () => {
   let fetchFile: ReturnType<typeof vi.fn>
   let typed: string
 
-  const reply = (body: Streets | null) => ({ ok: body !== null, json: async () => body })
+  const reply = (body: unknown) => ({ ok: body !== null, status: body === null ? 404 : 200, json: async () => body })
   const result = () => document.getElementById('result')?.textContent
   const applyButton = () => document.querySelector<HTMLButtonElement>('button[type=submit]')!
   const resetButton = () => document.querySelector<HTMLButtonElement>('button[type=reset]')!
@@ -355,7 +363,8 @@ describe('start', () => {
 
   beforeEach(() => {
     document.documentElement.innerHTML = readFileSync('public/index.html', 'utf8')
-    fetchFile = vi.fn(async (url: string) => reply(url === 'ranges/43/95116.json' ? SAN_JOSE : null))
+    fetchFile = vi.fn(async (url: string) => reply(
+      ({ 'ranges/index.json': indexOf(['43/95116', '43/95117']), 'ranges/43/95116.json': SAN_JOSE } as Record<string, unknown>)[url] ?? null))
     typed = '2501 Bambi Ln 95116'
   })
 
@@ -379,8 +388,8 @@ describe('start', () => {
       expect(result()).toBe('Precinct 7904, Santa Clara County')
     })
 
-    it('asks for each county\'s file for that zip code', () => {
-      expect(fetchFile.mock.calls.map(([url]) => url)).toEqual(['ranges/38/95116.json', 'ranges/41/95116.json', 'ranges/43/95116.json'])
+    it('asks for the index, then only the file for that zip code', () => {
+      expect(fetchFile.mock.calls.map(([url]) => url)).toEqual(['ranges/index.json', 'ranges/43/95116.json'])
     })
 
     it('never sends the street or house number', () => {
@@ -449,6 +458,26 @@ describe('start', () => {
 
     it('offers a reset', () => {
       expect(resetButton().hidden).toBe(false)
+    })
+  })
+
+  context('when the zip code is in the index but its file is missing', () => {
+    beforeEach(() => { typed = '100 Nowhere Ln 95117' })
+
+    it('asks to try again', () => {
+      expect(result()).toBe("Sorry, the street ranges couldn't be loaded. Please try again.")
+    })
+  })
+
+  context('when the zip code is in no county', () => {
+    beforeEach(() => { typed = '99 Nowhere Ln 90210' })
+
+    it('names the counties from the index', () => {
+      expect(result()).toBe("Sorry, 90210 isn't in San Francisco, San Mateo or Santa Clara County.")
+    })
+
+    it('never asks for a file', () => {
+      expect(fetchFile.mock.calls.map(([url]) => url)).toEqual(['ranges/index.json'])
     })
   })
 

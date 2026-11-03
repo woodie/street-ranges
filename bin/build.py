@@ -258,6 +258,17 @@ def write(county, rows, zipcodes):
     return len(by_zip)
 
 
+def write_index():
+    """out/index.json: each county's name and zipcode files, so an app needn't guess."""
+    entries = []
+    for county, config in sorted(counties().items()):
+        files = sorted(glob.glob(os.path.join(REPO, "out", county, "*.json")))
+        zipcodes = [os.path.basename(path)[:-5] for path in files]
+        entries.append(f'  "{county}": {{"name": {json.dumps(config["name"])}, "zipcodes": {json.dumps(zipcodes)}}}')
+    with open(os.path.join(REPO, "out", "index.json"), "w", encoding="utf-8") as f:
+        f.write("{\n" + ",\n".join(entries) + "\n}\n")
+
+
 def corrected(county, rows):
     """Rows with what a person read off a map applied last, so a rebuild keeps it."""
     from corrections import apply
@@ -277,6 +288,7 @@ def main():
         total = sum(outcome.values())
         print(known[county]["name"], "street sides:", ", ".join(f"{k} {v} ({v / total:.1%})" for k, v in outcome.most_common()))
         print(f"{len(rows)} ranges in {write(county, rows, known[county]['zipcodes'])} zipcodes -> out/{county}/")
+    write_index()
 
 
 if __name__ == "__main__":

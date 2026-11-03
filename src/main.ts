@@ -1,10 +1,12 @@
 export type Range = [low: number, high: number, precinct: string]
 export type Streets = Record<string, Range[]>
-export type Load = (county: string, zip: string) => Promise<Streets | null>
+export type Index = Record<string, { name: string, zipcodes: string[] }>
+export interface Source {
+  index: () => Promise<Index>
+  file: (county: string, zip: string) => Promise<Streets>
+}
 export interface Address { number: number, street: string, zip: string | null }
 export type Env = Pick<typeof globalThis, 'document' | 'fetch'>
-
-const COUNTIES: Record<string, string> = { 38: 'San Francisco County', 41: 'San Mateo County', 43: 'Santa Clara County' }
 
 const STREET_WORDS: Record<string, string> = {
   STREET: 'ST',
@@ -86,22 +88,28 @@ function precinctsIn (streets: Streets, { number, street }: Address): string[] {
   })
 }
 
-function describePrecinct (precinct: string): string {
-  return `Precinct ${precinct.slice(2).replace(/^0+/, '')}, ${COUNTIES[precinct.slice(0, 2)]}`
+function describePrecinct (precinct: string, counties: Index): string {
+  return `Precinct ${precinct.slice(2).replace(/^0+/, '')}, ${counties[precinct.slice(0, 2)].name}`
 }
 
-export async function lookup (text: string, load: Load): Promise<string> {
+function countyList (counties: Index): string {
+  const names = Object.values(counties).map(({ name }) => name.replace(/ County$/, ''))
+  return `${names.slice(0, -1).join(', ')} or ${names.at(-1)} County`
+}
+
+export async function lookup (text: string, source: Source): Promise<string> {
   const address = parseAddress(text)
   if (!address) return 'Please enter a street address, starting with the house number.'
   const { zip } = address
   if (!zip) return 'Please include the zip code.'
-  const files = await Promise.all(Object.keys(COUNTIES).map((county) => load(county, zip)))
-  const known = files.filter((file) => file !== null)
-  if (!known.length) return `Sorry, ${zip} isn't in San Francisco, San Mateo or Santa Clara County.`
-  const found = new Set(known.flatMap((streets) => precinctsIn(streets, address)))
+  const counties = await source.index()
+  const listed = Object.keys(counties).filter((county) => counties[county].zipcodes.includes(zip))
+  if (!listed.length) return `Sorry, ${zip} isn't in ${countyList(counties)}.`
+  const files = await Promise.all(listed.map((county) => source.file(county, zip)))
+  const found = new Set(files.flatMap((streets) => precinctsIn(streets, address)))
   if (found.size > 1) return "There's more than one match. Please add St, Ave, etc."
   const [precinct] = found
-  return precinct ? describePrecinct(precinct) : "Sorry, that address isn't in the street ranges."
+  return precinct ? describePrecinct(precinct, counties) : "Sorry, that address isn't in the street ranges."
 }
 
 export function start ({ document, fetch }: Env = globalThis): void {
@@ -111,13 +119,17 @@ export function start ({ document, fetch }: Env = globalThis): void {
   const apply = document.querySelector<HTMLButtonElement>('button[type=submit]')!
   const reset = document.querySelector<HTMLButtonElement>('button[type=reset]')!
   let applied = ''
-  const load: Load = (county, zip) => fetch(`ranges/${county}/${zip}.json`).then((reply) => reply.ok ? reply.json() : null)
+  const get = (path: string) => fetch(`ranges/${path}.json`).then((reply) => {
+    if (!reply.ok) throw new Error(`${reply.status} ${path}`)
+    return reply.json()
+  })
+  const source: Source = { index: () => get('index'), file: (county, zip) => get(`${county}/${zip}`) }
   form.addEventListener('submit', async (event) => {
     event.preventDefault()
     const typed = input.value.trim()
     result.textContent = ''
     try {
-      const answer = await lookup(typed, load)
+      const answer = await lookup(typed, source)
       result.textContent = answer
       if (answer.startsWith('Precinct ')) {
         applied = typed
