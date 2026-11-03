@@ -35,7 +35,7 @@ STYLE = (f"text{{font:{FONT}px -apple-system,Helvetica,sans-serif;text-anchor:mi
          ".h{fill:#fff;stroke:#fff;stroke-width:10px;stroke-linejoin:round}")
 # TIGER drops the apostrophe from these names.
 APOSTROPHES = {"OBRIEN": "O'BRIEN", "OCONNOR": "O'CONNOR", "O CONNOR": "O'CONNOR", "OKEEFE": "O'KEEFE",
-               "O KEEFE": "O'KEEFE", "ONEILL": "O'NEILL"}
+               "O KEEFE": "O'KEEFE", "ONEILL": "O'NEILL", "OFARRELL": "O'FARRELL", "OSHAUGHNESSY": "O'SHAUGHNESSY"}
 APOSTROPHE = re.compile(r"\b(" + "|".join(APOSTROPHES) + r")\b")
 
 streets = []  # (name, line, bounds), shared with the worker processes

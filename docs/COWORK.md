@@ -36,7 +36,7 @@ The lookup page is live at https://woodie.github.io/street-ranges/. Next:
 
 | County | Number | Precinct map | Address points |
 | --- | --- | --- | --- |
-| San Francisco | 38 | Not needed: the county's Street Data Extract gives each address's precinct | In the extract |
+| San Francisco | 38 | The extract gives each address's precinct; the county's shapefile is only for maps (`bin/county_shapes.py`) | In the extract |
 | San Mateo | 41 | County GIS layer (`counties.json`) | County GIS layer |
 | Santa Clara | 43 | County shapefile, free by request (`bin/county_shapes.py`) | County GIS layer, from June 2020 |
 
@@ -162,10 +162,8 @@ ever names a precinct, never an address, and it clears as soon as the box says o
 
 Where things stand:
 
-- San Francisco has no maps: it needs TIGER streets in `sources/38/` and its shapes in
-  `precinct_map.json`.
 - 39 Santa Clara precincts have ranges but no shape, so they get the answer without a map.
-- 87 maps have no labels, mostly large rural precincts whose borders follow no street.
+- 89 maps have no labels, mostly large rural precincts whose borders follow no street.
 - TIGER drops some apostrophes; `APOSTROPHES` in `bin/maps.py` lists the ones seen.
 
 ## Commits and pushes

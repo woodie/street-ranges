@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Convert Santa Clara's precinct shapefile (free by request from its Registrar of Voters) into
-sources/43/precinct_map.json, in the layout and coordinates of a county layer that bin/download.py fetches.
+"""Convert a county's precinct shapefile into sources/<county>/precinct_map.json, in the layout and coordinates
+of a county layer that bin/download.py fetches. Santa Clara's is free by request from its Registrar of Voters,
+and San Francisco publishes its own.
 
-Usage: bin/county_shapes.py SHAPEFILE_WITHOUT_EXTENSION
+Usage: bin/county_shapes.py COUNTY SHAPEFILE_WITHOUT_EXTENSION
 """
 import json
 import math
@@ -11,8 +12,11 @@ import re
 import struct
 import sys
 
+from build import read_dbf
 from download import REPO
 
+# Each county's precinct column in its shapefile, and the digits in its precinct numbers.
+SHAPEFILES = {"38": ("Prec_2025", 4), "43": ("Precinct", 7)}
 MAJOR = 6378137.0
 ECC = math.sqrt(2 / 298.257222101 - (1 / 298.257222101) ** 2)
 
@@ -40,13 +44,17 @@ def inverse_lambert(prj):
     return inverse
 
 
-def main(stem):
-    with open(stem + ".dbf", "rb") as f:
-        count, header, width = struct.unpack("<xxxxIHH", f.read(12))
-        f.seek(header)
-        ids = [f.read(width)[1:].decode().strip() for _ in range(count)]
+def inverse_mercator(x, y):
+    """Web Mercator to longitude and latitude."""
+    return math.degrees(x / MAJOR), math.degrees(2 * math.atan(math.exp(y / MAJOR)) - math.pi / 2)
+
+
+def main(county, stem):
+    column, digits = SHAPEFILES[county]
+    ids = [row[column] for row in read_dbf(stem + ".dbf")]
     with open(stem + ".prj", encoding="utf-8") as f:
-        inverse = inverse_lambert(f.read())
+        prj = f.read()
+    inverse = inverse_mercator if "Mercator" in prj else inverse_lambert(prj)
     with open(stem + ".shp", "rb") as f:
         data = f.read()
     features, pos = [], 100
@@ -58,12 +66,12 @@ def main(stem):
         parts = [*struct.unpack(f"<{parts_n}i", record[44:44 + 4 * parts_n]), points_n]
         flat = struct.unpack(f"<{2 * points_n}d", record[44 + 4 * parts_n:44 + 4 * parts_n + 16 * points_n])
         points = [inverse(x, y) for x, y in zip(flat[0::2], flat[1::2])]
-        features.append({"attributes": {"Precinct": precinct.zfill(7)},
+        features.append({"attributes": {"Precinct": precinct.zfill(digits)},
                          "geometry": {"rings": [points[a:b] for a, b in zip(parts, parts[1:])]}})
-    with open(os.path.join(REPO, "sources", "43", "precinct_map.json"), "w", encoding="utf-8") as f:
+    with open(os.path.join(REPO, "sources", county, "precinct_map.json"), "w", encoding="utf-8") as f:
         json.dump(features, f)
     print(len(features), "precincts")
 
 
 if __name__ == "__main__":
-    main(sys.argv[1])
+    main(sys.argv[1], sys.argv[2])

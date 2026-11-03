@@ -56,12 +56,17 @@ Santa Clara's precinct shapes come by request, free from the Registrar of Voters
 ([form](https://vote.santaclaracounty.gov/precinct-data-and-gis-maps), Option 2).
 Convert the shapefile before building:
 
-    bin/county_shapes.py sources/43/county_shapes/Precinct_Boundaries
+    bin/county_shapes.py 43 sources/43/county_shapes/Precinct_Boundaries
 
 San Francisco publishes its address table as the Street Data Extract
 ([datasets](https://sfelections.org/tools/election_data/datasets.php)). Its site blocks
 scripts, so save the file in `sources/38/`. The build reads only the street, house
 number, zipcode and precinct.
+
+Its precinct shapefile ([same page](https://sfelections.org/tools/election_data/datasets.php))
+is only for the maps. Convert it the same way, with the county first:
+
+    bin/county_shapes.py 38 sources/38/doe/SF_DOE_PREC_2025_12_10_pg/SF_DOE_PREC_2025_12_10_pg
 
 ## Corrections
 

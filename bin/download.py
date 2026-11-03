@@ -49,13 +49,17 @@ def fetch_layer(url, fields, path):
         json.dump(features, f)
 
 
+def fetch_tiger(layer, fips, directory):
+    with zipfile.ZipFile(fetch(TIGER.format(layer=layer, fips=fips, name=layer.lower()), directory)) as z:
+        z.extractall(directory, [n for n in z.namelist() if n.endswith(".dbf")])
+
+
 def download(county, fips, precinct_map=None, address_points=None):
     directory = os.path.join(REPO, "sources", county)
     os.makedirs(directory, exist_ok=True)
     fetch(SWDB.format(fips=fips), directory)
     for layer in ("ADDRFEAT", "FACES"):
-        with zipfile.ZipFile(fetch(TIGER.format(layer=layer, fips=fips, name=layer.lower()), directory)) as z:
-            z.extractall(directory, [n for n in z.namelist() if n.endswith(".dbf")])
+        fetch_tiger(layer, fips, directory)
     if precinct_map and "url" in precinct_map:
         fetch_layer(precinct_map["url"], [precinct_map["field"]], os.path.join(directory, "precinct_map.json"))
     if address_points and "url" in address_points:
@@ -69,7 +73,9 @@ def main():
         counties = json.load(f)
     for county in sys.argv[1:] or counties:
         if "street_extract" in counties[county]:
-            continue  # the county's site blocks scripts, so a person downloads the file
+            # The county's site blocks scripts, so a person downloads the file; TIGER is only for its maps.
+            fetch_tiger("ADDRFEAT", counties[county]["fips"], os.path.join(REPO, "sources", county))
+            continue
         download(county, counties[county]["fips"], counties[county].get("precinct_map"), counties[county].get("address_points"))
 
 
