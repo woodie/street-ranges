@@ -138,10 +138,10 @@ this repo, so don't add fields without checking. `sources/` stays out of git.
 
 `public/` is the page at https://woodie.github.io/street-ranges/, with `public/main.js`
 built from `src/main.ts` and committed. It copies the guide's address matching, exact
-ranges only, and reads `ranges/index.json` for the counties and their zipcodes, then fetches
-`ranges/<county>/<zip>.json` from each county listing that zipcode. County names live
+ranges only, and reads `counties/index.json` for the counties and their zipcodes, then fetches
+`counties/<county>/<zip>.json` from each county listing that zipcode. County names live
 there, not in the code. The deploy
-copies `out/` to `ranges/`, and those public URLs should stay put. Keep it to one
+copies `out/` to `counties/`, and those public URLs should stay put. Keep it to one
 input and one answer. Races stay out. `make check` lints, type-checks, runs the specs
 at 100% coverage and confirms `main.js` is current.
 

@@ -119,7 +119,7 @@ export function start ({ document, fetch }: Env = globalThis): void {
   const apply = document.querySelector<HTMLButtonElement>('button[type=submit]')!
   const reset = document.querySelector<HTMLButtonElement>('button[type=reset]')!
   let applied = ''
-  const get = (path: string) => fetch(`ranges/${path}.json`).then((reply) => {
+  const get = (path: string) => fetch(`counties/${path}.json`).then((reply) => {
     if (!reply.ok) throw new Error(`${reply.status} ${path}`)
     return reply.json()
   })

@@ -24,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
-      - run: cp -R out public/ranges
+      - run: cp -R out public/counties
       - uses: actions/upload-pages-artifact@v3
         with:
           path: public
