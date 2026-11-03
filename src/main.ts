@@ -146,11 +146,9 @@ export function turnedMap (svg: string, turns: number): string {
 // Sized by the map's width, which is what fills the page, so it's the same size on every map.
 function northMarker (width: number, turns: number): string {
   const [color, stroke] = turns ? [NORTH_TURNED, NORTH_TURNED_STROKE] : [NORTH_UP, NORTH_UP_STROKE]
-  const spot = width * 0.08
-  const scale = width * 0.12 / 44
-  return `<g transform="translate(${width - spot} ${spot}) scale(${scale}) rotate(${-90 * turns})" stroke-linejoin="round">` +
-    `<path d="M0-15 7 2 0-2-7 2Z" fill="${color}" stroke="${stroke}" stroke-width="0.75"/>` +
-    `<path d="M-2.4 11V5L2.4 11V5" fill="none" stroke="${NORTH_UP}" stroke-width="1.4"/></g>`
+  const scale = width * 0.1 / 44
+  return `<g transform="translate(${width * 0.955} ${width * 0.044}) scale(${scale}) rotate(${-90 * turns})" stroke-linejoin="round">` +
+    `<path d="M0-9 7 8 0 4-7 8Z" fill="${color}" stroke="${stroke}" stroke-width="0.75"/></g>`
 }
 
 export function start ({ document, fetch }: Env = globalThis): void {

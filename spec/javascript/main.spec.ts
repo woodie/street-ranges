@@ -850,7 +850,7 @@ describe('turnedMap', () => {
     })
 
     it('keeps the marker in the upper right', () => {
-      expect(svg).toContain('translate(368 32)')
+      expect(svg).toContain('translate(382 17.')
     })
   })
 
