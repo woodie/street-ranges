@@ -9,6 +9,7 @@ label { display: block; margin-bottom: 6px; }
 .row { display: flex; gap: 8px; }
 input { flex: 1; min-width: 0; font: inherit; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: transparent; color: inherit; }
 button { font: inherit; padding: 8px 14px; border: 1px solid var(--line); border-radius: 8px; background: transparent; color: inherit; cursor: pointer; }
+button:disabled { opacity: .45; cursor: default; }
 #result { min-height: 3em; margin: 20px 0; font-weight: 600; }
 a { color: var(--link); }
 footer { color: var(--muted); font-size: 15px; padding-top: 16px; padding-bottom: 32px; }

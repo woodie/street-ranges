@@ -326,12 +326,32 @@ describe('lookup', () => {
   })
 })
 
+describe('the page before anything is typed', () => {
+  beforeEach(() => {
+    document.documentElement.innerHTML = readFileSync('public/index.html', 'utf8')
+  })
+
+  it('starts with Apply disabled', () => {
+    expect(document.querySelector<HTMLButtonElement>('button[type=submit]')?.disabled).toBe(true)
+  })
+
+  it('starts with no reset', () => {
+    expect(document.querySelector<HTMLButtonElement>('button[type=reset]')?.hidden).toBe(true)
+  })
+})
+
 describe('start', () => {
   let fetchFile: ReturnType<typeof vi.fn>
   let typed: string
 
   const reply = (body: Streets | null) => ({ ok: body !== null, json: async () => body })
   const result = () => document.getElementById('result')?.textContent
+  const applyButton = () => document.querySelector<HTMLButtonElement>('button[type=submit]')!
+  const resetButton = () => document.querySelector<HTMLButtonElement>('button[type=reset]')!
+  const retype = (text: string) => {
+    document.querySelector('input')!.value = text
+    document.querySelector('input')!.dispatchEvent(new Event('input'))
+  }
 
   beforeEach(() => {
     document.documentElement.innerHTML = readFileSync('public/index.html', 'utf8')
@@ -341,12 +361,20 @@ describe('start', () => {
 
   justBeforeEach(async () => {
     start({ document, fetch: fetchFile as unknown as typeof fetch })
-    document.querySelector('input')!.value = typed
+    retype(typed)
     document.querySelector('form')!.requestSubmit()
     await settled()
   })
 
   context('when the street ranges load', () => {
+    it('disables Apply', () => {
+      expect(applyButton().disabled).toBe(true)
+    })
+
+    it('offers a reset', () => {
+      expect(resetButton().hidden).toBe(false)
+    })
+
     it('shows the precinct', () => {
       expect(result()).toBe('Precinct 7904, Santa Clara County')
     })
@@ -360,11 +388,87 @@ describe('start', () => {
     })
   })
 
+  context('when the visitor edits the address', () => {
+    justBeforeEach(() => { retype('2503 Bambi Ln 95116') })
+
+    it('enables Apply', () => {
+      expect(applyButton().disabled).toBe(false)
+    })
+  })
+
+  context('when the visitor retypes the same address', () => {
+    justBeforeEach(() => { retype(typed) })
+
+    it('keeps Apply disabled', () => {
+      expect(applyButton().disabled).toBe(true)
+    })
+  })
+
+  context('when the visitor empties the box', () => {
+    justBeforeEach(() => { retype('') })
+
+    it('keeps Apply disabled', () => {
+      expect(applyButton().disabled).toBe(true)
+    })
+  })
+
+  context('when the visitor resets', () => {
+    justBeforeEach(() => { resetButton().click() })
+
+    it('clears the address', () => {
+      expect(document.querySelector('input')?.value).toBe('')
+    })
+
+    it('clears the precinct', () => {
+      expect(result()).toBe('')
+    })
+
+    it('leaves Apply disabled until something is typed', () => {
+      expect(applyButton().disabled).toBe(true)
+    })
+
+    it('hides the button again', () => {
+      expect(resetButton().hidden).toBe(true)
+    })
+
+    it('puts the cursor back in the box', () => {
+      expect(document.activeElement).toBe(document.querySelector('input'))
+    })
+  })
+
+  context('when the address has no precinct', () => {
+    beforeEach(() => { typed = '99 Nowhere Ln 95116' })
+
+    it('says so', () => {
+      expect(result()).toBe("Sorry, that address isn't in the street ranges.")
+    })
+
+    it('leaves Apply enabled to try again', () => {
+      expect(applyButton().disabled).toBe(false)
+    })
+
+    it('offers a reset', () => {
+      expect(resetButton().hidden).toBe(false)
+    })
+  })
+
+  context('when the zip code is missing', () => {
+    beforeEach(() => { typed = '2501 Bambi Ln' })
+
+    it('leaves Apply enabled to try again', () => {
+      expect(applyButton().disabled).toBe(false)
+    })
+  })
+
   context('when the street ranges fail to load', () => {
     beforeEach(() => { fetchFile.mockRejectedValue(new Error('offline')) })
 
     it('asks to try again', () => {
       expect(result()).toBe("Sorry, the street ranges couldn't be loaded. Please try again.")
+    })
+
+    it('leaves Apply enabled to try again', () => {
+      expect(applyButton().disabled).toBe(false)
     })
   })
 })

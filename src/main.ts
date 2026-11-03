@@ -108,14 +108,35 @@ export function start ({ document, fetch }: Env = globalThis): void {
   const form = document.querySelector('form')!
   const input = document.querySelector('input')!
   const result = document.getElementById('result')!
+  const apply = document.querySelector<HTMLButtonElement>('button[type=submit]')!
+  const reset = document.querySelector<HTMLButtonElement>('button[type=reset]')!
+  let applied = ''
   const load: Load = (county, zip) => fetch(`out/${county}/${zip}.json`).then((reply) => reply.ok ? reply.json() : null)
   form.addEventListener('submit', async (event) => {
     event.preventDefault()
+    const typed = input.value.trim()
     result.textContent = ''
     try {
-      result.textContent = await lookup(input.value, load)
+      const answer = await lookup(typed, load)
+      result.textContent = answer
+      if (answer.startsWith('Precinct ')) {
+        applied = typed
+        apply.disabled = true
+      }
     } catch {
       result.textContent = "Sorry, the street ranges couldn't be loaded. Please try again."
     }
+    reset.hidden = false
+  })
+  input.addEventListener('input', () => {
+    const typed = input.value.trim()
+    apply.disabled = !typed || typed === applied
+  })
+  form.addEventListener('reset', () => {
+    applied = ''
+    apply.disabled = true
+    result.textContent = ''
+    reset.hidden = true
+    input.focus()
   })
 }
