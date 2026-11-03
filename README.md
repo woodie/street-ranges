@@ -37,6 +37,7 @@ file in each county. Which races a precinct votes in is left to whatever app use
 | [Census TIGER 2025](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html) `ADDRFEAT` | Address range on each side of each street segment, and the face it borders |
 | Census TIGER 2025 `FACES` | Each face's Census block and ZCTA |
 | [Statewide Database (SWDB)](https://statewidedatabase.org/) `c<county>_p26_rg_blk_map.csv` | Registered voter counts by precinct and Census block, June 2026 primary |
+| Census TIGER 2025 `ROADS` | Every road, for the maps |
 | County precinct shapes, where `counties.json` lists them | Each precinct's shape |
 | County address points, where `counties.json` lists them | Real addresses and where they are |
 | County street extract, where `counties.json` lists one | Each address's precinct, from the county's elections office |

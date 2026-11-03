@@ -58,7 +58,7 @@ def download(county, fips, precinct_map=None, address_points=None):
     directory = os.path.join(REPO, "sources", county)
     os.makedirs(directory, exist_ok=True)
     fetch(SWDB.format(fips=fips), directory)
-    for layer in ("ADDRFEAT", "FACES"):
+    for layer in ("ADDRFEAT", "FACES", "ROADS"):
         fetch_tiger(layer, fips, directory)
     if precinct_map and "url" in precinct_map:
         fetch_layer(precinct_map["url"], [precinct_map["field"]], os.path.join(directory, "precinct_map.json"))
@@ -74,7 +74,8 @@ def main():
     for county in sys.argv[1:] or counties:
         if "street_extract" in counties[county]:
             # The county's site blocks scripts, so a person downloads the file; TIGER is only for its maps.
-            fetch_tiger("ADDRFEAT", counties[county]["fips"], os.path.join(REPO, "sources", county))
+            for layer in ("ADDRFEAT", "ROADS"):
+                fetch_tiger(layer, counties[county]["fips"], os.path.join(REPO, "sources", county))
             continue
         download(county, counties[county]["fips"], counties[county].get("precinct_map"), counties[county].get("address_points"))
 

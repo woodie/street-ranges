@@ -148,7 +148,7 @@ at 100% coverage and confirms `main.js` is current.
 ## Precinct maps
 
 `bin/maps.py` draws each precinct ahead of time, after `bin/build.py`, so the page needs
-no map service. An SVG has the outline, the TIGER streets cut off at it, and
+no map service. An SVG has the outline, TIGER's roads cut off at it, and
 straight labels on up to five streets along the border. A street gets a label when
 it runs within 30 meters of at least 5% of the border; ramps don't.
 

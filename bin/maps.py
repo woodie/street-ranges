@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Precinct maps, drawn ahead of time so the page needs no map service. Each is an SVG of the precinct's
-outline and the streets inside it, with labels on the streets along its border. Run after bin/build.py, since a
+outline and the roads inside it, with labels on the streets along its border. Run after bin/build.py, since a
 map is only kept for a precinct with ranges. Writes counties/<county>/maps/<zip>.json as {number: svg} and
 counties/<county>/maps/index.json as {number: zip}, for links that name a precinct. See docs/COWORK.md.
 
@@ -32,6 +32,8 @@ SHORTEST = 6  # drawing units; a shorter piece of street inside the outline is l
 BACKGROUND, PRECINCT, STREET = "#f6f5f5", "#ffff80", "#a0693c"
 FONT = 26
 FONT_WIDTH = 0.68  # of the font size, for capitals
+# TIGER road types to draw: freeways, main and local streets, ramps, service roads, alleys and private roads.
+DRAWN_ROADS = {"S1100", "S1200", "S1400", "S1630", "S1640", "S1730", "S1740"}
 STYLE = (f"text{{font:{FONT}px -apple-system,Helvetica,sans-serif;text-anchor:middle;dominant-baseline:middle}}"
          ".h{fill:#fff;stroke:#fff;stroke-width:10px;stroke-linejoin:round}")
 # TIGER drops the apostrophe from these names.
@@ -39,7 +41,8 @@ APOSTROPHES = {"OBRIEN": "O'BRIEN", "OCONNOR": "O'CONNOR", "O CONNOR": "O'CONNOR
                "O KEEFE": "O'KEEFE", "ONEILL": "O'NEILL", "OFARRELL": "O'FARRELL", "OSHAUGHNESSY": "O'SHAUGHNESSY"}
 APOSTROPHE = re.compile(r"\b(" + "|".join(APOSTROPHES) + r")\b")
 
-streets = []  # (name, line, bounds), shared with the worker processes
+streets = []  # (name, line, bounds) with house numbers, for labels; shared with the worker processes
+road_lines = []  # (line, bounds) of every road to draw; shared with the worker processes
 
 
 def bounds(points):
@@ -215,7 +218,9 @@ def draw(rings):
              if n and not n.endswith("Rmp") and count / len(owners) >= BORDER_SHARE][:MOST_LABELS]
     drawn = [simplify([scale(p) for p in ring], SMOOTHING) for ring in plain]
     outline = "".join(path(ring, True) for ring in drawn)
-    roads = "".join(path(piece) for _, line in nearby for piece in inside_pieces(simplify([scale(p) for p in line], SMOOTHING), drawn))
+    within = [line for line, (a, b, c, d) in road_lines if a <= x1 and b >= x0 and c <= y1 and d >= y0]
+    roads = "".join(path(piece) for line in within
+                    for piece in inside_pieces(simplify([scale(meters(p)) for p in line], SMOOTHING), drawn))
     labels = "".join(f'<text x="{x}" y="{y}" class="h">{t}</text><text x="{x}" y="{y}">{t}</text>'
                      for x, y, t in place_labels(names, owners, points, named, scale, width, height))
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}"><style>{STYLE}</style>'
@@ -241,16 +246,20 @@ def precinct_zipcodes(county):
 
 
 def build_county(county, config):
-    global streets
+    global streets, road_lines
     directory = os.path.join(REPO, "sources", county)
     base = os.path.join(directory, f"tl_2025_06{config['fips']}_addrfeat")
     shapes = os.path.join(directory, "precinct_map.json")
-    if not (os.path.exists(shapes) and os.path.exists(f"{base}.dbf")):
-        print(f"{config['name']}: no precinct_map.json or TIGER streets, skipped")
+    road_base = os.path.join(directory, f"tl_2025_06{config['fips']}_roads")
+    if not all(os.path.exists(path_) for path_ in (shapes, f"{base}.dbf", f"{road_base}.dbf")):
+        print(f"{config['name']}: no precinct_map.json or TIGER streets and roads, skipped")
         return
     names = (r["FULLNAME"] for r in read_dbf(f"{base}.dbf"))
     lines = read_lines(f"{base}.zip", f"{os.path.basename(base)}.shp")
     streets = [(name, line, bounds(line)) for name, line in zip(names, lines) if line]
+    types = (r["MTFCC"] for r in read_dbf(f"{road_base}.dbf"))
+    road_lines = [(line, bounds(line)) for kind, line in zip(types, read_lines(f"{road_base}.zip", f"{os.path.basename(road_base)}.shp"))
+                  if line and kind in DRAWN_ROADS]
     zipcodes = precinct_zipcodes(county)
     with open(shapes, encoding="utf-8") as f:
         features = json.load(f)
