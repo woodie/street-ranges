@@ -160,6 +160,10 @@ Copy link gives `#41-44007`, county and precinct. It opens that precinct with th
 text in the box, and typing it works too, though the page doesn't say so. The URL only
 ever names a precinct, never an address, and it clears as soon as the box says otherwise.
 
+The page adds a north marker and turns the map a quarter turn left on each press of Rotate, all
+from the same file. Labels stay in place: they turn with the map, and flip at the second and third
+turns, so they can't move or overlap. A new lookup starts with north up.
+
 Where things stand:
 
 - 39 Santa Clara precincts have ranges but no shape, so they get the answer without a map.

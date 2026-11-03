@@ -2,7 +2,7 @@
 import { readFileSync } from 'node:fs'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { justBeforeEach } from 'penultimate'
-import { lookup, lookupLink, normalizeStreet, parseAddress, start } from '../../src/main.ts'
+import { lookup, lookupLink, normalizeStreet, parseAddress, start, turnedMap } from '../../src/main.ts'
 import type { Address, Answer, Index, Source, Streets } from '../../src/main.ts'
 
 const MENLO_PARK: Streets = {
@@ -38,6 +38,7 @@ const sourceFor = (files: Record<string, Streets>): Source => ({
   mapIndex: async () => ({}),
   maps: async () => ({})
 })
+const MAP = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"><style>text{}</style><rect width="800" height="400"/><text x="10" y="20">A ST</text></svg>'
 const settled = () => new Promise((resolve) => setTimeout(resolve, 0))
 
 describe('normalizeStreet', () => {
@@ -360,6 +361,7 @@ describe('start', () => {
   const resetButton = () => document.querySelector<HTMLButtonElement>('button[type=reset]')!
   const map = () => document.querySelector<HTMLImageElement>('#map')!
   const copy = () => document.querySelector<HTMLAnchorElement>('#copy')!
+  const rotate = () => document.querySelector<HTMLButtonElement>('#rotate')!
   const box = () => document.querySelector('input')!
   const retype = (text: string) => {
     document.querySelector('input')!.value = text
@@ -373,7 +375,7 @@ describe('start', () => {
         'counties/index.json': indexOf(['43/95116', '43/95117']),
         'counties/43/streets/95116.json': SAN_JOSE,
         'counties/43/maps/index.json': { 7904: '95116' },
-        'counties/43/maps/95116.json': { 7904: '<svg></svg>' }
+        'counties/43/maps/95116.json': { 7904: MAP }
       } as Record<string, unknown>)[url] ?? null))
     typed = '2501 Bambi Ln 95116'
     history.replaceState(null, '', '/')
@@ -520,7 +522,38 @@ describe('start', () => {
     })
 
     it('draws the map from the file', () => {
-      expect(decodeURIComponent(map().src)).toBe('data:image/svg+xml,<svg></svg>')
+      expect(decodeURIComponent(map().src)).toBe(`data:image/svg+xml,${turnedMap(MAP, 0)}`)
+    })
+
+    it('offers to rotate it', () => {
+      expect(rotate().hidden).toBe(false)
+    })
+
+    context('when the visitor rotates it', () => {
+      justBeforeEach(() => { rotate().click() })
+
+      it('turns the map a quarter turn left', () => {
+        expect(decodeURIComponent(map().src)).toBe(`data:image/svg+xml,${turnedMap(MAP, 1)}`)
+      })
+
+      context('and looks up the precinct again', () => {
+        justBeforeEach(async () => {
+          document.querySelector('form')!.requestSubmit()
+          await settled()
+        })
+
+        it('starts with north up', () => {
+          expect(decodeURIComponent(map().src)).toBe(`data:image/svg+xml,${turnedMap(MAP, 0)}`)
+        })
+      })
+    })
+
+    context('when the visitor rotates it four times', () => {
+      justBeforeEach(() => { for (let i = 0; i < 4; i++) rotate().click() })
+
+      it('is back to north up', () => {
+        expect(decodeURIComponent(map().src)).toBe(`data:image/svg+xml,${turnedMap(MAP, 0)}`)
+      })
     })
 
     it('offers a link to the precinct, without the address', () => {
@@ -630,7 +663,7 @@ describe('start', () => {
       const button = resetButton()
       fetchFile.mockImplementation(async (url: string) => {
         if (url.includes('/maps/')) button.click()
-        return reply(url.includes('/maps/') ? { 7904: '<svg></svg>' } : url.endsWith('index.json') ? indexOf(['43/95116']) : SAN_JOSE)
+        return reply(url.includes('/maps/') ? { 7904: MAP } : url.endsWith('index.json') ? indexOf(['43/95116']) : SAN_JOSE)
       })
     })
 
@@ -770,6 +803,86 @@ describe('start', () => {
 
     it('clears the URL', () => {
       expect(location.hash).toBe('')
+    })
+  })
+})
+
+describe('turnedMap', () => {
+  let turns: number
+  let svg: string
+
+  justBeforeEach(() => { svg = turnedMap(MAP, turns) })
+
+  context('with no turns', () => {
+    beforeEach(() => { turns = 0 })
+
+    it('keeps the frame', () => {
+      expect(svg).toContain('viewBox="0 0 800 400"')
+    })
+
+    it('leaves the labels alone', () => {
+      expect(svg).toContain('<text x="10" y="20">')
+    })
+
+    it('marks north in light gray', () => {
+      expect(svg).toContain('fill="#c4c4c4" stroke="#808080"')
+    })
+  })
+
+  context('with one turn', () => {
+    beforeEach(() => { turns = 1 })
+
+    it('swaps the frame', () => {
+      expect(svg).toContain('viewBox="0 0 400 800"')
+    })
+
+    it('turns the drawing left', () => {
+      expect(svg).toContain('<g transform="translate(0 800) rotate(-90)">')
+    })
+
+    it('leaves the labels alone', () => {
+      expect(svg).toContain('<text x="10" y="20">')
+    })
+
+    it('marks north in pale red, pointing left', () => {
+      expect(svg).toContain('fill="#fca1a9" stroke="#c0303c"')
+      expect(svg).toContain('rotate(-90)" stroke-linejoin')
+    })
+
+    it('keeps the marker in the upper right', () => {
+      expect(svg).toContain('translate(368 32)')
+    })
+  })
+
+  context('with two turns', () => {
+    beforeEach(() => { turns = 2 })
+
+    it('keeps the frame', () => {
+      expect(svg).toContain('viewBox="0 0 800 400"')
+    })
+
+    it('turns the drawing over', () => {
+      expect(svg).toContain('<g transform="translate(800 400) rotate(180)">')
+    })
+
+    it('flips the labels where they sit', () => {
+      expect(svg).toContain('<text transform="rotate(180 10 20)" x="10" y="20">')
+    })
+  })
+
+  context('with three turns', () => {
+    beforeEach(() => { turns = 3 })
+
+    it('swaps the frame', () => {
+      expect(svg).toContain('viewBox="0 0 400 800"')
+    })
+
+    it('turns the drawing right', () => {
+      expect(svg).toContain('<g transform="translate(400 0) rotate(90)">')
+    })
+
+    it('flips the labels where they sit', () => {
+      expect(svg).toContain('<text transform="rotate(180 10 20)" x="10" y="20">')
     })
   })
 })

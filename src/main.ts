@@ -58,6 +58,11 @@ const LAST_WORDS: Record<string, string> = {
 // A link to a precinct, like 41-44007: county and number.
 const LINK = /^(\d\d)-0*(\d+)$/
 
+const NORTH_UP = '#c4c4c4'
+const NORTH_TURNED = '#fca1a9'
+const NORTH_UP_STROKE = '#808080'
+const NORTH_TURNED_STROKE = '#c0303c'
+
 const UNIT = /\s+(?:(?:APT|UNIT|STE|SUITE|SPC|OFC|BLDG|RM|FL|LOT|TRLR|LOWR|UPPR|REAR|FRNT|BSMT|PH)\b|#).*$/
 
 export function normalizeStreet (street: string): string {
@@ -125,6 +130,29 @@ export async function lookupLink (county: string, number: string, source: Source
   return { text: `${number}: ${name}`, found: { county, number, zip } }
 }
 
+// A map after some quarter turns to the left. Labels stay put, flipped once they'd read upside down.
+export function turnedMap (svg: string, turns: number): string {
+  const [head, across, down] = svg.match(/^<svg[^>]*viewBox="0 0 (\d+) (\d+)">/)!
+  const width = turns % 2 ? down : across
+  const height = turns % 2 ? across : down
+  const move = ['', `translate(0 ${across}) rotate(-90)`, `translate(${across} ${down}) rotate(180)`, `translate(${down} 0) rotate(90)`][turns]
+  const styleEnd = svg.indexOf('</style>') + '</style>'.length
+  const drawing = svg.slice(styleEnd, -'</svg>'.length)
+  const labels = turns < 2 ? drawing : drawing.replace(/<text x="(\d+)" y="(\d+)"/g, '<text transform="rotate(180 $1 $2)" x="$1" y="$2"')
+  const opening = head.replace(`0 0 ${across} ${down}`, `0 0 ${width} ${height}`)
+  return `${opening}${svg.slice(head.length, styleEnd)}<g transform="${move}">${labels}</g>${northMarker(+width, turns)}</svg>`
+}
+
+// Sized by the map's width, which is what fills the page, so it's the same size on every map.
+function northMarker (width: number, turns: number): string {
+  const [color, stroke] = turns ? [NORTH_TURNED, NORTH_TURNED_STROKE] : [NORTH_UP, NORTH_UP_STROKE]
+  const spot = width * 0.08
+  const scale = width * 0.12 / 44
+  return `<g transform="translate(${width - spot} ${spot}) scale(${scale}) rotate(${-90 * turns})" stroke-linejoin="round">` +
+    `<path d="M0-15 7 2 0-2-7 2Z" fill="${color}" stroke="${stroke}" stroke-width="0.75"/>` +
+    `<path d="M-2.4 11V5L2.4 11V5" fill="none" stroke="${NORTH_UP}" stroke-width="1.4"/></g>`
+}
+
 export function start ({ document, fetch }: Env = globalThis): void {
   const form = document.querySelector('form')!
   const input = document.querySelector('input')!
@@ -133,11 +161,14 @@ export function start ({ document, fetch }: Env = globalThis): void {
   const reset = document.querySelector<HTMLButtonElement>('button[type=reset]')!
   const copy = document.querySelector<HTMLAnchorElement>('#copy')!
   const copyLabel = copy.querySelector('span')!
+  const rotate = document.querySelector<HTMLButtonElement>('#rotate')!
   const map = document.querySelector<HTMLImageElement>('#map')!
   const window = document.defaultView!
   const { history, location, navigator } = window
   let applied = ''
   let latest = 0
+  let shown = ''
+  let turns = 0
   const get = (path: string) => fetch(`counties/${path}.json`).then((reply) => {
     if (!reply.ok) throw new Error(`${reply.status} ${path}`)
     return reply.json()
@@ -154,16 +185,21 @@ export function start ({ document, fetch }: Env = globalThis): void {
   const hideMap = () => {
     map.hidden = true
     copy.hidden = true
+    rotate.hidden = true
   }
+  const drawMap = () => { map.src = `data:image/svg+xml,${encodeURIComponent(turnedMap(shown, turns))}` }
   const showMap = async ({ county, number, zip }: Found, run: number) => {
     const svg = (await source.maps(county, zip))[number]
     if (run !== latest || !svg) return
-    map.src = `data:image/svg+xml,${encodeURIComponent(svg)}`
+    shown = svg
+    turns = 0
+    drawMap()
     map.alt = `Map of precinct ${number}`
     copy.href = `${location.pathname}#${county}-${number}`
     copyLabel.textContent = 'Copy link'
     map.hidden = false
     copy.hidden = false
+    rotate.hidden = false
   }
   form.addEventListener('submit', async (event) => {
     event.preventDefault()
@@ -214,6 +250,10 @@ export function start ({ document, fetch }: Env = globalThis): void {
     } catch {
       copyLabel.textContent = 'Press and hold to copy'
     }
+  })
+  rotate.addEventListener('click', () => {
+    turns = (turns + 1) % 4
+    drawMap()
   })
   const openHash = () => {
     const id = location.hash.slice(1)
