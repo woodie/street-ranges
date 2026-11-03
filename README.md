@@ -1,7 +1,9 @@
 # Precinct from street ranges
 
-Use public data to turn a street address into a precinct. The address never leaves the browser.
-A sample app is published [here](https://woodie.github.io/street-ranges/) that also renders a map of the precinct.
+Street ranges built from public data turn a street address into a precinct. The lookup runs in the
+browser from static files, so it needs no API call and the address never leaves the device. A
+[sample app](https://woodie.github.io/street-ranges/) on GitHub Pages covers San Francisco, San Mateo
+and Santa Clara Counties and renders a map of each precinct.
 
 <p>
   <img src="docs/38-7532.png" alt="San Francisco" width="32%">
@@ -53,20 +55,19 @@ file in each county. Which races a precinct votes in is left to whatever app use
 
 ## Running
 
-    bin/download.py    # into sources/ (gitignored)
+    bin/download.py    # into sources/, which is gitignored
     bin/build.py       # into out/, with corrections applied
     bin/maps.py        # into out/maps/, after the build
 
 Python 3, standard library only. `bin/check.py` compares the ranges with any file of known ranges.
 
-Santa Clara's precinct shapes come by request, free from the Registrar of Voters
-([form](https://vote.santaclaracounty.gov/precinct-data-and-gis-maps), Option 2).
-Convert the shapefile before building:
+Santa Clara's precinct shapes come free by request from the Registrar of Voters, using Option 2 on
+[its form](https://vote.santaclaracounty.gov/precinct-data-and-gis-maps). Convert the shapefile before building:
 
     bin/county_shapes.py 43 sources/43/county_shapes/Precinct_Boundaries
 
-San Francisco publishes its address table as the Street Data Extract, and a precinct
-shapefile used only for the maps ([datasets](https://sfelections.org/tools/election_data/datasets.php)).
+San Francisco publishes [its datasets](https://sfelections.org/tools/election_data/datasets.php), including
+its address table as the Street Data Extract and a precinct shapefile used only for the maps.
 Its site blocks scripts, so save both in `sources/38/`. The build reads only the street,
 house number, zipcode and precinct. Convert the shapefile the same way:
 
@@ -85,4 +86,4 @@ copies of the maps. `bin/map_dates.py` compares those copies with the county's.
 ## Publishing
 
 The sample app is `public/`, with `public/main.js` built from `src/`. Pushing changes to `public/`
-or `out/` deploys it to GitHub Pages (`.github/workflows/pages.yml`).
+or `out/` deploys it to GitHub Pages, using `.github/workflows/pages.yml`.
