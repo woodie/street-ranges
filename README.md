@@ -75,13 +75,9 @@ house number, zipcode and precinct. Convert the shapefile the same way:
 
 ## Corrections
 
-The county's precinct map settles any disagreement. `corrections/<county>.csv`
-holds what a person read off a map: the numbers, the precinct, and the map and
-its date. `bin/corrections.py` applies them last, so a rebuild keeps them, and
-warns when a map has changed since it was checked.
-
-`bin/review.py` builds a local page of what needs checking, linked to local
-copies of the maps. `bin/map_dates.py` compares those copies with the county's.
+The county's precinct map settles any disagreement. A `corrections/<county>.csv`, where
+one is needed, holds what a person read off a map: the numbers, the precinct, and the map and
+its date. `bin/build.py` applies them last, so a rebuild keeps them.
 
 ## Publishing
 
