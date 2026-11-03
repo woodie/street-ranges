@@ -10,7 +10,8 @@ A range is a run of house numbers on one side of a street, all in one precinct:
 
 ## Output
 
-`out/<county>/<zip>.json`, one file per zipcode. The folder is California's
+`out/<county>/<zip>.json`, one file per zipcode, published at
+`https://woodie.github.io/street-ranges/ranges/<county>/<zip>.json`. The folder is California's
 county number, which also starts each precinct number: 38 is San Francisco
 County, 41 is San Mateo County, 43 is Santa Clara County. A zipcode that crosses a county line has a
 file in each county. Which races a precinct votes in is left to whatever app

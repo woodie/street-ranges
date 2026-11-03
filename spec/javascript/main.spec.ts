@@ -355,7 +355,7 @@ describe('start', () => {
 
   beforeEach(() => {
     document.documentElement.innerHTML = readFileSync('public/index.html', 'utf8')
-    fetchFile = vi.fn(async (url: string) => reply(url === 'out/43/95116.json' ? SAN_JOSE : null))
+    fetchFile = vi.fn(async (url: string) => reply(url === 'ranges/43/95116.json' ? SAN_JOSE : null))
     typed = '2501 Bambi Ln 95116'
   })
 
@@ -380,7 +380,7 @@ describe('start', () => {
     })
 
     it('asks for each county\'s file for that zip code', () => {
-      expect(fetchFile.mock.calls.map(([url]) => url)).toEqual(['out/38/95116.json', 'out/41/95116.json', 'out/43/95116.json'])
+      expect(fetchFile.mock.calls.map(([url]) => url)).toEqual(['ranges/38/95116.json', 'ranges/41/95116.json', 'ranges/43/95116.json'])
     })
 
     it('never sends the street or house number', () => {

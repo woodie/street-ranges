@@ -111,7 +111,7 @@ export function start ({ document, fetch }: Env = globalThis): void {
   const apply = document.querySelector<HTMLButtonElement>('button[type=submit]')!
   const reset = document.querySelector<HTMLButtonElement>('button[type=reset]')!
   let applied = ''
-  const load: Load = (county, zip) => fetch(`out/${county}/${zip}.json`).then((reply) => reply.ok ? reply.json() : null)
+  const load: Load = (county, zip) => fetch(`ranges/${county}/${zip}.json`).then((reply) => reply.ok ? reply.json() : null)
   form.addEventListener('submit', async (event) => {
     event.preventDefault()
     const typed = input.value.trim()
