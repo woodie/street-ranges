@@ -58,6 +58,8 @@ const LAST_WORDS: Record<string, string> = {
 // A link to a precinct, like 41-44007: county and number.
 const LINK = /^(\d\d)-0*(\d+)$/
 
+const BACKGROUND = '#f6f5f5'
+const TALLEST = 4 / 3
 const NORTH_UP = '#c4c4c4'
 const NORTH_TURNED = '#fca1a9'
 const NORTH_UP_STROKE = '#808080'
@@ -139,8 +141,12 @@ export function turnedMap (svg: string, turns: number): string {
   const styleEnd = svg.indexOf('</style>') + '</style>'.length
   const drawing = svg.slice(styleEnd, -'</svg>'.length)
   const labels = turns < 2 ? drawing : drawing.replace(/<text x="(\d+)" y="(\d+)"/g, '<text transform="rotate(180 $1 $2)" x="$1" y="$2"')
-  const opening = head.replace(`0 0 ${across} ${down}`, `0 0 ${width} ${height}`)
-  return `${opening}${svg.slice(head.length, styleEnd)}<g transform="${move}">${labels}</g>${northMarker(+width, turns)}</svg>`
+  // A tall map gets a wider frame, so it fits the page with north up.
+  const frame = Math.max(+width, Math.ceil(+height / TALLEST))
+  const inset = (frame - +width) / 2
+  const opening = head.replace(`0 0 ${across} ${down}`, `0 0 ${frame} ${height}`)
+  const backdrop = `<rect width="${frame}" height="${height}" fill="${BACKGROUND}"/>`
+  return `${opening}${svg.slice(head.length, styleEnd)}${backdrop}<g transform="translate(${inset} 0) ${move}">${labels}</g>${northMarker(frame, turns)}</svg>`
 }
 
 // Sized by the map's width, which is what fills the page, so it's the same size on every map.

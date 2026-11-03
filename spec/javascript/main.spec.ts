@@ -832,12 +832,16 @@ describe('turnedMap', () => {
   context('with one turn', () => {
     beforeEach(() => { turns = 1 })
 
-    it('swaps the frame', () => {
-      expect(svg).toContain('viewBox="0 0 400 800"')
+    it('widens the frame to fit the page', () => {
+      expect(svg).toContain('viewBox="0 0 600 800"')
     })
 
-    it('turns the drawing left', () => {
-      expect(svg).toContain('<g transform="translate(0 800) rotate(-90)">')
+    it('fills the wider frame', () => {
+      expect(svg).toContain('<rect width="600" height="800" fill="#f6f5f5"/>')
+    })
+
+    it('turns the drawing left, centered', () => {
+      expect(svg).toContain('<g transform="translate(100 0) translate(0 800) rotate(-90)">')
     })
 
     it('leaves the labels alone', () => {
@@ -850,7 +854,7 @@ describe('turnedMap', () => {
     })
 
     it('keeps the marker in the upper right', () => {
-      expect(svg).toContain('translate(382 17.')
+      expect(svg).toContain('translate(573 26.')
     })
   })
 
@@ -862,7 +866,7 @@ describe('turnedMap', () => {
     })
 
     it('turns the drawing over', () => {
-      expect(svg).toContain('<g transform="translate(800 400) rotate(180)">')
+      expect(svg).toContain('<g transform="translate(0 0) translate(800 400) rotate(180)">')
     })
 
     it('flips the labels where they sit', () => {
@@ -873,17 +877,24 @@ describe('turnedMap', () => {
   context('with three turns', () => {
     beforeEach(() => { turns = 3 })
 
-    it('swaps the frame', () => {
-      expect(svg).toContain('viewBox="0 0 400 800"')
+    it('widens the frame to fit the page', () => {
+      expect(svg).toContain('viewBox="0 0 600 800"')
     })
 
-    it('turns the drawing right', () => {
-      expect(svg).toContain('<g transform="translate(400 0) rotate(90)">')
+    it('turns the drawing right, centered', () => {
+      expect(svg).toContain('<g transform="translate(100 0) translate(400 0) rotate(90)">')
     })
 
     it('flips the labels where they sit', () => {
       expect(svg).toContain('<text transform="rotate(180 10 20)" x="10" y="20">')
     })
+  })
+})
+
+describe('turnedMap with a frame that already fits', () => {
+  it('keeps the turned frame', () => {
+    const squarish = MAP.replace('0 0 800 400', '0 0 800 700')
+    expect(turnedMap(squarish, 1)).toContain('viewBox="0 0 700 800"')
   })
 })
 

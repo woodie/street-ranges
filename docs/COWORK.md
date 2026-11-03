@@ -162,7 +162,8 @@ ever names a precinct, never an address, and it clears as soon as the box says o
 
 The page adds a north marker and turns the map a quarter turn left on each press of Rotate, all
 from the same file. Labels stay in place: they turn with the map, and flip at the second and third
-turns, so they can't move or overlap. A new lookup starts with north up.
+turns, so they can't move or overlap. A new lookup starts with north up. A frame taller than 4:3 gets wider, with the drawing centered,
+so a tall precinct fits the page.
 
 Where things stand:
 
