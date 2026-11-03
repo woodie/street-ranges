@@ -6,9 +6,9 @@ browser from static files, so it needs no API call and the address never leaves 
 and Santa Clara Counties and renders a map of each precinct.
 
 <p>
-  <img src="docs/38-7532.png" alt="San Francisco" width="32%">
-  <img src="docs/41-46126.png" alt="San Mateo" width="32%">
-  <img src="docs/43-7417.png" alt="Santa Clara" width="32%">
+  <img align="top" src="docs/38-7532.png" alt="San Francisco" width="32%">
+  <img align="top" src="docs/41-46126.png" alt="San Mateo" width="32%">
+  <img align="top" src="docs/43-7417.png" alt="Santa Clara" width="32%">
 </p>
 
 A range is a run of house numbers on one side of a street, all in one precinct:
