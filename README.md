@@ -4,9 +4,11 @@ Street ranges turn a street address into a precinct, right in the browser,
 so the address never leaves the voter's device. This repo builds them from
 public data. Try it at https://woodie.github.io/street-ranges/ (`public/`, built from `src/`).
 
-![San Francisco](docs/38-7532.png) &nbsp;
-![San Mateo](docs/41-46126.png) &nbsp;
-![Santa Clara](docs/43-7417.png)
+<p>
+  <img src="docs/38-7532.png" alt="San Francisco" width="32%">
+  <img src="docs/41-46126.png" alt="San Mateo" width="32%">
+  <img src="docs/43-7417.png" alt="Santa Clara" width="32%">
+</p>
 
 A range is a run of house numbers on one side of a street, all in one precinct:
 
