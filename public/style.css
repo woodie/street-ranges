@@ -20,3 +20,4 @@ button:disabled { opacity: .45; cursor: default; }
 #map[hidden] { display: none; }
 a { color: var(--link); }
 footer { color: var(--muted); font-size: 15px; padding-top: 16px; padding-bottom: 32px; }
+footer p { margin: 0 0 6px; }

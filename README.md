@@ -42,6 +42,10 @@ file in each county. Which races a precinct votes in is left to whatever app use
 | County address points, where `counties.json` lists them | Real addresses and where they are |
 | County street extract, where `counties.json` lists one | Each address's precinct, from the county's elections office |
 
+This is not an official source, and no county has reviewed it. The MIT license covers the code.
+Each source's data stays under that source's own terms, and Santa Clara County provides its GIS
+data as is, with official records to be consulted for verification.
+
 ## How they're built
 
 - Where a county publishes its street extract, the ranges come straight from it.
