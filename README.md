@@ -18,6 +18,9 @@ County, 41 is San Mateo County, 43 is Santa Clara County. A zipcode that crosses
 file in each county. Which races a precinct votes in is left to whatever app
 uses these files.
 
+`out/maps/<county>/<zip>.json` holds an SVG map of each precinct in that zipcode, as
+`{"44007": "<svg ...>"}`, and `out/maps/<county>/index.json` gives a zipcode for each precinct.
+
 ## Sources
 
 | Source | What it gives |
@@ -45,6 +48,7 @@ uses these files.
 
     bin/download.py    # into sources/ (gitignored)
     bin/build.py       # into out/, with corrections applied
+    bin/maps.py        # into out/maps/, after the build
 
 `bin/check.py` compares the ranges with any file of known ranges.
 

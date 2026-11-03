@@ -2,8 +2,8 @@
 import { readFileSync } from 'node:fs'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { justBeforeEach } from 'penultimate'
-import { lookup, normalizeStreet, parseAddress, start } from '../../src/main.ts'
-import type { Address, Index, Source, Streets } from '../../src/main.ts'
+import { lookup, lookupLink, normalizeStreet, parseAddress, start } from '../../src/main.ts'
+import type { Address, Answer, Index, Source, Streets } from '../../src/main.ts'
 
 const MENLO_PARK: Streets = {
   'OCONNOR ST': [[1, 233, '4144007'], [2, 498, '4144007'], [235, 483, '4144031'], [485, 499, '4144043']],
@@ -34,7 +34,9 @@ const indexOf = (paths: string[]): Index => Object.fromEntries(Object.keys(NAMES
 }]))
 const sourceFor = (files: Record<string, Streets>): Source => ({
   index: async () => indexOf(Object.keys(files)),
-  file: async (county, zip) => files[`${county}/${zip}`]
+  file: async (county, zip) => files[`${county}/${zip}`],
+  mapIndex: async () => ({}),
+  maps: async () => ({})
 })
 const settled = () => new Promise((resolve) => setTimeout(resolve, 0))
 
@@ -175,7 +177,7 @@ describe('parseAddress', () => {
 describe('lookup', () => {
   let text: string
   let files: Record<string, Streets>
-  let answer: string
+  let answer: Answer
 
   beforeEach(() => {
     files = {
@@ -194,7 +196,7 @@ describe('lookup', () => {
     beforeEach(() => { text = "238 O'Connor Street, Menlo Park, CA 94025" })
 
     it('gives the short precinct and county', () => {
-      expect(answer).toBe('Precinct 44007, San Mateo County')
+      expect(answer.text).toBe('44007: San Mateo County')
     })
   })
 
@@ -202,7 +204,7 @@ describe('lookup', () => {
     beforeEach(() => { text = '977 Vallejo St, San Francisco, CA 94133' })
 
     it('gives the precinct and county', () => {
-      expect(answer).toBe('Precinct 7309, San Francisco County')
+      expect(answer.text).toBe('7309: San Francisco County')
     })
   })
 
@@ -210,7 +212,7 @@ describe('lookup', () => {
     beforeEach(() => { text = '2501 Bambi Ln, San Jose 95116' })
 
     it('drops the zeros from the precinct', () => {
-      expect(answer).toBe('Precinct 7904, Santa Clara County')
+      expect(answer.text).toBe('7904: Santa Clara County')
     })
   })
 
@@ -218,7 +220,7 @@ describe('lookup', () => {
     beforeEach(() => { text = '359 Oconnor St 94025' })
 
     it('uses the range holding that number', () => {
-      expect(answer).toBe('Precinct 44031, San Mateo County')
+      expect(answer.text).toBe('44031: San Mateo County')
     })
   })
 
@@ -226,7 +228,7 @@ describe('lookup', () => {
     beforeEach(() => { text = '101 E Okeefe St 94025' })
 
     it('finds no range', () => {
-      expect(answer).toBe("Sorry, that address isn't in the street ranges.")
+      expect(answer.text).toBe("Sorry, that address isn't in the street ranges.")
     })
   })
 
@@ -234,7 +236,7 @@ describe('lookup', () => {
     beforeEach(() => { text = '202 E Okeefe St 94025' })
 
     it('finds no range', () => {
-      expect(answer).toBe("Sorry, that address isn't in the street ranges.")
+      expect(answer.text).toBe("Sorry, that address isn't in the street ranges.")
     })
   })
 
@@ -242,7 +244,7 @@ describe('lookup', () => {
     beforeEach(() => { text = '100 Nowhere Ln 94025' })
 
     it('finds no range', () => {
-      expect(answer).toBe("Sorry, that address isn't in the street ranges.")
+      expect(answer.text).toBe("Sorry, that address isn't in the street ranges.")
     })
   })
 
@@ -251,7 +253,7 @@ describe('lookup', () => {
       beforeEach(() => { text = '104 Newell Rd 94303' })
 
       it('answers from San Mateo', () => {
-        expect(answer).toBe('Precinct 40010, San Mateo County')
+        expect(answer.text).toBe('40010: San Mateo County')
       })
     })
 
@@ -259,7 +261,7 @@ describe('lookup', () => {
       beforeEach(() => { text = '1158 Newell Rd 94303' })
 
       it('answers from Santa Clara', () => {
-        expect(answer).toBe('Precinct 2075, Santa Clara County')
+        expect(answer.text).toBe('2075: Santa Clara County')
       })
     })
 
@@ -267,7 +269,7 @@ describe('lookup', () => {
       beforeEach(() => { text = '2526 W Bayshore Rd 94303' })
 
       it('asks for more detail', () => {
-        expect(answer).toBe("There's more than one match. Please add St, Ave, etc.")
+        expect(answer.text).toBe("There's more than one match. Please add St, Ave, etc.")
       })
     })
   })
@@ -280,7 +282,7 @@ describe('lookup', () => {
       })
 
       it('uses that street', () => {
-        expect(answer).toBe('Precinct 56060, San Mateo County')
+        expect(answer.text).toBe('56060: San Mateo County')
       })
     })
 
@@ -288,7 +290,7 @@ describe('lookup', () => {
       beforeEach(() => { text = '151 Lycett St 94015' })
 
       it('asks for more detail', () => {
-        expect(answer).toBe("There's more than one match. Please add St, Ave, etc.")
+        expect(answer.text).toBe("There's more than one match. Please add St, Ave, etc.")
       })
     })
   })
@@ -297,7 +299,7 @@ describe('lookup', () => {
     beforeEach(() => { text = '53 Campo Bello Ct Menlo Park 94025' })
 
     it('uses the longest street that fits', () => {
-      expect(answer).toBe('Precinct 34009, San Mateo County')
+      expect(answer.text).toBe('34009: San Mateo County')
     })
   })
 
@@ -305,7 +307,7 @@ describe('lookup', () => {
     beforeEach(() => { text = '703 Woodland 94025' })
 
     it('finds the street', () => {
-      expect(answer).toBe('Precinct 44009, San Mateo County')
+      expect(answer.text).toBe('44009: San Mateo County')
     })
   })
 
@@ -313,7 +315,7 @@ describe('lookup', () => {
     beforeEach(() => { text = '238 Oconnor St' })
 
     it('asks for one', () => {
-      expect(answer).toBe('Please include the zip code.')
+      expect(answer.text).toBe('Please include the zip code.')
     })
   })
 
@@ -321,7 +323,7 @@ describe('lookup', () => {
     beforeEach(() => { text = 'Oconnor St 94025' })
 
     it('asks for an address', () => {
-      expect(answer).toBe('Please enter a street address, starting with the house number.')
+      expect(answer.text).toBe('Please enter a street address, starting with the house number.')
     })
   })
 
@@ -329,7 +331,7 @@ describe('lookup', () => {
     beforeEach(() => { text = '99 Nowhere Ln 90210' })
 
     it('says so', () => {
-      expect(answer).toBe("Sorry, 90210 isn't in San Francisco, San Mateo or Santa Clara County.")
+      expect(answer.text).toBe("Sorry, 90210 isn't in San Francisco, San Mateo or Santa Clara County.")
     })
   })
 })
@@ -356,6 +358,9 @@ describe('start', () => {
   const result = () => document.getElementById('result')?.textContent
   const applyButton = () => document.querySelector<HTMLButtonElement>('button[type=submit]')!
   const resetButton = () => document.querySelector<HTMLButtonElement>('button[type=reset]')!
+  const map = () => document.querySelector<HTMLImageElement>('#map')!
+  const copy = () => document.querySelector<HTMLAnchorElement>('#copy')!
+  const box = () => document.querySelector('input')!
   const retype = (text: string) => {
     document.querySelector('input')!.value = text
     document.querySelector('input')!.dispatchEvent(new Event('input'))
@@ -364,14 +369,22 @@ describe('start', () => {
   beforeEach(() => {
     document.documentElement.innerHTML = readFileSync('public/index.html', 'utf8')
     fetchFile = vi.fn(async (url: string) => reply(
-      ({ 'counties/index.json': indexOf(['43/95116', '43/95117']), 'counties/43/95116.json': SAN_JOSE } as Record<string, unknown>)[url] ?? null))
+      ({
+        'counties/index.json': indexOf(['43/95116', '43/95117']),
+        'counties/43/95116.json': SAN_JOSE,
+        'counties/maps/43/index.json': { 7904: '95116' },
+        'counties/maps/43/95116.json': { 7904: '<svg></svg>' }
+      } as Record<string, unknown>)[url] ?? null))
     typed = '2501 Bambi Ln 95116'
+    history.replaceState(null, '', '/')
   })
 
   justBeforeEach(async () => {
     start({ document, fetch: fetchFile as unknown as typeof fetch })
-    retype(typed)
-    document.querySelector('form')!.requestSubmit()
+    if (typed) {
+      retype(typed)
+      document.querySelector('form')!.requestSubmit()
+    }
     await settled()
   })
 
@@ -385,11 +398,11 @@ describe('start', () => {
     })
 
     it('shows the precinct', () => {
-      expect(result()).toBe('Precinct 7904, Santa Clara County')
+      expect(result()).toBe('7904: Santa Clara County')
     })
 
     it('asks for the index, then only the file for that zip code', () => {
-      expect(fetchFile.mock.calls.map(([url]) => url)).toEqual(['counties/index.json', 'counties/43/95116.json'])
+      expect(fetchFile.mock.calls.map(([url]) => url)).toEqual(['counties/index.json', 'counties/43/95116.json', 'counties/maps/43/95116.json'])
     })
 
     it('never sends the street or house number', () => {
@@ -499,5 +512,288 @@ describe('start', () => {
     it('leaves Apply enabled to try again', () => {
       expect(applyButton().disabled).toBe(false)
     })
+  })
+
+  context('when the precinct has a map', () => {
+    it('shows it', () => {
+      expect(map().hidden).toBe(false)
+    })
+
+    it('draws the map from the file', () => {
+      expect(decodeURIComponent(map().src)).toBe('data:image/svg+xml,<svg></svg>')
+    })
+
+    it('offers a link to the precinct, without the address', () => {
+      expect(copy().getAttribute('href')).toBe('/#43-7904')
+    })
+
+    it('shows the link', () => {
+      expect(copy().hidden).toBe(false)
+    })
+
+    it('keeps the address out of the URL', () => {
+      expect(location.hash).toBe('')
+    })
+  })
+
+  context('when the visitor resets after a map', () => {
+    justBeforeEach(() => { resetButton().click() })
+
+    it('hides the map', () => {
+      expect(map().hidden).toBe(true)
+    })
+
+    it('hides the link', () => {
+      expect(copy().hidden).toBe(true)
+    })
+  })
+
+  context('when the visitor copies the link', () => {
+    let writeText: ReturnType<typeof vi.fn>
+
+    beforeEach(() => {
+      writeText = vi.fn(async () => {})
+      Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText } })
+    })
+
+    justBeforeEach(async () => {
+      copy().click()
+      await settled()
+    })
+
+    it('copies the whole URL', () => {
+      expect(writeText).toHaveBeenCalledWith(`${location.origin}/#43-7904`)
+    })
+
+    it('says so', () => {
+      expect(copy().textContent).toBe('Copied')
+    })
+
+    context('when the browser refuses', () => {
+      beforeEach(() => { writeText.mockRejectedValue(new Error('denied')) })
+
+      it('suggests copying by hand', () => {
+        expect(copy().textContent).toBe('Press and hold to copy')
+      })
+    })
+  })
+
+  context('when the precinct has no map', () => {
+    beforeEach(() => { fetchFile.mockImplementation(async (url: string) => reply(url.includes('/maps/') ? null : url.endsWith('index.json') ? indexOf(['43/95116']) : SAN_JOSE)) })
+
+    it('still shows the precinct', () => {
+      expect(result()).toBe('7904: Santa Clara County')
+    })
+
+    it('shows no map', () => {
+      expect(map().hidden).toBe(true)
+    })
+
+    it('offers no link', () => {
+      expect(copy().hidden).toBe(true)
+    })
+  })
+
+  context('when the map fails to load', () => {
+    beforeEach(() => {
+      fetchFile.mockImplementation(async (url: string) => {
+        if (url.includes('/maps/')) throw new Error('offline')
+        return reply(url.endsWith('index.json') ? indexOf(['43/95116']) : SAN_JOSE)
+      })
+    })
+
+    it('still shows the precinct', () => {
+      expect(result()).toBe('7904: Santa Clara County')
+    })
+
+    it('shows no map', () => {
+      expect(map().hidden).toBe(true)
+    })
+  })
+
+  context('when the visitor resets before the answer arrives', () => {
+    beforeEach(() => {
+      const button = resetButton()
+      fetchFile.mockImplementation(async (url: string) => {
+        button.click()
+        return reply(url.endsWith('index.json') ? indexOf(['43/95116']) : SAN_JOSE)
+      })
+    })
+
+    it('shows nothing', () => {
+      expect(result()).toBe('')
+    })
+  })
+
+  context('when the visitor resets before the map arrives', () => {
+    beforeEach(() => {
+      const button = resetButton()
+      fetchFile.mockImplementation(async (url: string) => {
+        if (url.includes('/maps/')) button.click()
+        return reply(url.includes('/maps/') ? { 7904: '<svg></svg>' } : url.endsWith('index.json') ? indexOf(['43/95116']) : SAN_JOSE)
+      })
+    })
+
+    it('shows no map', () => {
+      expect(map().hidden).toBe(true)
+    })
+  })
+
+  context('when the page opens with a link', () => {
+    beforeEach(() => {
+      typed = ''
+      history.replaceState(null, '', '/#43-7904')
+    })
+
+    it('fills in the box', () => {
+      expect(box().value).toBe('43-7904')
+    })
+
+    it('shows the precinct', () => {
+      expect(result()).toBe('7904: Santa Clara County')
+    })
+
+    it('shows the map', () => {
+      expect(map().hidden).toBe(false)
+    })
+
+    it('disables Apply', () => {
+      expect(applyButton().disabled).toBe(true)
+    })
+
+    it('offers a reset', () => {
+      expect(resetButton().hidden).toBe(false)
+    })
+
+    it('never asks for the street ranges', () => {
+      expect(fetchFile.mock.calls.map(([url]) => url)).toEqual(['counties/index.json', 'counties/maps/43/index.json', 'counties/maps/43/95116.json'])
+    })
+
+    context('when the visitor resets', () => {
+      justBeforeEach(() => { resetButton().click() })
+
+      it('clears the URL', () => {
+        expect(location.hash).toBe('')
+      })
+    })
+
+    context('when the visitor types something else', () => {
+      justBeforeEach(() => { retype('2501 Bambi') })
+
+      it('clears the URL', () => {
+        expect(location.hash).toBe('')
+      })
+    })
+
+    context('when the visitor retypes the same link', () => {
+      justBeforeEach(() => { retype('43-7904') })
+
+      it('keeps the URL', () => {
+        expect(location.hash).toBe('#43-7904')
+      })
+    })
+  })
+
+  context('when the link has leading zeros', () => {
+    beforeEach(() => {
+      typed = ''
+      history.replaceState(null, '', '/#43-0007904')
+    })
+
+    it('shortens the box', () => {
+      expect(box().value).toBe('43-7904')
+    })
+
+    it('shortens the URL', () => {
+      expect(location.hash).toBe('#43-7904')
+    })
+  })
+
+  context('when the URL has something else after the hash', () => {
+    beforeEach(() => {
+      typed = ''
+      history.replaceState(null, '', '/#foo')
+    })
+
+    it('ignores it', () => {
+      expect(result()).toBe('')
+    })
+  })
+
+  context('when a link is pasted into an open page', () => {
+    beforeEach(() => { typed = '' })
+
+    justBeforeEach(async () => {
+      location.hash = '#43-7904'
+      await settled()
+      await settled()
+    })
+
+    it('shows the precinct', () => {
+      expect(result()).toBe('7904: Santa Clara County')
+    })
+  })
+
+  context('when the visitor types a link', () => {
+    beforeEach(() => { typed = '43-7904' })
+
+    it('shows the precinct', () => {
+      expect(result()).toBe('7904: Santa Clara County')
+    })
+
+    it('puts it in the URL', () => {
+      expect(location.hash).toBe('#43-7904')
+    })
+  })
+
+  context('when the visitor types a link with no map', () => {
+    beforeEach(() => { typed = '41-99999' })
+
+    it('says so', () => {
+      expect(result()).toBe("Sorry, there's no map for 41-99999.")
+    })
+
+    it('leaves Apply enabled to try again', () => {
+      expect(applyButton().disabled).toBe(false)
+    })
+
+    it('keeps it out of the URL', () => {
+      expect(location.hash).toBe('')
+    })
+  })
+
+  context('when an address follows a link', () => {
+    beforeEach(() => {
+      typed = '2501 Bambi Ln 95116'
+      history.replaceState(null, '', '/#43-7904')
+    })
+
+    it('clears the URL', () => {
+      expect(location.hash).toBe('')
+    })
+  })
+})
+
+describe('lookupLink', () => {
+  const source: Source = {
+    index: async () => indexOf(['43/95116']),
+    file: async () => ({}),
+    mapIndex: async (county) => (county === '43' ? { 7904: '95116' } : {}) as Record<string, string>,
+    maps: async () => ({})
+  }
+
+  it('finds a precinct with a map', async () => {
+    expect(await lookupLink('43', '7904', source)).toEqual({
+      text: '7904: Santa Clara County',
+      found: { county: '43', number: '7904', zip: '95116' }
+    })
+  })
+
+  it('says so for an unknown number', async () => {
+    expect((await lookupLink('43', '1', source)).text).toBe("Sorry, there's no map for 43-1.")
+  })
+
+  it('says so for an unknown county', async () => {
+    expect((await lookupLink('99', '1', source)).text).toBe("Sorry, there's no map for 99-1.")
   })
 })

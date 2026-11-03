@@ -10,8 +10,8 @@ and how to verify the ranges.
 | County | Number | Built from | Files |
 | --- | --- | --- | --- |
 | San Francisco | 38 | The county's Street Data Extract | 27 zipcodes, 10,882 ranges |
-| San Mateo | 41 | County shapes and address points, then TIGER | 30 zipcodes, 22,005 ranges |
-| Santa Clara | 43 | County shapefile and address points, then TIGER | 63 zipcodes, 57,982 ranges |
+| San Mateo | 41 | County shapes and address points, then TIGER | 30 zipcodes, 21,973 ranges |
+| Santa Clara | 43 | County shapefile and address points, then TIGER | 63 zipcodes, 57,900 ranges |
 
 The lookup page is live at https://woodie.github.io/street-ranges/. Next:
 
@@ -26,8 +26,8 @@ The lookup page is live at https://woodie.github.io/street-ranges/. Next:
 
 ## What stays out
 
-- Races and endorsements. Output is streets, house numbers and precincts only;
-  whatever app uses the files adds its own races and can report mismatches then.
+- Races and endorsements. Output is streets, house numbers, precincts and precinct
+  maps only; whatever app uses the files adds its own races and can report mismatches then.
 - Downloads. `sources/` is gitignored; `out/` is committed, so a rebuild shows
   up as a diff.
 - Anything but public data.
@@ -142,8 +142,31 @@ ranges only, and reads `counties/index.json` for the counties and their zipcodes
 `counties/<county>/<zip>.json` from each county listing that zipcode. County names live
 there, not in the code. The deploy
 copies `out/` to `counties/`, and those public URLs should stay put. Keep it to one
-input and one answer. Races stay out. `make check` lints, type-checks, runs the specs
+input and one answer, with the precinct's map when there is one. Races stay out. `make check` lints, type-checks, runs the specs
 at 100% coverage and confirms `main.js` is current.
+
+## Precinct maps
+
+`bin/maps.py` draws each precinct ahead of time, after `bin/build.py`, so the page needs
+no map service. An SVG has the outline, the TIGER streets within about 150 meters of it,
+and straight labels on up to five streets along the border. A street gets a label when
+it runs within 30 meters of at least 5% of the border; ramps don't.
+
+Maps are stored by zipcode in `out/maps/<county>/<zip>.json`, the zipcode the page
+already asked for, so a map shows the server nothing new. A precinct in two zipcodes is
+in both files. `out/maps/<county>/index.json` gives one zipcode for each precinct, for links.
+
+Copy link gives `#41-44007`, county and precinct. It opens that precinct with the same
+text in the box, and typing it works too, though the page doesn't say so. The URL only
+ever names a precinct, never an address, and it clears as soon as the box says otherwise.
+
+Where things stand:
+
+- San Francisco has no maps: it needs TIGER streets in `sources/38/` and its shapes in
+  `precinct_map.json`.
+- 39 Santa Clara precincts have ranges but no shape, so they get the answer without a map.
+- 87 maps have no labels, mostly large rural precincts whose borders follow no street.
+- TIGER drops some apostrophes; `APOSTROPHES` in `bin/maps.py` lists the ones seen.
 
 ## Commits and pushes
 
