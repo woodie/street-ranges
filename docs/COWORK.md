@@ -42,7 +42,7 @@ The lookup page is live at https://woodie.github.io/street-ranges/. Next:
 
 To add a map, put its query URL and precinct field in `counties.json`, or get
 its shapes into `sources/<county>/precinct_map.json` some other way, in TIGER's
-coordinates.
+coordinates. `docs/ADDING_A_COUNTY.md` covers a whole new county.
 
 ## How a side gets its precinct
 

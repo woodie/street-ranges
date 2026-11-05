@@ -65,6 +65,7 @@ data as is, with official records to be consulted for verification.
     bin/maps.py        # into each county's maps/, after the build
 
 Python 3, standard library only. `bin/check.py` compares the ranges with any file of known ranges.
+[Adding a county](docs/ADDING_A_COUNTY.md) covers what a new county needs.
 
 Santa Clara's precinct shapes come free by request from the Registrar of Voters, using Option 2 on
 [its form](https://vote.santaclaracounty.gov/precinct-data-and-gis-maps). Convert the shapefile before building:
