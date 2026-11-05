@@ -1,0 +1,33 @@
+{
+  "CANYON LAKE DR": [
+    [1, 145, "07PRCO101"],
+    [2, 198, "07PRCO101"],
+    [147, 199, "07CROC801"]
+  ],
+  "CARQUINEZ SCENIC DR": [
+    [1, 7001, "07PRCO101"],
+    [2, 5302, "07CROC801"],
+    [7000, 7098, "07CROC801"]
+  ],
+  "ERSKINE ST": [
+    [1, 199, "07PRCO101"],
+    [2, 198, "07PRCO101"]
+  ],
+  "PLAZA EL HAMBRE": [
+    [1, 1, "07PRCO101"]
+  ],
+  "PROSPECT AVE": [
+    [1, 199, "07PRCO101"],
+    [2, 198, "07PRCO101"]
+  ],
+  "RAILROAD AVE": [
+    [2, 98, "07PRCO101"]
+  ],
+  "RESERVOIR ST": [
+    [1, 99, "07PRCO101"]
+  ],
+  "S AVE": [
+    [1, 199, "07PRCO101"],
+    [2, 198, "07PRCO101"]
+  ]
+}

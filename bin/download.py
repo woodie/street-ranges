@@ -32,8 +32,21 @@ def get_json(url):
         return json.load(response)
 
 
-def fetch_layer(url, fields, path):
-    """Every feature of a county layer, a page at a time, in TIGER's coordinates."""
+def centroid(rings):
+    """The middle of a parcel's largest ring, so a parcel can stand in for an address point."""
+    ring = max(rings, key=lambda r: abs(area(r)))
+    a = area(ring) or 1e-18
+    x = sum((x1 + x2) * (x1 * y2 - x2 * y1) for (x1, y1), (x2, y2) in zip(ring, ring[1:] + ring[:1])) / (6 * a)
+    y = sum((y1 + y2) * (x1 * y2 - x2 * y1) for (x1, y1), (x2, y2) in zip(ring, ring[1:] + ring[:1])) / (6 * a)
+    return {"x": x, "y": y}
+
+
+def area(ring):
+    return sum(x1 * y2 - x2 * y1 for (x1, y1), (x2, y2) in zip(ring, ring[1:] + ring[:1])) / 2
+
+
+def fetch_layer(url, fields, path, points=False):
+    """Every feature of a county layer, a page at a time, in TIGER's coordinates. points turns shapes into points."""
     if os.path.exists(path):
         return
     print(url)
@@ -44,6 +57,9 @@ def fetch_layer(url, fields, path):
         page = get_json(f"{url}?{urllib.parse.urlencode(query)}")["features"]
         if not page:
             break
+        for feature in page if points else ():
+            if "rings" in feature.get("geometry") or {}:
+                feature["geometry"] = centroid(feature["geometry"]["rings"])
         features += page
     with open(path, "w", encoding="utf-8") as f:
         json.dump(features, f)
@@ -65,7 +81,7 @@ def download(county, fips, precinct_map=None, address_points=None):
     if address_points and "url" in address_points:
         address = address_points["address"]
         fetch_layer(address_points["url"], [*(address if isinstance(address, list) else [address]), address_points["zip"]],
-                    os.path.join(directory, "address_points.json"))
+                    os.path.join(directory, "address_points.json"), points=True)
 
 
 def main():

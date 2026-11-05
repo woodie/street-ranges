@@ -2,8 +2,8 @@
 
 Street ranges built from public data turn a street address into a precinct. The lookup runs in the
 browser from static files, so it needs no API call and the address never leaves the device. A
-[sample app](https://woodie.github.io/street-ranges/) on GitHub Pages covers Alameda, San Francisco,
-San Mateo and Santa Clara Counties and renders a map of each precinct.
+[sample app](https://woodie.github.io/street-ranges/) on GitHub Pages covers Alameda, Contra Costa,
+San Francisco, San Mateo and Santa Clara Counties and renders a map of each precinct.
 
 <p>
   <img align="top" src="docs/38-7532.png" alt="San Francisco" width="32%">
@@ -27,7 +27,7 @@ Everything in `counties/` is published under `https://woodie.github.io/street-ra
 | `<county>/maps/index.json` | A zipcode for each precinct |
 
 The county is California's county number, which also starts each precinct number: 01 is
-Alameda, 38 is San Francisco, 41 is San Mateo, 43 is Santa Clara. A zipcode that crosses a county line has a
+Alameda, 07 is Contra Costa, 38 is San Francisco, 41 is San Mateo, 43 is Santa Clara. A zipcode that crosses a county line has a
 file in each county. Which races a precinct votes in is left to whatever app uses these files.
 
 ## Sources

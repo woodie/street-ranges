@@ -38,7 +38,8 @@ TIGER and SWDB use: 001, 013.
 - `precinct_map` gives a layer's query URL and precinct field. A shapefile has no URL:
   add its precinct column to `SHAPEFILES` in `bin/county_shapes.py` and convert it.
 - `address_points.address` is one field, or a list starting with the house number.
-  The build reads a point for each address, so parcel shapes need a point each before they work.
+  A layer of parcel shapes works too, as for Contra Costa: `bin/download.py` keeps the middle
+  of each parcel as its point.
 - `street_extract` replaces both, as for San Francisco.
 
 ## 3. Make the precinct numbers agree
@@ -48,10 +49,9 @@ county's field, and both end up in the same ranges. Compare a few from each befo
 Alameda's layer writes `200100` where SWDB writes `20010000`, the county's precinct and a
 two-digit portion, so `"rgprec_digits": 6` in `counties.json` keeps SWDB's first six.
 
-Precinct numbers with letters, like `RICH101`, need two changes first:
-
-- `LINK` in `src/main.ts` takes digits only, so links like `#07-RICH101` fail.
-- `bin/maps.py` and the page drop leading zeros, which is only safe for numbers.
+Precinct numbers with letters, like Contra Costa's `RICH101`, work as they are, and links
+like `#07-RICH101` open them. Leading zeros are dropped, so a precinct number that needs
+one would need a change.
 
 ## 4. List its zipcodes
 

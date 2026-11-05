@@ -269,7 +269,7 @@ def build_county(county, config):
     with multiprocessing.get_context("fork").Pool() as pool:
         svgs = dict(pool.imap_unordered(drawn, jobs, chunksize=8))
     write_county(county, svgs, zipcodes)
-    missing = sorted(set(zipcodes) - set(svgs), key=int)
+    missing = sorted(set(zipcodes) - set(svgs), key=lambda n: (len(n), n))
     print(f"{config['name']}: {len(svgs)} maps; no shape for {len(missing)} precincts with ranges: {' '.join(missing)}")
 
 
@@ -283,11 +283,11 @@ def write_county(county, svgs, zipcodes):
             by_zip[zip_code][number] = svg
     sizes = []
     for zip_code, maps in by_zip.items():
-        text = json.dumps(dict(sorted(maps.items(), key=lambda kv: int(kv[0]))), indent=0, ensure_ascii=False) + "\n"
+        text = json.dumps(dict(sorted(maps.items(), key=lambda kv: (len(kv[0]), kv[0]))), indent=0, ensure_ascii=False) + "\n"
         with open(os.path.join(directory, f"{zip_code}.json"), "w", encoding="utf-8") as f:
             f.write(text)
         sizes.append((len(gzip.compress(text.encode())), zip_code, len(text)))
-    index = {number: min(zipcodes[number]) for number in sorted(svgs, key=int)}
+    index = {number: min(zipcodes[number]) for number in sorted(svgs, key=lambda n: (len(n), n))}
     with open(os.path.join(directory, "index.json"), "w", encoding="utf-8") as f:
         f.write(json.dumps(index, indent=0) + "\n")
     print(f"counties/{county}/maps/: {len(by_zip)} zipcodes, {sum(s[2] for s in sizes) / 1e6:.1f} MB, {sum(s[0] for s in sizes) / 1e6:.1f} MB compressed, "

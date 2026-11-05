@@ -7,6 +7,13 @@
     "address_points": {"url": "https://services5.arcgis.com/ROBnTHSNjoZ2Wm1P/ArcGIS/rest/services/Address_Points/FeatureServer/0/query", "address": "ADDRESS", "zip": "ZIPCODE"},
     "zipcodes": ["94501", "94502", "94536", "94538", "94539", "94541", "94542", "94544", "94545", "94546", "94550", "94551", "94552", "94555", "94560", "94566", "94568", "94577", "94578", "94579", "94580", "94586", "94587", "94588", "94601", "94602", "94603", "94605", "94606", "94607", "94608", "94609", "94610", "94611", "94612", "94613", "94618", "94619", "94621", "94702", "94703", "94704", "94705", "94706", "94707", "94708", "94709", "94710", "94720", "95391"]
   },
+  "07": {
+    "name": "Contra Costa County",
+    "fips": "013",
+    "precinct_map": {"url": "https://services3.arcgis.com/42Dx6OWonqK9LoEE/arcgis/rest/services/Precinct_Boundary/FeatureServer/0/query", "field": "sPrecinctID"},
+    "address_points": {"url": "https://gis.cccounty.us/arcgis/rest/services/CCMAP/Assessment_Parcels_ArcPro/MapServer/0/query", "address": ["S_STR_NBR", "S_STR_NM", "S_STR_SUF"], "zip": "S_ZIP"},
+    "zipcodes": ["94505", "94506", "94507", "94509", "94511", "94513", "94514", "94516", "94517", "94518", "94519", "94520", "94521", "94523", "94525", "94526", "94528", "94530", "94531", "94547", "94548", "94549", "94551", "94553", "94556", "94561", "94563", "94564", "94565", "94569", "94572", "94582", "94583", "94588", "94595", "94596", "94597", "94598", "94706", "94707", "94708", "94801", "94803", "94804", "94805", "94806"]
+  },
   "38": {
     "name": "San Francisco County",
     "fips": "075",

@@ -104,7 +104,7 @@ def point_ranges(path, places, source):
             address = " ".join(str(attributes.get(f) or "").strip() for f in fields).strip()
             if not str(attributes.get(fields[0]) or "").strip():
                 continue
-            zip_code = attributes[source["zip"]] or ""
+            zip_code = str(attributes[source["zip"]] or "")
             # "8881/2 Green St" is 888 1/2, and " 91st St" has no house number.
             address = re.sub(r"^(\d+)1/2\b", r"\1 1/2", address.strip())
             parsed = re.match(r"(\d+)(?!\d)(?!(?i:st|nd|rd|th)\b)\S*(?:\s+1/2)?\s+(?:(?![NSEWnsew]\s)[A-Za-z]\s+(?=\S+\s))?(.+)$", address)

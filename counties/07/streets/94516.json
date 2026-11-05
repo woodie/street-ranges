@@ -1,0 +1,107 @@
+{
+  "BLVD OF THE STARS": [
+    [500, 598, "07CANY101"]
+  ],
+  "BOX CAR RD": [
+    [2, 198, "07CANY101"]
+  ],
+  "BOXCAR LN": [
+    [2, 120, "07CANY101"]
+  ],
+  "BRIER LN": [
+    [140, 140, "07CANY101"]
+  ],
+  "CJS WAY": [
+    [2, 2, "07CANY101"]
+  ],
+  "DRIEVEWAY 24": [
+    [90, 90, "07CANY101"]
+  ],
+  "ESTATES DR": [
+    [1, 99, "07CANY101"],
+    [700, 898, "07CANY101"]
+  ],
+  "FLICKER RDG": [
+    [500, 698, "07CANY101"]
+  ],
+  "FLICKER RIDGE": [
+    [590, 590, "07CANY101"]
+  ],
+  "KIRAN LN": [
+    [160, 160, "07CANY101"]
+  ],
+  "LAUREL LN": [
+    [1, 99, "07CANY805"],
+    [100, 198, "07CANY101"]
+  ],
+  "MADRONE AVE": [
+    [490, 490, "07CANY101"],
+    [495, 497, "07CANY101"]
+  ],
+  "MADRONE WAY": [
+    [1, 99, "07CANY101"],
+    [400, 598, "07CANY101"],
+    [401, 499, "07CANY101"]
+  ],
+  "MANZANITA AVE": [
+    [500, 598, "07CANY101"]
+  ],
+  "MANZANITA DR": [
+    [2400, 2400, "07CANY802"]
+  ],
+  "MANZANITA WAY": [
+    [37, 37, "07CANY101"],
+    [400, 598, "07CANY101"]
+  ],
+  "MARIAN MCCOSKER LOOP": [
+    [800, 898, "07CANY101"]
+  ],
+  "NORTHERN RAILWAY": [
+    [190, 816, "07CANY101"]
+  ],
+  "OAK LN": [
+    [1, 99, "07CANY101"],
+    [2, 98, "07CANY101"]
+  ],
+  "OLD REDWOOD HWY": [
+    [350, 350, "07CANY101"]
+  ],
+  "PINEHURST RD": [
+    [1, 199, "07CANY101"],
+    [2, 398, "07CANY101"]
+  ],
+  "REDWOOD HWY": [
+    [1, 99, "07CANY101"],
+    [200, 598, "07CANY101"],
+    [401, 499, "07CANY101"],
+    [1000, 1098, "07CANY101"]
+  ],
+  "REDWOOD VIEW RD": [
+    [60, 60, "07CANY101"]
+  ],
+  "RIDGECREST": [
+    [86, 750, "07CANY101"],
+    [601, 699, "07CANY101"]
+  ],
+  "RIDGECREST RD": [
+    [600, 798, "07CANY101"]
+  ],
+  "SEMPERVIRENS": [
+    [135, 135, "07CANY101"]
+  ],
+  "SEMPEVIRENS": [
+    [130, 130, "07CANY101"]
+  ],
+  "SKYLINE BLVD": [
+    [10900, 10900, "07CANY807"]
+  ],
+  "STATE RTE 24": [
+    [2, 98, "07ORDA102"]
+  ],
+  "VICKIS POINT DR": [
+    [900, 998, "07CANY101"]
+  ],
+  "VICKIS POINT RD": [
+    [890, 890, "07CANY101"]
+  ]
+}

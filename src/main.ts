@@ -55,8 +55,8 @@ const LAST_WORDS: Record<string, string> = {
   LP: 'LOOP'
 }
 
-// A link to a precinct, like 41-44007: county and number.
-const LINK = /^(\d\d)-0*(\d+)$/
+// A link to a precinct, like 41-44007 or 07-RICH101: county and number.
+const LINK = /^(\d\d)-0*([0-9A-Z]+)$/i
 
 const BACKGROUND = '#f6f5f5'
 const TALLEST = 4 / 3
@@ -213,12 +213,12 @@ export function start ({ document, fetch }: Env = globalThis): void {
     result.textContent = ''
     hideMap()
     try {
-      const answer = await (link ? lookupLink(link[1], link[2], source) : lookup(typed, source))
+      const answer = await (link ? lookupLink(link[1], link[2].toUpperCase(), source) : lookup(typed, source))
       if (run !== latest) return
       result.textContent = answer.text
       if (answer.found) {
         if (link) {
-          input.value = `${link[1]}-${link[2]}`
+          input.value = `${link[1]}-${link[2].toUpperCase()}`
           history.replaceState(null, '', `#${input.value}`)
         }
         applied = input.value.trim()

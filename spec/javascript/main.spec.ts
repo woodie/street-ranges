@@ -374,8 +374,8 @@ describe('start', () => {
       ({
         'counties/index.json': indexOf(['43/95116', '43/95117']),
         'counties/43/streets/95116.json': SAN_JOSE,
-        'counties/43/maps/index.json': { 7904: '95116' },
-        'counties/43/maps/95116.json': { 7904: MAP }
+        'counties/43/maps/index.json': { 7904: '95116', A101: '95116' },
+        'counties/43/maps/95116.json': { 7904: MAP, A101: MAP }
       } as Record<string, unknown>)[url] ?? null))
     typed = '2501 Bambi Ln 95116'
     history.replaceState(null, '', '/')
@@ -776,6 +776,18 @@ describe('start', () => {
 
     it('puts it in the URL', () => {
       expect(location.hash).toBe('#43-7904')
+    })
+  })
+
+  context('when the visitor types a link with letters', () => {
+    beforeEach(() => { typed = '43-a101' })
+
+    it('shows the precinct', () => {
+      expect(result()).toBe('A101: Santa Clara County')
+    })
+
+    it('puts it in the URL', () => {
+      expect(location.hash).toBe('#43-A101')
     })
   })
 

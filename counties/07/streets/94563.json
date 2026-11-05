@@ -1,0 +1,2364 @@
+{
+  "ABBOTT CT": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "ACACIA DR": [
+    [1, 199, "07ORDA105"],
+    [2, 198, "07ORDA105"]
+  ],
+  "ADOBE CT": [
+    [5, 15, "07ORDA109"],
+    [20, 20, "07ORDA109"]
+  ],
+  "ADOBE LN": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "AGHALEE CT": [
+    [1, 1, "07ORDA110"],
+    [2, 2, "07ORDA110"]
+  ],
+  "AGHALEE RD": [
+    [1, 99, "07ORDA110"],
+    [2, 98, "07ORDA110"]
+  ],
+  "ALBO CT": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "ALICE CT": [
+    [2, 198, "07ORDA107"],
+    [7, 7, "07ORDA107"]
+  ],
+  "ALICE LN": [
+    [100, 298, "07ORDA107"],
+    [101, 299, "07ORDA107"]
+  ],
+  "ALICE PL": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "ALTA HACIENDAS RD": [
+    [100, 198, "07ORDA105"],
+    [101, 199, "07ORDA105"]
+  ],
+  "ALTA VISTA": [
+    [7, 67, "07ORDA105"],
+    [8, 62, "07ORDA105"]
+  ],
+  "ALTA VISTA DR": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "ALTAMOUNT DR": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "ALTARINDA CIR": [
+    [1, 99, "07ORDA106"],
+    [2, 98, "07ORDA106"]
+  ],
+  "ALTARINDA DR": [
+    [1, 13, "07ORDA106"],
+    [2, 98, "07ORDA106"]
+  ],
+  "ALTARINDA RD": [
+    [1, 99, "07ORDA106"],
+    [2, 98, "07ORDA106"]
+  ],
+  "AMBER VALLEY DR": [
+    [100, 198, "07ORDA108"],
+    [101, 199, "07ORDA108"]
+  ],
+  "AQUA VIS": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "AQUA VISTA": [
+    [3, 5, "07ORDA105"]
+  ],
+  "ARBOLADO CT": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "ARDILLA RD": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "ARDITH CT": [
+    [100, 198, "07ORDA109"],
+    [101, 199, "07ORDA109"]
+  ],
+  "ARDITH DR": [
+    [100, 198, "07ORDA109"],
+    [101, 199, "07ORDA109"]
+  ],
+  "ARDOR DR": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "ARDOR LN": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "ARROYO DR": [
+    [1, 17, "07ORDA107"],
+    [2, 14, "07ORDA109"]
+  ],
+  "ASPINWALL CT": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "AUSTIN CT": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "AVE DE ORINDA": [
+    [1, 99, "07ORDA106"],
+    [2, 98, "07ORDA106"]
+  ],
+  "AVENIDA DE ORINDA": [
+    [1, 99, "07ORDA106"],
+    [2, 98, "07ORDA106"]
+  ],
+  "AVIS CT": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "BARBARA RD": [
+    [1, 103, "07ORDA102"],
+    [2, 198, "07ORDA102"]
+  ],
+  "BATES BLVD": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "BATES CT": [
+    [100, 198, "07ORDA101"],
+    [101, 199, "07ORDA101"]
+  ],
+  "BEACONSFIELD CT": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "BEAR CREEK RD": [
+    [511, 511, "07ORDA902"],
+    [515, 515, "07ALHA909"],
+    [518, 518, "07ORDA902"],
+    [1201, 1299, "07ALHA105"]
+  ],
+  "BEAR RIDGE CT": [
+    [1, 99, "07ORDA108"]
+  ],
+  "BEAR RIDGE RD": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "BEAR RIDGE TRL": [
+    [100, 198, "07ORDA108"],
+    [101, 199, "07ORDA108"]
+  ],
+  "BEARINDA LN": [
+    [11, 11, "07ALHA904"]
+  ],
+  "BEL AIR CT": [
+    [3, 5, "07ORDA110"]
+  ],
+  "BEL AIR DR": [
+    [1, 99, "07ORDA110"],
+    [2, 98, "07ORDA110"]
+  ],
+  "BELAIR CT": [
+    [1, 99, "07ORDA110"],
+    [2, 98, "07ORDA110"]
+  ],
+  "BERKELEY AVE": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "BERRYBROOK HOLLOW": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "BIEN VENIDA": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "BIENVENIDA": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "BIG ROCK RD": [
+    [2, 98, "07ORDA102"],
+    [19, 39, "07ORDA102"]
+  ],
+  "BIGLEAF RD": [
+    [1, 99, "07ORDA102"]
+  ],
+  "BIRCH CT": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "BOBOLINK RD": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "BOEGER RANCH RD": [
+    [2, 98, "07ORDA102"]
+  ],
+  "BONITA LN": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "BRIONES VW": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "BROADVIEW TER": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "BROOKBANK RD": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "BROOKSIDE RD": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"],
+    [100, 198, "07ORDA102"],
+    [101, 199, "07ORDA102"]
+  ],
+  "BROOKWOOD RD": [
+    [1, 199, "07ORDA102"],
+    [2, 14, "07ORDA102"],
+    [16, 16, "07ORDA803"],
+    [18, 198, "07ORDA102"],
+    [200, 298, "07ORDA804"],
+    [201, 299, "07ORDA804"]
+  ],
+  "BRYANT WAY": [
+    [1, 21, "07ORDA101"],
+    [2, 98, "07ORDA101"],
+    [23, 99, "07ORDA804"]
+  ],
+  "BUENA VIS": [
+    [3, 99, "07ORDA102"],
+    [4, 98, "07ORDA102"]
+  ],
+  "BUENA VISTA": [
+    [1, 5, "07ORDA102"],
+    [2, 4, "07ORDA102"]
+  ],
+  "CALIFORNIA AVE": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "CALVIN CT": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "CALVIN DR": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "CAM DEL CIELO": [
+    [1, 99, "07ORDA105"],
+    [4, 98, "07ORDA105"]
+  ],
+  "CAM DEL DIABLO": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "CAM DEL MONTE": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "CAM DON MIGUEL": [
+    [1, 199, "07ORDA105"],
+    [2, 198, "07ORDA105"]
+  ],
+  "CAM ENCINAS": [
+    [1, 199, "07ORDA102"],
+    [2, 198, "07ORDA102"]
+  ],
+  "CAM LENADA": [
+    [1, 1999, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "CAM PABLO": [
+    [2, 98, "07ORDA804"],
+    [100, 198, "07ORDA105"],
+    [101, 299, "07ORDA105"],
+    [300, 598, "07ORDA105"],
+    [501, 599, "07ORDA105"]
+  ],
+  "CAM SOBRANTE": [
+    [1, 499, "07ORDA105"],
+    [2, 98, "07ORDA106"],
+    [100, 498, "07ORDA105"]
+  ],
+  "CAMINO DEL CIELO": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "CAMINO DEL DIABLO": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "CAMINO DEL MONTE": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "CAMINO DON MIGUEL": [
+    [1, 199, "07ORDA105"],
+    [2, 198, "07ORDA105"]
+  ],
+  "CAMINO ENCINAS": [
+    [1, 199, "07ORDA102"],
+    [2, 198, "07ORDA102"]
+  ],
+  "CAMINO LENADA": [
+    [1, 1999, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "CAMINO PABLO": [
+    [2, 98, "07ORDA804"],
+    [100, 598, "07ORDA105"],
+    [101, 299, "07ORDA105"],
+    [501, 599, "07ORDA105"]
+  ],
+  "CAMINO SOBRANTE": [
+    [1, 207, "07ORDA106"],
+    [2, 98, "07ORDA106"],
+    [100, 498, "07ORDA105"],
+    [209, 499, "07ORDA105"]
+  ],
+  "CANDLE TER": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "CANDLESTICK RD": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "CANON DR": [
+    [100, 298, "07ORDA105"],
+    [101, 299, "07ORDA105"]
+  ],
+  "CANYON VIEW": [
+    [7, 39, "07ORDA108"],
+    [14, 32, "07ORDA108"]
+  ],
+  "CANYON VIEW DR": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "CARISBROOK DR": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "CARMEN CT": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "CARO LN": [
+    [1, 99, "07ORDA109"],
+    [100, 198, "07ORDA109"]
+  ],
+  "CAROLYN CT": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "CASA REALE": [
+    [1, 299, "07ORDA107"],
+    [2, 298, "07ORDA107"]
+  ],
+  "CASA VIEJA": [
+    [1, 117, "07ORDA102"],
+    [2, 116, "07ORDA102"]
+  ],
+  "CASA VIEJA DR": [
+    [5, 5, "07ORDA102"]
+  ],
+  "CASA VIEJA PL": [
+    [100, 198, "07ORDA102"],
+    [101, 199, "07ORDA102"]
+  ],
+  "CASCADE LN": [
+    [1, 99, "07ORDA106"],
+    [2, 98, "07ORDA106"]
+  ],
+  "CATHERINE CT": [
+    [100, 198, "07ORDA101"],
+    [101, 199, "07ORDA101"]
+  ],
+  "CEDAR CT": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "CEDAR LN": [
+    [2, 30, "07ORDA107"],
+    [11, 29, "07ORDA107"]
+  ],
+  "CEDAR TER": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "CHAPPARAL PL": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "CHARLES HILL CIR": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "CHARLES HILL LN": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "CHARLES HILL PL": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "CHARLES HILL RD": [
+    [1, 69, "07ORDA105"],
+    [2, 70, "07ORDA105"],
+    [74, 76, "07ORDA108"],
+    [75, 75, "07ORDA108"]
+  ],
+  "CHELTON CT": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "CIELO CT": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "CITRON KNL": [
+    [31, 67, "07ORDA106"],
+    [34, 70, "07ORDA106"],
+    [72, 72, "07ORDA101"]
+  ],
+  "CITRON KNOLL": [
+    [1, 99, "07ORDA106"],
+    [2, 98, "07ORDA106"]
+  ],
+  "CLAREMONT AVE": [
+    [1, 99, "07ORDA105"],
+    [2, 198, "07ORDA105"],
+    [8701, 8799, "07CALD901"]
+  ],
+  "COACHWOOD TER": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "COFFEE BERRY LN": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "CORAL DR": [
+    [1, 99, "07ORDA109"],
+    [2, 102, "07ORDA109"],
+    [101, 199, "07ORDA107"],
+    [104, 198, "07ORDA107"]
+  ],
+  "CORTE BOMBERO": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "CORTE DEL REY": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "CORTE HOLGANZA": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "CORTE SOMBRITA": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "COURTNEY LN": [
+    [1, 299, "07ORDA107"],
+    [2, 298, "07ORDA107"]
+  ],
+  "CRANE CT": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "CRANE TER": [
+    [100, 198, "07ORDA108"],
+    [101, 199, "07ORDA108"]
+  ],
+  "CRESCENT DR": [
+    [1, 99, "07ORDA105"],
+    [2, 298, "07ORDA105"]
+  ],
+  "CREST VIEW TER": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "CRESTA BLANCA": [
+    [1, 99, "07ORDA103"],
+    [2, 98, "07ORDA103"]
+  ],
+  "CRESTVIEW CT": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "CRESTVIEW DR": [
+    [1, 299, "07ORDA102"],
+    [2, 298, "07ORDA102"]
+  ],
+  "CRESTVIEW TER": [
+    [1, 199, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "CROSS RIDGE CT": [
+    [601, 699, "07ORDA106"]
+  ],
+  "CROSS RIDGE PL": [
+    [601, 699, "07ORDA106"]
+  ],
+  "CROSS RIDGE TER": [
+    [601, 699, "07ORDA106"]
+  ],
+  "CROSSRIDGE CT": [
+    [641, 659, "07ORDA106"]
+  ],
+  "CROSSRIDGE PL": [
+    [663, 669, "07ORDA106"]
+  ],
+  "CROSSRIDGE TER": [
+    [621, 639, "07ORDA106"]
+  ],
+  "CROWN CT": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "CULVER CT": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "DAIRY CREEK LN": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "DAISY LN": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "DALE CT": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "DALEWOOD DR": [
+    [1, 599, "07ORDA108"],
+    [2, 598, "07ORDA108"]
+  ],
+  "DALEWOOD TER": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "DANZA CT": [
+    [100, 198, "07ORDA107"],
+    [101, 199, "07ORDA107"]
+  ],
+  "DAPHNE CT": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "DARNBY CT": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "DARYL DR": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "DAVIS RD": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "DE SOTO CT": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "DEBRA CT": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "DEL MAR CT": [
+    [1, 199, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "DEL MAR PL": [
+    [2, 198, "07ORDA105"],
+    [101, 199, "07ORDA105"]
+  ],
+  "DEL VALLE": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "DESCANSO DR": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "DIABLO DR": [
+    [2, 110, "07CALD801"]
+  ],
+  "DIABLO VIEW DR": [
+    [1, 199, "07ORDA108"],
+    [2, 198, "07ORDA108"]
+  ],
+  "DIABLO VIEW RD": [
+    [1, 199, "07ORDA108"],
+    [2, 198, "07ORDA108"]
+  ],
+  "DIAS DORADOS": [
+    [1, 29, "07ORDA105"],
+    [2, 30, "07ORDA105"],
+    [33, 33, "07ORDA108"],
+    [34, 36, "07ORDA108"]
+  ],
+  "DOLORES WAY": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "DON GABRIEL WAY": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "DONALD DR": [
+    [1, 999, "07ORDA107"],
+    [2, 998, "07ORDA107"]
+  ],
+  "DONNA MARIA WAY": [
+    [1, 199, "07ORDA109"],
+    [2, 198, "07ORDA109"]
+  ],
+  "DOS ENCINAS": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "DOS OSOS": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "DOS OSOS RD": [
+    [37, 37, "07ORDA105"]
+  ],
+  "DOS POSOS": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "DOUGLAS CT": [
+    [1, 99, "07ORDA110"],
+    [2, 98, "07ORDA110"]
+  ],
+  "DOVER CT": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "DUNCAN CT": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "E ALTARINDA DR": [
+    [1, 99, "07ORDA106"],
+    [2, 98, "07ORDA105"]
+  ],
+  "EASTON CT": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "EASTWOOD DR": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "EDGEWOOD CT": [
+    [9, 9, "07ORDA102"]
+  ],
+  "EDGEWOOD RD": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "EL CAMINITO": [
+    [1, 99, "07ORDA106"],
+    [2, 98, "07ORDA106"]
+  ],
+  "EL CAMINO MORAGA": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"],
+    [600, 798, "07ORDA109"]
+  ],
+  "EL CAMPANERO": [
+    [7, 11, "07ORDA105"],
+    [10, 10, "07ORDA105"]
+  ],
+  "EL CASTILLO": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "EL CASTILLO CT": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "EL COMPANERO": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "EL CORTE": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "EL DORADO LN": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "EL GAVILAN": [
+    [3, 89, "07ORDA105"],
+    [4, 92, "07ORDA105"]
+  ],
+  "EL GAVILAN RD": [
+    [1, 99, "07ORDA105"],
+    [6, 98, "07ORDA105"]
+  ],
+  "EL NIDO CT": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "EL NIDO RANCH RD": [
+    [4201, 4399, "07ORDA105"],
+    [4270, 4498, "07ORDA105"]
+  ],
+  "EL PATIO": [
+    [1, 99, "07ORDA106"],
+    [2, 98, "07ORDA106"]
+  ],
+  "EL PULGAR": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "EL RINCON": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "EL SERENO": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "EL SERENO RD": [
+    [8, 8, "07ORDA105"]
+  ],
+  "EL SERNO": [
+    [12, 12, "07ORDA105"]
+  ],
+  "EL SUENO": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "EL TOYONAL": [
+    [1, 43, "07ORDA103"],
+    [2, 498, "07ORDA105"],
+    [45, 499, "07ORDA105"],
+    [500, 598, "07KENS903"],
+    [501, 687, "07ORDA802"],
+    [604, 604, "07ORDA802"],
+    [689, 691, "07ORDA105"],
+    [693, 799, "07KENS903"]
+  ],
+  "EL TOYONAL RD": [
+    [7, 7, "07ORDA103"]
+  ],
+  "EL VERANO": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "ELLEN CT": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "ELVERTON DR": [
+    [7098, 7098, "07CALD801"]
+  ],
+  "ESTABUENO": [
+    [1, 55, "07ORDA109"],
+    [2, 52, "07ORDA109"]
+  ],
+  "ESTABUENO DR": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "ESTATES CT": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "ESTATES DR": [
+    [1, 199, "07ORDA101"],
+    [2, 198, "07ORDA101"]
+  ],
+  "EVANS PL": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "EVERGREEN DR": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "FAIRWAY DR": [
+    [1, 99, "07ORDA105"]
+  ],
+  "FALLEN LEAF TER": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "FERN WAY": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "FIDDLENECK WAY": [
+    [6, 38, "07ORDA102"]
+  ],
+  "FIESTA CIR": [
+    [100, 100, "07ORDA107"],
+    [101, 199, "07ORDA107"],
+    [102, 102, "07ORDA109"],
+    [104, 198, "07ORDA107"]
+  ],
+  "FISH RANCH RD": [
+    [601, 659, "07CALD802"],
+    [661, 699, "07CALD803"],
+    [800, 1098, "07CALD803"],
+    [1001, 2001, "07CALD803"]
+  ],
+  "FLEETWOOD CT": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "FOX RUN": [
+    [600, 698, "07ORDA106"],
+    [601, 699, "07ORDA106"]
+  ],
+  "FRANCISCO CT": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "FROGS LEAP WAY": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "GARDINER CT": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "GATEWAY BLVD": [
+    [2, 98, "07CALD901"]
+  ],
+  "GLORIETTA BLVD": [
+    [100, 254, "07ORDA107"],
+    [101, 399, "07ORDA101"],
+    [256, 398, "07ORDA110"],
+    [9301, 9399, "07ORDA101"]
+  ],
+  "GLORIETTA CT": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "GOODFELLOW DR": [
+    [100, 198, "07ORDA107"],
+    [101, 199, "07ORDA107"]
+  ],
+  "GRASSY HILL WAY": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "GREAT OAK CIR": [
+    [2, 8, "07ORDA101"]
+  ],
+  "GREAT OAKS CIR": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "GREENWOOD CT": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "GREYSTONE TER": [
+    [600, 698, "07ORDA106"],
+    [601, 699, "07ORDA106"]
+  ],
+  "GRIZZLY PEAK BLVD": [
+    [200, 486, "07KENS802"],
+    [2481, 2599, "07KENS802"],
+    [5100, 5188, "07CALD802"],
+    [5190, 5190, "07CALD803"],
+    [5192, 5298, "07CALD802"]
+  ],
+  "HACIENDA CIR": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "HACIENDAS RD": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "HALL DR": [
+    [1, 299, "07ORDA107"],
+    [2, 298, "07ORDA107"]
+  ],
+  "HAPPY VALLEY RD": [
+    [4130, 4198, "07ORDA108"]
+  ],
+  "HARRAN CIR": [
+    [1, 99, "07ORDA106"],
+    [2, 98, "07ORDA106"]
+  ],
+  "HARTFORD RD": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "HAWKRIDGE TER": [
+    [500, 598, "07ORDA106"],
+    [501, 599, "07ORDA106"]
+  ],
+  "HAZEL TREE RDG": [
+    [1, 99, "07ORDA106"],
+    [2, 24, "07ORDA106"],
+    [26, 26, "07ORDA101"],
+    [28, 52, "07ORDA106"],
+    [54, 54, "07ORDA101"],
+    [56, 98, "07ORDA106"]
+  ],
+  "HAZEL TREE RIDGE": [
+    [3, 27, "07ORDA106"],
+    [31, 31, "07ORDA101"],
+    [35, 43, "07ORDA106"],
+    [47, 47, "07ORDA101"],
+    [51, 59, "07ORDA106"],
+    [63, 63, "07ORDA101"]
+  ],
+  "HEATHER LN": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "HIDDEN LN": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "HIDDEN VALLEY RD": [
+    [4185, 4185, "07ORDA104"]
+  ],
+  "HIGHLAND CT": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "HILARY LN": [
+    [1, 99, "07ORDA110"],
+    [2, 98, "07ORDA110"]
+  ],
+  "HILARY WAY": [
+    [1, 7, "07ORDA110"]
+  ],
+  "HILLCREST DR": [
+    [1, 199, "07ORDA101"],
+    [2, 198, "07ORDA101"]
+  ],
+  "HILLDALE CT": [
+    [1, 199, "07ORDA102"],
+    [2, 198, "07ORDA102"]
+  ],
+  "HOLLY LN": [
+    [101, 299, "07ORDA105"],
+    [200, 298, "07ORDA105"]
+  ],
+  "HOME RANCH RD": [
+    [880, 880, "07CANY801"]
+  ],
+  "HONEY HILL CT": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "HONEY HILL RD": [
+    [1, 19, "07ORDA108"],
+    [2, 16, "07ORDA108"],
+    [23, 99, "07ORDA105"],
+    [28, 98, "07ORDA105"]
+  ],
+  "HONEYWOOD RD": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "ICHABOD LN": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "IDYLL CT": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "IRONBARK CIR": [
+    [600, 698, "07ORDA106"],
+    [601, 699, "07ORDA106"]
+  ],
+  "IRONBARK CT": [
+    [700, 798, "07ORDA106"],
+    [701, 799, "07ORDA106"]
+  ],
+  "IRONBARK PL": [
+    [800, 898, "07ORDA106"],
+    [801, 899, "07ORDA106"]
+  ],
+  "IRVING CT": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "IRVING LN": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "IRWIN WAY": [
+    [2, 98, "07ORDA106"],
+    [15, 15, "07ORDA106"]
+  ],
+  "IVY DR": [
+    [1, 199, "07ORDA107"],
+    [2, 8, "07ORDA109"],
+    [10, 10, "07ORDA107"],
+    [12, 398, "07ORDA109"],
+    [201, 235, "07ORDA109"],
+    [237, 249, "07MORG102"],
+    [251, 251, "07ORDA109"],
+    [253, 299, "07MORG102"],
+    [301, 399, "07MORG104"]
+  ],
+  "IVY PL": [
+    [200, 298, "07MORG102"],
+    [201, 251, "07MORG102"],
+    [253, 253, "07MORG107"],
+    [255, 263, "07MORG102"],
+    [265, 265, "07ORDA109"],
+    [267, 299, "07MORG102"]
+  ],
+  "JACK TREE KNL": [
+    [2, 28, "07ORDA106"]
+  ],
+  "JACK TREE KNOLL": [
+    [2, 98, "07ORDA106"]
+  ],
+  "JEWEL CT": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "JUNIPER DR": [
+    [2, 18, "07ORDA104"],
+    [3, 15, "07ORDA104"]
+  ],
+  "KATRINA CT": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "KEITH DR": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "KELLIE ANN CT": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "KENMORE CT": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "KITE HILL RD": [
+    [600, 698, "07ORDA106"],
+    [601, 699, "07ORDA106"]
+  ],
+  "KITE HILL TER": [
+    [500, 598, "07ORDA106"],
+    [501, 599, "07ORDA106"]
+  ],
+  "KITTIWAKE RD": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "KNICKERBOCKER LN": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "KRISTIN LN": [
+    [101, 199, "07ORDA107"]
+  ],
+  "LA BOLSITA": [
+    [2, 14, "07ORDA105"],
+    [3, 11, "07ORDA103"]
+  ],
+  "LA BOLSITA WAY": [
+    [1, 99, "07ORDA103"],
+    [2, 98, "07ORDA105"]
+  ],
+  "LA CAMPANA": [
+    [1, 73, "07ORDA105"],
+    [2, 66, "07ORDA105"]
+  ],
+  "LA CAMPANA RD": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "LA CHESNAYE": [
+    [1, 99, "07ORDA108"]
+  ],
+  "LA CINTILLA": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "LA CRESTA RD": [
+    [1, 75, "07ORDA109"],
+    [2, 78, "07ORDA109"],
+    [95, 95, "07ORDA102"]
+  ],
+  "LA CUESTA": [
+    [1, 15, "07ORDA106"],
+    [4, 38, "07ORDA105"],
+    [25, 25, "07ORDA105"],
+    [31, 141, "07ORDA106"],
+    [50, 82, "07ORDA106"]
+  ],
+  "LA CUESTA RD": [
+    [1, 199, "07ORDA106"],
+    [2, 44, "07ORDA105"],
+    [46, 98, "07ORDA106"]
+  ],
+  "LA ENCINAL": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "LA ESPIRAL": [
+    [1, 399, "07ORDA105"],
+    [4, 326, "07ORDA105"]
+  ],
+  "LA ESPIRAL RD": [
+    [1, 399, "07ORDA105"],
+    [2, 398, "07ORDA105"]
+  ],
+  "LA FOND LN": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "LA MADRONAL": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "LA NORIA": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "LA PLAZA DR": [
+    [1, 99, "07ORDA106"],
+    [2, 98, "07ORDA106"]
+  ],
+  "LA PLZ": [
+    [4, 16, "07ORDA106"],
+    [9, 15, "07ORDA106"]
+  ],
+  "LA PUNTA": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "LA SENDA": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "LA SOMBRA CT": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "LA VUELTA": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "LAS AROMAS": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "LAS CASCADAS": [
+    [4, 30, "07ORDA106"],
+    [19, 49, "07ORDA105"],
+    [38, 52, "07ORDA105"]
+  ],
+  "LAS CASCADAS RD": [
+    [1, 99, "07ORDA105"],
+    [2, 32, "07ORDA106"],
+    [34, 98, "07ORDA105"]
+  ],
+  "LAS MESAS PATH": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "LAS PALOMAS": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "LAS PIEDRAS": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "LAS VEGAS CT": [
+    [1, 199, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "LAS VEGAS RD": [
+    [1, 199, "07ORDA105"],
+    [2, 198, "07ORDA105"]
+  ],
+  "LAURA LN": [
+    [1, 199, "07ORDA107"],
+    [100, 198, "07ORDA107"]
+  ],
+  "LAURA WAY": [
+    [100, 120, "07ORDA107"],
+    [101, 111, "07ORDA107"]
+  ],
+  "LAVENIDA": [
+    [9, 15, "07ORDA109"],
+    [14, 26, "07ORDA109"]
+  ],
+  "LAVENIDA DR": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "LAVINA CT": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "LESLEE LN": [
+    [100, 198, "07ORDA109"],
+    [101, 199, "07ORDA109"]
+  ],
+  "LIND CT": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "LINDA VIS": [
+    [1, 99, "07ORDA106"],
+    [2, 98, "07ORDA106"]
+  ],
+  "LINDA VISTA": [
+    [6, 54, "07ORDA106"],
+    [7, 47, "07ORDA106"]
+  ],
+  "LLOYD LN": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "LOMA LINDA CT": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "LOMA VISTA DR": [
+    [1, 23, "07ORDA103"],
+    [2, 98, "07ORDA105"],
+    [25, 99, "07ORDA105"]
+  ],
+  "LOMAS CANTADAS": [
+    [1, 431, "07ORDA105"],
+    [2, 292, "07ORDA105"],
+    [294, 486, "07KENS802"]
+  ],
+  "LOMBARDY LN": [
+    [1, 199, "07ORDA108"],
+    [2, 198, "07ORDA108"]
+  ],
+  "LONGRIDGE RD": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "LONGVIEW TER": [
+    [200, 298, "07ORDA107"]
+  ],
+  "LOS ALTOS RD": [
+    [1, 59, "07ORDA105"],
+    [2, 98, "07ORDA105"],
+    [61, 61, "07ORDA902"],
+    [63, 99, "07ORDA105"]
+  ],
+  "LOS AMIGOS": [
+    [2, 32, "07ORDA105"],
+    [3, 25, "07ORDA105"]
+  ],
+  "LOS AMIGOS CT": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "LOS ARBOLES": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "LOS CERROS": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "LOS CONEJOS": [
+    [1, 99, "07ORDA103"],
+    [2, 98, "07ORDA103"]
+  ],
+  "LOS CONEJOS RD": [
+    [10, 10, "07ORDA103"]
+  ],
+  "LOS DEDOS": [
+    [4, 44, "07ORDA105"],
+    [5, 39, "07ORDA105"]
+  ],
+  "LOS DEDOS RD": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "LOS NORRABOS": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "LOST VALLEY CT": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "LOST VALLEY DR": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "LUCILLE WAY": [
+    [1, 199, "07ORDA102"],
+    [2, 198, "07ORDA102"]
+  ],
+  "MADERA LN": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "MADRONE PL": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "MANZANITA DR": [
+    [100, 298, "07ORDA105"],
+    [181, 181, "07ORDA902"],
+    [201, 499, "07ORDA105"],
+    [2030, 2030, "07CALD801"],
+    [2221, 2221, "07CALD801"]
+  ],
+  "MANZANITA TER": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "MARIPOSA LN": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "MARSTON RD": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "MARTHA RD": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "MEADOW CT": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "MEADOW LN": [
+    [100, 198, "07ORDA101"],
+    [101, 199, "07ORDA101"]
+  ],
+  "MEADOW PARK CT": [
+    [1, 99, "07ORDA110"],
+    [2, 98, "07ORDA110"]
+  ],
+  "MEADOW VIEW RD": [
+    [1, 99, "07ORDA110"],
+    [2, 98, "07ORDA110"],
+    [100, 198, "07ORDA101"],
+    [101, 199, "07ORDA101"]
+  ],
+  "MEADOWLANDS CT": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "MELODY LN": [
+    [1, 299, "07ORDA108"],
+    [2, 298, "07ORDA108"]
+  ],
+  "MICHAEL LN": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "MILLER CT": [
+    [300, 350, "07ORDA102"],
+    [305, 345, "07ORDA102"]
+  ],
+  "MINER RD": [
+    [1, 453, "07ORDA105"],
+    [2, 450, "07ORDA105"],
+    [452, 798, "07ORDA108"],
+    [455, 799, "07ORDA108"]
+  ],
+  "MIRA FLORES": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "MIRA LOMA": [
+    [3, 3, "07ORDA105"],
+    [6, 62, "07ORDA106"],
+    [7, 65, "07ORDA106"]
+  ],
+  "MIRA LOMA RD": [
+    [1, 9, "07ORDA105"],
+    [2, 98, "07ORDA106"],
+    [11, 99, "07ORDA106"]
+  ],
+  "MIRAMONTE RD": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "MODOC CT": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "MODOC RD": [
+    [2, 98, "07ORDA108"]
+  ],
+  "MONKEYFLOWER LN": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "MONROE CT": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "MONTE VEDA DR": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "MONTE VEDA RD": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "MONTE VISTA RD": [
+    [1, 199, "07ORDA105"],
+    [2, 198, "07ORDA105"]
+  ],
+  "MONTE VISTA RIDGE RD": [
+    [200, 298, "07ORDA105"],
+    [201, 299, "07ORDA105"]
+  ],
+  "MONTEREY TER": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "MORAGA CT": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "MORAGA VIA": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "MORAGA WAY": [
+    [1, 299, "07ORDA101"],
+    [2, 98, "07ORDA804"],
+    [100, 498, "07ORDA102"],
+    [401, 511, "07ORDA107"],
+    [500, 798, "07ORDA109"],
+    [513, 799, "07ORDA109"]
+  ],
+  "MOSSBRIDGE LN": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "MUTH DR": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "N LN": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "NELSON LN": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "NIDER LN": [
+    [700, 798, "07ORDA108"]
+  ],
+  "NOBI LN": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "NONIE RD": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "NORMANDY LN": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "NORTHWOOD CT": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "NORTHWOOD DR": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "OAK ARBOR RD": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "OAK CT": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "OAK DR": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "OAK FLAT RD": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "OAK KNOLL LN": [
+    [1, 99, "07ORDA102"]
+  ],
+  "OAK LN": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "OAK RD": [
+    [1, 199, "07ORDA102"],
+    [2, 198, "07ORDA102"]
+  ],
+  "OAK RIDGE LN": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "OAK VIEW TER": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "OAKRIDGE LN": [
+    [16, 38, "07ORDA101"]
+  ],
+  "OAKWOOD DR": [
+    [55, 55, "07ORDA101"]
+  ],
+  "OAKWOOD RD": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "OLD SAN PABLO DAM RD": [
+    [501, 599, "07ELSO811"],
+    [540, 598, "07ELSO811"]
+  ],
+  "OLD TUNNEL RD": [
+    [1, 199, "07CALD802"],
+    [150, 198, "07CALD802"]
+  ],
+  "ORCHARD": [
+    [100, 198, "07ORDA101"]
+  ],
+  "ORCHARD CT": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "ORCHARD RD": [
+    [1, 199, "07ORDA101"],
+    [2, 198, "07ORDA101"],
+    [200, 298, "07ORDA107"],
+    [201, 299, "07ORDA107"]
+  ],
+  "ORINDA FIELDS LN": [
+    [20, 20, "07ORDA102"]
+  ],
+  "ORINDA VIEW RD": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "ORINDA WAY": [
+    [1, 107, "07ORDA106"],
+    [2, 200, "07ORDA106"],
+    [115, 115, "07ORDA103"]
+  ],
+  "ORINDAWOODS DR": [
+    [500, 698, "07ORDA106"],
+    [501, 699, "07ORDA106"]
+  ],
+  "ORIOLE RD": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "OVERHILL CT": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "OVERHILL RD": [
+    [1, 399, "07ORDA101"],
+    [2, 398, "07ORDA101"]
+  ],
+  "OWL HILL CT": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "OWL HILL RD": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "PAINTBRUSH LN": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "PARK LN DR": [
+    [1, 53, "07ORDA110"],
+    [8, 50, "07ORDA110"]
+  ],
+  "PARKLANE DR": [
+    [1, 99, "07ORDA110"],
+    [2, 98, "07ORDA110"]
+  ],
+  "PATRICIA RD": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "PATRICK LN": [
+    [1, 3, "07ORDA110"],
+    [2, 98, "07ORDA110"]
+  ],
+  "PENNY LN": [
+    [2, 98, "07ORDA101"]
+  ],
+  "PERSIMMON WALK": [
+    [1, 99, "07ORDA106"],
+    [2, 98, "07ORDA106"]
+  ],
+  "PICO CT": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "PIEDMONT AVE": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "PINE TREE LN": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "PINEHURST RD": [
+    [2, 98, "07CANY804"],
+    [900, 998, "07CANY101"]
+  ],
+  "PKWY CT": [
+    [1, 35, "07ORDA110"],
+    [2, 98, "07ORDA107"],
+    [37, 37, "07ORDA107"],
+    [39, 99, "07ORDA110"]
+  ],
+  "POCO PASEO": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "POPPY LN": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "PUEBLO CT": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "QUAIL RIDGE LN": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "QUARRY HILL DR": [
+    [8, 8, "07ORDA102"]
+  ],
+  "QUARRY HILL RD": [
+    [11, 17, "07ORDA102"]
+  ],
+  "QUEENSBROOK PL": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "RABBLE RD": [
+    [2, 98, "07ORDA102"]
+  ],
+  "RAE CT": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "RAE DR": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "RAMONA DR": [
+    [1, 99, "07ORDA109"],
+    [2, 6, "07ORDA109"],
+    [8, 8, "07MORG107"],
+    [10, 98, "07ORDA109"]
+  ],
+  "RANCH RD": [
+    [1, 3999, "07ORDA108"],
+    [2, 3998, "07ORDA108"]
+  ],
+  "RAVENHILL RD": [
+    [100, 198, "07ORDA106"],
+    [101, 199, "07ORDA106"]
+  ],
+  "RED COACH LN": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "REDCOACH LN": [
+    [15, 21, "07ORDA108"],
+    [20, 30, "07ORDA108"]
+  ],
+  "REDWOOD TER": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "RHEEM BLVD": [
+    [1, 215, "07ORDA107"],
+    [4, 216, "07ORDA107"]
+  ],
+  "RICH ACRES RD": [
+    [1, 99, "07ORDA105"],
+    [2, 198, "07ORDA105"]
+  ],
+  "RICHARD CT": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "RIDGE GATE RD": [
+    [400, 498, "07ORDA106"],
+    [401, 499, "07ORDA106"]
+  ],
+  "RIDGE LN": [
+    [2, 98, "07ORDA108"],
+    [15, 15, "07ORDA108"]
+  ],
+  "RIO VIS": [
+    [1, 99, "07ORDA103"],
+    [2, 98, "07ORDA103"]
+  ],
+  "RIO VISTA": [
+    [16, 30, "07ORDA103"]
+  ],
+  "RISA CT": [
+    [2, 18, "07ORDA107"],
+    [3, 25, "07ORDA107"]
+  ],
+  "RISA DR": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "RITA WAY": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "ROBERT RD": [
+    [1, 45, "07ORDA110"],
+    [2, 44, "07ORDA110"],
+    [46, 98, "07LFET101"],
+    [47, 47, "07LFET101"],
+    [49, 49, "07LFET110"],
+    [51, 99, "07LFET101"]
+  ],
+  "ROSE LN": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "ROSELLE LN": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "RUSTIC WAY": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "RYDAL CT": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "S BEAR RIDGE RD": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "S POINT RD": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "S TARRY WAY": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "S TRL": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "SAGER CT": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "SALLY ANN RD": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "SAN PABLO DAM RD": [
+    [500, 598, "07ELSO811"],
+    [501, 599, "07ORDA105"]
+  ],
+  "SANBORN RD": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "SANDHILL CT": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "SANDHILL RD": [
+    [1, 199, "07ORDA108"],
+    [2, 198, "07ORDA108"]
+  ],
+  "SANDY CT": [
+    [1, 99, "07ORDA107"]
+  ],
+  "SANTA LUCIA": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "SANTA MARIA WAY": [
+    [1, 99, "07ORDA106"],
+    [2, 98, "07ORDA106"]
+  ],
+  "SCENIC CT": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "SCENIC DR": [
+    [1, 199, "07ORDA101"],
+    [2, 198, "07ORDA101"]
+  ],
+  "SHADOW CREEK LN": [
+    [1, 99, "07ORDA107"]
+  ],
+  "SHAWNEE CT": [
+    [8, 12, "07ORDA101"]
+  ],
+  "SHAWNEE LN": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "SIESTA VALLEY WAY": [
+    [100, 100, "07CALD901"]
+  ],
+  "SILVER OAK TER": [
+    [100, 198, "07ORDA108"],
+    [101, 199, "07ORDA108"]
+  ],
+  "SILVERWOOD CT": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "SINGINGWOOD LN": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "SKYLINE BLVD": [
+    [6722, 7090, "07CALD801"],
+    [6801, 6989, "07CALD801"]
+  ],
+  "SKYLINE DR": [
+    [6969, 6969, "07CALD801"]
+  ],
+  "SLEEPY HALLOW CT": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "SLEEPY HOLLOW CT": [
+    [2, 6, "07ORDA108"],
+    [5, 5, "07ORDA108"]
+  ],
+  "SLEEPY HOLLOW LN": [
+    [1, 199, "07ORDA108"],
+    [2, 198, "07ORDA108"]
+  ],
+  "SNOW CT": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "SNOWBERRY CT": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "SNOWBERRY LN": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "SOL BRAE": [
+    [2, 10, "07ORDA105"]
+  ],
+  "SOL BRAE WAY": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "SOULE RD": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "SOUTHPOINT RD": [
+    [4, 4, "07ORDA105"]
+  ],
+  "SOUTHWAITE CT": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "SOUTHWOOD CT": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "SOUTHWOOD DR": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "SPRING CT": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "SPRING RD": [
+    [1, 199, "07ORDA102"],
+    [2, 198, "07ORDA102"]
+  ],
+  "ST HILL RD": [
+    [1, 15, "07ORDA105"],
+    [2, 398, "07ORDA101"],
+    [17, 399, "07ORDA101"]
+  ],
+  "ST JAMES CT": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "ST STEPHENS CIR": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "ST STEPHENS DR": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "STANTON AVE": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "STANTON CT": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "STANTON TER": [
+    [2, 298, "07ORDA105"],
+    [201, 299, "07ORDA105"]
+  ],
+  "STEIN WAY": [
+    [1, 199, "07ORDA102"],
+    [2, 298, "07ORDA102"]
+  ],
+  "STRANG CT": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "STRAWBERRY HOLLOW": [
+    [1, 1, "07ORDA105"],
+    [3, 3, "07ORDA108"],
+    [5, 99, "07ORDA105"]
+  ],
+  "SUNDOWN TER": [
+    [200, 298, "07ORDA108"],
+    [201, 299, "07ORDA108"]
+  ],
+  "SUNNYSIDE CT": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "SUNNYSIDE LN": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "SUNRISE HILL CT": [
+    [2, 12, "07ORDA102"],
+    [3, 5, "07ORDA102"]
+  ],
+  "SUNRISE HILL RD": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "SUNRISE HL": [
+    [4, 4, "07ORDA102"],
+    [9, 9, "07ORDA102"]
+  ],
+  "SUNSET TER": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "SYCAMORE RD": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "TAHOS RD": [
+    [300, 698, "07ORDA101"],
+    [301, 399, "07ORDA105"],
+    [401, 699, "07ORDA101"]
+  ],
+  "TAMALPAIS VIEW RD": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "TAPPAN CT": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "TAPPAN LN": [
+    [1, 299, "07ORDA108"],
+    [2, 298, "07ORDA108"]
+  ],
+  "TAPPAN TER": [
+    [1, 99, "07ORDA108"],
+    [300, 398, "07ORDA108"],
+    [301, 399, "07ORDA108"]
+  ],
+  "TAPPAN WAY": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "TARA RD": [
+    [1, 199, "07ORDA101"],
+    [2, 198, "07ORDA101"]
+  ],
+  "TARABROOK DR": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "TARRY LN": [
+    [1, 199, "07ORDA108"],
+    [2, 198, "07ORDA108"]
+  ],
+  "THE CIR": [
+    [135, 199, "07ORDA105"]
+  ],
+  "THE GLADE": [
+    [300, 398, "07ORDA106"],
+    [301, 399, "07ORDA106"],
+    [500, 598, "07ORDA106"],
+    [501, 599, "07ORDA106"]
+  ],
+  "THE KNOLL": [
+    [200, 200, "07ORDA101"],
+    [202, 230, "07ORDA106"],
+    [232, 232, "07ORDA101"],
+    [234, 298, "07ORDA106"]
+  ],
+  "THEATRE SQ": [
+    [2, 2, "07ORDA804"]
+  ],
+  "TIGER TAIL CT": [
+    [1, 199, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "TOMCAT WAY": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "TOTTERDELL CT": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "TRAMPAS VW": [
+    [1, 199, "07ORDA108"],
+    [2, 198, "07ORDA108"]
+  ],
+  "TRES MESAS": [
+    [1, 99, "07ORDA105"],
+    [100, 198, "07ORDA105"]
+  ],
+  "TUMBLING BROOK RD": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "TWIG LN": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "UNDERHILL RD": [
+    [1, 199, "07ORDA102"],
+    [2, 198, "07ORDA102"]
+  ],
+  "VALENCIA RD": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "VALLECITO LN": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "VALLEY CT": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "VALLEY DR": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "VALLEY VIEW DR": [
+    [1, 99, "07ORDA102"],
+    [2, 198, "07ORDA102"]
+  ],
+  "VALLEY VIEW LN": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "VALLEY VIEW RD": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "VAN RIPPER LN": [
+    [1, 199, "07ORDA108"],
+    [2, 198, "07ORDA108"]
+  ],
+  "VAN TASSEL LN": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "VASHELL WAY": [
+    [2, 98, "07ORDA101"]
+  ],
+  "VIA CALLADOS": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "VIA CORTE": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "VIA FARALLON": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA106"]
+  ],
+  "VIA FLOREADO": [
+    [1, 199, "07ORDA105"],
+    [2, 198, "07ORDA105"]
+  ],
+  "VIA HERMOSA": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "VIA LAS CRUCES": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "VIA LAS CRUCES RD": [
+    [20, 20, "07ORDA105"]
+  ],
+  "VIA SAN INIGO": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "VIANNE CT": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "VIDA DESCANSADA": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "VILLAGE GATE CT": [
+    [300, 398, "07ORDA106"],
+    [301, 399, "07ORDA106"]
+  ],
+  "VILLAGE GATE RD": [
+    [2, 298, "07ORDA106"],
+    [201, 299, "07ORDA106"],
+    [600, 698, "07ORDA106"],
+    [601, 699, "07ORDA106"]
+  ],
+  "VILLAGE VIEW CT": [
+    [300, 398, "07ORDA106"],
+    [301, 399, "07ORDA106"]
+  ],
+  "VILLANOVA DR": [
+    [1, 1, "07CALD801"]
+  ],
+  "VIRGINIA DR": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "VIS DEL MAR": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "VIS DEL MORAGA": [
+    [3, 99, "07ORDA101"],
+    [4, 98, "07ORDA101"]
+  ],
+  "VIS DEL ORINDA": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "VISTA DEL MAR": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "VISTA DEL MORAGA": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "VISTA DEL ORINDA": [
+    [1, 99, "07ORDA105"],
+    [2, 98, "07ORDA105"]
+  ],
+  "W HILL WAY": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "W WAY": [
+    [1, 1, "07ORDA105"]
+  ],
+  "WANDA LN": [
+    [1, 7, "07ORDA101"],
+    [2, 4, "07ORDA101"]
+  ],
+  "WANDA WAY": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "WANFLETE CT": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "WARFORD TER": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "WASHINGTON LN": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "WATCH WOOD": [
+    [200, 298, "07ORDA106"],
+    [201, 699, "07ORDA106"]
+  ],
+  "WATCHWOOD CT": [
+    [1, 99, "07ORDA106"],
+    [2, 98, "07ORDA106"]
+  ],
+  "WATCHWOOD DR": [
+    [200, 298, "07ORDA106"],
+    [201, 699, "07ORDA106"]
+  ],
+  "WATCHWOOD RD": [
+    [601, 639, "07ORDA106"]
+  ],
+  "WENDY LN": [
+    [1, 99, "07LFET101"],
+    [2, 98, "07LFET101"]
+  ],
+  "WESTOVER CT": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "WESTWOOD CT": [
+    [1, 99, "07ORDA101"],
+    [2, 98, "07ORDA101"]
+  ],
+  "WHITE OAK DR": [
+    [15, 23, "07ORDA104"],
+    [18, 26, "07ORDA104"]
+  ],
+  "WHITEHALL DR": [
+    [1, 99, "07ORDA109"],
+    [2, 98, "07ORDA109"]
+  ],
+  "WILBER CIR": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "WILD LILAC WAY": [
+    [2, 98, "07ORDA102"]
+  ],
+  "WILD PLUM WAY": [
+    [2, 98, "07ORDA106"]
+  ],
+  "WILD RYE WAY": [
+    [1, 99, "07ORDA102"]
+  ],
+  "WILDER RD": [
+    [1, 1, "07ORDA803"],
+    [2, 198, "07ORDA102"],
+    [3, 199, "07ORDA102"]
+  ],
+  "WILDWOOD RD": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "WILLIAMS CT": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "WINDING LN": [
+    [2, 98, "07ORDA108"]
+  ],
+  "WINDY CREEK WAY": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "WOOD ACRES CT": [
+    [1, 99, "07ORDA106"],
+    [2, 98, "07ORDA106"]
+  ],
+  "WOOD ACRES LN": [
+    [2, 98, "07ORDA106"]
+  ],
+  "WOODACRES CT": [
+    [1, 99, "07ORDA106"],
+    [2, 98, "07ORDA106"]
+  ],
+  "WOODACRES LN": [
+    [2, 4, "07ORDA106"]
+  ],
+  "WOODCREST DR": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "WOODCREST RD": [
+    [1, 99, "07ORDA107"],
+    [2, 98, "07ORDA107"]
+  ],
+  "WOODLAND RD": [
+    [1, 99, "07ORDA102"],
+    [2, 98, "07ORDA102"]
+  ],
+  "WOVENWOOD": [
+    [400, 498, "07ORDA106"],
+    [401, 413, "07ORDA106"],
+    [415, 415, "07ORDA101"],
+    [417, 499, "07ORDA106"]
+  ],
+  "YARROW VALLEY LN": [
+    [1, 99, "07ORDA108"],
+    [2, 98, "07ORDA108"]
+  ],
+  "YOSEMITE RD": [
+    [2, 98, "07ORDA108"]
+  ],
+  "ZANDER CT": [
+    [2, 98, "07ORDA107"]
+  ],
+  "ZANDER DR": [
+    [1, 199, "07ORDA107"],
+    [2, 198, "07ORDA107"]
+  ]
+}

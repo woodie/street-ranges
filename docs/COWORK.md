@@ -10,6 +10,7 @@ and how to verify the ranges.
 | County | Number | Built from | Files |
 | --- | --- | --- | --- |
 | Alameda | 01 | County shapes and address points, then TIGER | 50 zipcodes, 53,972 ranges |
+| Contra Costa | 07 | County shapes and parcel addresses, then TIGER | 46 zipcodes, 55,388 ranges |
 | San Francisco | 38 | The county's Street Data Extract | 27 zipcodes, 10,882 ranges |
 | San Mateo | 41 | County shapes and address points, then TIGER | 30 zipcodes, 21,973 ranges |
 | Santa Clara | 43 | County shapefile and address points, then TIGER | 63 zipcodes, 57,900 ranges |
@@ -38,6 +39,7 @@ The lookup page is live at https://woodie.github.io/street-ranges/. Next:
 | County | Number | Precinct map | Address points |
 | --- | --- | --- | --- |
 | Alameda | 01 | Registrar of Voters' layer, home precincts (`counties.json`) | County layer, `ADDRESS` field |
+| Contra Costa | 07 | Elections' layer (`counties.json`) | Parcels, street address fields only, middle of each parcel |
 | San Francisco | 38 | The extract gives each address's precinct; the county's shapefile is only for maps (`bin/county_shapes.py`) | In the extract |
 | San Mateo | 41 | County GIS layer (`counties.json`) | County GIS layer |
 | Santa Clara | 43 | County shapefile, free by request (`bin/county_shapes.py`) | County GIS layer, from June 2020 |
