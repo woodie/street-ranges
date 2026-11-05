@@ -1,4 +1,12 @@
 {
+  "01": {
+    "name": "Alameda County",
+    "fips": "001",
+    "rgprec_digits": 6,
+    "precinct_map": {"url": "https://services5.arcgis.com/ROBnTHSNjoZ2Wm1P/ArcGIS/rest/services/Voter_Precincts/FeatureServer/0/query", "field": "precinct"},
+    "address_points": {"url": "https://services5.arcgis.com/ROBnTHSNjoZ2Wm1P/ArcGIS/rest/services/Address_Points/FeatureServer/0/query", "address": "ADDRESS", "zip": "ZIPCODE"},
+    "zipcodes": ["94501", "94502", "94536", "94538", "94539", "94541", "94542", "94544", "94545", "94546", "94550", "94551", "94552", "94555", "94560", "94566", "94568", "94577", "94578", "94579", "94580", "94586", "94587", "94588", "94601", "94602", "94603", "94605", "94606", "94607", "94608", "94609", "94610", "94611", "94612", "94613", "94618", "94619", "94621", "94702", "94703", "94704", "94705", "94706", "94707", "94708", "94709", "94710", "94720", "95391"]
+  },
   "38": {
     "name": "San Francisco County",
     "fips": "075",

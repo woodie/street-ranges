@@ -25,6 +25,8 @@ San Mateo, looked up against 16,319 known ranges (31,092 tests):
 | Block rule alone | 72.8% | 182 | 8,276 | 99.20% |
 
 Santa Clara uses the same method as San Mateo, since the county provided its shapes.
+Alameda does too, from its Registrar of Voters' public layers; its shapes and SWDB's June
+shapes agree on 99.75% of its 637,196 address points.
 Before that, ranges came from reading house numbers on its precinct PDFs, which have
 no coordinates, to line each map up with the address points. Against the county's
 shapes, the maps used matched on over 99.9% of addresses. The numbers in the table

@@ -80,12 +80,12 @@ def read_dbf(path):
             yield row
 
 
-def block_precincts(path, prefix):
-    """block -> precinct, or None when no precinct has SHARE of its voters."""
+def block_precincts(path, prefix, digits=None):
+    """block -> precinct, or None when no precinct has SHARE of its voters. digits trims SWDB's portion suffix."""
     voters = defaultdict(Counter)
     with open(path, encoding="utf-8") as f:
         for r in csv.DictReader(f):
-            voters[r["tract"] + r["block"]][prefix + re.sub(r"-\d+$", "", r["rgprec"])] += int(r["blkreg"])
+            voters[r["tract"] + r["block"]][prefix + re.sub(r"-\d+$", "", r["rgprec"])[:digits]] += int(r["blkreg"])
     out = {}
     for block, counts in voters.items():
         precinct, n = counts.most_common(1)[0]
@@ -187,7 +187,7 @@ def build(county, fips, max_gap=MAX_GAP, source=None):
     source = source or counties()[county].get("precinct_map")
     places = PrecinctMap(os.path.join(directory, "precinct_map.json"), county, source["field"]) if source else None
     lines = read_lines(os.path.join(directory, f"tl_2025_06{fips}_addrfeat.zip"), f"tl_2025_06{fips}_addrfeat.shp") if places else itertools.repeat(None)
-    blocks = block_precincts(os.path.join(directory, f"c{fips}_p26_rg_blk_map.csv"), county)
+    blocks = block_precincts(os.path.join(directory, f"c{fips}_p26_rg_blk_map.csv"), county, counties()[county].get("rgprec_digits"))
     faces = {r["TFID"]: (r["TRACTCE20"] + r["BLOCKCE20"], r["ZCTA5CE20"])
              for r in read_dbf(os.path.join(directory, f"tl_2025_06{fips}_faces.dbf"))}
     sides, outcome = defaultdict(list), Counter()

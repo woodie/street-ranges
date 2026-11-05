@@ -45,8 +45,8 @@ TIGER and SWDB use: 001, 013.
 
 The block rule takes precinct numbers from SWDB's `rgprec` and the map takes them from the
 county's field, and both end up in the same ranges. Compare a few from each before building.
-A county layer that writes `2001` where SWDB writes `20010000` has to be padded or mapped to
-one form.
+Alameda's layer writes `200100` where SWDB writes `20010000`, the county's precinct and a
+two-digit portion, so `"rgprec_digits": 6` in `counties.json` keeps SWDB's first six.
 
 Precinct numbers with letters, like `RICH101`, need two changes first:
 

@@ -42,7 +42,8 @@ def main():
     real = []
     for _, text in typed:
         parsed = re.match(r"(\d+)\S*\s+([^,]+?)(?: Menlo Park)?(?:,.*| \d{5}.*)?$", text)
-        if (normalize_street(parsed[2]), int(parsed[1])) in known:
+        # Precinct links like 43-7904 aren't addresses.
+        if parsed and (normalize_street(parsed[2]), int(parsed[1])) in known:
             real.append(text)
     print(f"{len(typed)} typed addresses, {len(real)} real")
     for text in real:
