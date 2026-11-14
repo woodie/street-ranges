@@ -61,6 +61,31 @@ data as is, with official records to be consulted for verification.
 - Neighboring ranges on one side with the same precinct merge, when their numbers
   are within 100 of each other.
 
+## Use it in your app
+
+The lookup is the npm package `street-ranges`: it turns an address into a precinct, and gives
+the precinct's outline for a map. It reads the files above by default, and runs in the browser,
+so the address never leaves the visitor's device.
+
+```bash
+npm install street-ranges
+```
+
+```js
+import { lookup, outline, remoteSource } from 'street-ranges'
+
+const source = remoteSource()                // the files above, or remoteSource('https://your.copy/counties/')
+const answer = await lookup('322 Oak Ct, Menlo Park, CA 94025', source)
+answer.text                                   // '44007: San Mateo County'
+answer.found                                  // { county: '41', number: '44007', zip: '94025' }
+const shape = await outline(answer.found, source) // GeoJSON, or undefined without an outline
+```
+
+A page without a build step can load it from a CDN:
+`import { lookup, remoteSource } from 'https://cdn.jsdelivr.net/npm/street-ranges/+esm'`.
+What a precinct means (its districts, representatives or polling place) is left to your app;
+[Your own county lookup](docs/COUNTY_LOOKUP.md) shows one way.
+
 ## Where the files come from
 
 This repo publishes the ranges and the page that reads them; the build that makes `counties/` isn't

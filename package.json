@@ -1,15 +1,47 @@
 {
   "name": "street-ranges",
-  "private": true,
+  "version": "0.1.0",
+  "description": "Find a California voter's precinct from a street address, in the browser, using public street ranges",
+  "license": "MIT",
+  "author": "Netpress.com",
+  "homepage": "https://precinct.netpress.com/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/woodie/street-ranges.git"
+  },
+  "bugs": {
+    "url": "https://github.com/woodie/street-ranges/issues"
+  },
+  "keywords": [
+    "precinct",
+    "california",
+    "address",
+    "street ranges",
+    "election",
+    "gis"
+  ],
   "type": "module",
-  "description": "The lookup page (TypeScript, built by Vite) and its lint and test tasks",
+  "exports": {
+    ".": {
+      "types": "./dist/lookup.d.ts",
+      "import": "./dist/street-ranges.js"
+    }
+  },
+  "module": "./dist/street-ranges.js",
+  "types": "./dist/lookup.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
   "scripts": {
     "build": "vite build",
     "test": "vitest run --reporter=tree",
     "lint": "eslint --fix . && tsc --noEmit && html-validate public/",
     "check": "eslint . && tsc --noEmit && html-validate public/ && vitest run --coverage --reporter=dot && vite build && git diff --exit-code public/main.js",
     "test-js": "vitest run --coverage",
-    "civic": "vitest run --config vitest.civic.config.js"
+    "civic": "vitest run --config vitest.civic.config.js",
+    "package": "vite build -c vite.package.config.js && tsc -p tsconfig.package.json",
+    "prepublishOnly": "npm run check && npm run package"
   },
   "devDependencies": {
     "@types/leaflet": "^1.9.22",
@@ -18,6 +50,7 @@
     "eslint": "^10.12.0",
     "html-validate": "^11.5.6",
     "jsdom": "^30.1.2",
+    "leaflet": "1.9.4",
     "neostandard": "^0.14.0",
     "penultimate": "^0.1.1",
     "typescript": "^6.0.3",
@@ -25,6 +58,6 @@
     "vitest": "^4.1.11"
   },
   "dependencies": {
-    "leaflet": "1.9.4"
+    "@types/geojson": "^7946.0.16"
   }
 }

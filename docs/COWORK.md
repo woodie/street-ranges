@@ -49,6 +49,13 @@ After a copy:
   Those public URLs should stay put.
 - Woodie pushes, or says yes first. Keep code comments to one line.
 
+## The npm package
+
+`src/lookup.ts` is the package `street-ranges`: parse, match, `remoteSource()` for the published
+files and `outline()` for a precinct's shape. No map, districts or races. `src/main.ts` is the
+page, built on it. `npm run package` builds `dist/` (not committed); publishing runs the full
+check first. Woodie publishes, or says yes first.
+
 ## The page
 
 - One input and one answer: the precinct, with its map when there is an outline. Races and
