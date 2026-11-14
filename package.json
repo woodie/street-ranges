@@ -1,7 +1,7 @@
 {
-  "name": "street-ranges",
+  "name": "precinct-lookup",
   "version": "0.1.0",
-  "description": "Find a California voter's precinct from a street address, in the browser, using public street ranges",
+  "description": "Find a voter's precinct, and its shape, from a street address, in the browser, using street ranges",
   "license": "MIT",
   "author": "Netpress.com",
   "homepage": "https://precinct.netpress.com/",
@@ -14,20 +14,21 @@
   },
   "keywords": [
     "precinct",
-    "california",
     "address",
     "street ranges",
     "election",
-    "gis"
+    "voter",
+    "gis",
+    "geojson"
   ],
   "type": "module",
   "exports": {
     ".": {
       "types": "./dist/lookup.d.ts",
-      "import": "./dist/street-ranges.js"
+      "import": "./dist/precinct-lookup.js"
     }
   },
-  "module": "./dist/street-ranges.js",
+  "module": "./dist/precinct-lookup.js",
   "types": "./dist/lookup.d.ts",
   "files": [
     "dist"

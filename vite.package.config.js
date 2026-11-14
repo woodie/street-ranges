@@ -6,6 +6,6 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     emptyOutDir: true,
-    lib: { entry: 'src/lookup.ts', formats: ['es'], fileName: () => 'street-ranges.js' }
+    lib: { entry: 'src/lookup.ts', formats: ['es'], fileName: () => 'precinct-lookup.js' }
   }
 })

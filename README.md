@@ -63,16 +63,16 @@ data as is, with official records to be consulted for verification.
 
 ## Use it in your app
 
-The lookup is the npm package `street-ranges`: it turns an address into a precinct, and gives
+The lookup is the npm package `precinct-lookup`: it turns an address into a precinct, and gives
 the precinct's outline for a map. It reads the files above by default, and runs in the browser,
 so the address never leaves the visitor's device.
 
 ```bash
-npm install street-ranges
+npm install precinct-lookup
 ```
 
 ```js
-import { lookup, outline, remoteSource } from 'street-ranges'
+import { lookup, outline, remoteSource } from 'precinct-lookup'
 
 const source = remoteSource()                // the files above, or remoteSource('https://your.copy/counties/')
 const answer = await lookup('322 Oak Ct, Menlo Park, CA 94025', source)
@@ -82,9 +82,35 @@ const shape = await outline(answer.found, source) // GeoJSON, or undefined witho
 ```
 
 A page without a build step can load it from a CDN:
-`import { lookup, remoteSource } from 'https://cdn.jsdelivr.net/npm/street-ranges/+esm'`.
+`import { lookup, remoteSource } from 'https://cdn.jsdelivr.net/npm/precinct-lookup/+esm'`.
 What a precinct means (its districts, representatives or polling place) is left to your app;
 [Your own county lookup](docs/COUNTY_LOOKUP.md) shows one way.
+
+## Street ranges for your area
+
+The files here cover California, but the lookup works anywhere: make files in the same layout for
+your area, host them anywhere, and pass their address to `remoteSource()`.
+
+- `index.json`: `{"41": {"name": "San Mateo County", "zipcodes": ["94025", ...]}}`, with a
+  two-character key for each county.
+- `<county>/streets/<zip>.json`: each street with its ranges, `[low, high, precinct]`, where `low`
+  and `high` are on one side of the street (both odd or both even) and the precinct number starts
+  with the county's key. Run each street name through the package's `normalizeStreet()`, so it
+  matches what people type.
+- `<county>/shapes/<zip>.json` and `<county>/shapes/index.json`, if you want a map; the lookup
+  answers without them.
+
+Build them from the best source you have, as [Sources](docs/SOURCES.md) describes:
+
+1. **Each address with its precinct,** if your county publishes it: runs of house numbers in one
+   precinct on one side of a street become ranges, with nothing to guess.
+2. **Address points and a precinct map:** place each point in its precinct, then make runs the same way.
+3. **Parcels with site addresses:** the middle of each parcel stands in for an address point.
+4. **Census TIGER and a precinct map,** where there's nothing else: each side of a street takes the
+   precinct it falls in.
+
+Using a confidential voter file to generate street ranges may not be an acceptable use of it;
+check with your county first. Public GIS layers are the safe place to start.
 
 ## Where the files come from
 
