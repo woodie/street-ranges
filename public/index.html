@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Precinct Lookup</title>
+<meta name="description" content="Find a voter precinct anywhere in California using public street ranges.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>Precinct Lookup</h1>
+  <p>Find voter precinct using public street ranges in California.</p>
+  <form>
+    <label for="address">Enter full street address</label>
+    <div class="row">
+      <input id="address" type="text" autocomplete="on" autocapitalize="words" required>
+      <button type="submit" disabled>Apply</button>
+      <button type="reset" hidden>Reset</button>
+    </div>
+  </form>
+  <div class="answer">
+    <p id="result" role="status"></p>
+    <a id="copy" class="pill" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg><span>Copy link</span></a>
+    <a id="print" class="pill" href="#" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/></svg><span>Print</span></a>
+  </div>
+  <div id="map" role="img" hidden></div>
+</main>
+<footer>
+  <nav>
+    <a href="https://github.com/woodie/street-ranges#readme">code</a> |
+    <a href="https://github.com/woodie/street-ranges/blob/main/docs/SOURCES.md">data</a> |
+    <a href="https://github.com/woodie/street-ranges/issues/new">feedback</a> |
+    <a href="privacy.html">privacy</a>
+  </nav>
+  <p>© 2026 Netpress.com · code <a href="https://github.com/woodie/street-ranges/blob/main/LICENSE">MIT</a>, data <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+</footer>
+<script src="main.js"></script>
+<script>StreetRanges.start()</script>
+</body>
+</html>

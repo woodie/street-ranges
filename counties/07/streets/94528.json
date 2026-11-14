@@ -1,0 +1,143 @@
+{
+  "ALAMEDA DIABLO": [
+    [1699, 2381, "07DIAB101"],
+    [1700, 2382, "07DIAB101"],
+    [41701, 41799, "07DIAB101"]
+  ],
+  "AVE NUEVA": [
+    [1500, 1598, "07DIAB101"],
+    [1501, 1599, "07DIAB101"],
+    [2001, 2099, "07DIAB101"]
+  ],
+  "AVENIDA NUEVA": [
+    [1500, 1598, "07DIAB101"],
+    [1501, 1599, "07DIAB101"],
+    [2001, 2099, "07DIAB101"]
+  ],
+  "BELLA VISTA": [
+    [10, 10, "07DIAB101"],
+    [11, 47, "07DIAB101"]
+  ],
+  "BELLA VISTA CT": [
+    [11, 11, "07DIAB101"]
+  ],
+  "CABALLO RANCHERO CT": [
+    [2210, 2264, "07DIAB101"],
+    [2217, 2245, "07DIAB101"]
+  ],
+  "CABALLO RANCHERO DR": [
+    [2200, 2798, "07DIAB101"],
+    [2217, 2799, "07DIAB101"]
+  ],
+  "CABALLO RANCHERO RD": [
+    [2601, 2601, "07DIAB101"]
+  ],
+  "CALLE ARROYO": [
+    [1607, 1897, "07DIAB101"],
+    [1918, 1918, "07DIAB101"]
+  ],
+  "CALLE ARROYO LN": [
+    [150, 150, "07DIAB101"]
+  ],
+  "CALLE DEL CASARILLO": [
+    [8, 98, "07DIAB101"],
+    [11, 99, "07DIAB101"]
+  ],
+  "CALLE LOS CALLADOS": [
+    [2000, 2092, "07DIAB101"],
+    [2007, 2135, "07DIAB101"]
+  ],
+  "CAMPO PELOTA": [
+    [16, 44, "07DIAB101"]
+  ],
+  "CANADA VIA": [
+    [100, 198, "07DIAB101"],
+    [101, 199, "07DIAB101"]
+  ],
+  "CASA NUESTRA": [
+    [2000, 2096, "07DIAB101"],
+    [2047, 2081, "07DIAB101"]
+  ],
+  "CLL ARROYO": [
+    [1611, 1715, "07DIAB101"]
+  ],
+  "CLL DEL CASARILLO": [
+    [16, 98, "07DIAB101"],
+    [21, 99, "07DIAB101"]
+  ],
+  "CLUB HOUSE RD": [
+    [1615, 1899, "07DIAB101"],
+    [1710, 1898, "07DIAB101"]
+  ],
+  "CLUBHOUSE RD": [
+    [1700, 1700, "07DIAB101"]
+  ],
+  "DIABLO LAKES LN": [
+    [2300, 2498, "07DIAB101"],
+    [2401, 2499, "07DIAB101"]
+  ],
+  "DIABLO RANCH CT": [
+    [144, 144, "07DIAB102"]
+  ],
+  "DIABLO RANCH PL": [
+    [2475, 2491, "07DIAB102"]
+  ],
+  "DIABLO RD": [
+    [1701, 2099, "07DIAB101"]
+  ],
+  "EL CENTRO": [
+    [100, 198, "07DIAB101"],
+    [101, 199, "07DIAB101"]
+  ],
+  "EL CENTRO RD": [
+    [147, 147, "07DIAB101"]
+  ],
+  "EL NIDO": [
+    [88, 1898, "07DIAB101"],
+    [1601, 1899, "07DIAB101"]
+  ],
+  "EL NIDO CT": [
+    [100, 198, "07DIAB101"],
+    [101, 199, "07DIAB101"]
+  ],
+  "EL NIDO DR": [
+    [1675, 1675, "07DIAB101"]
+  ],
+  "EL NIDO PL": [
+    [2, 98, "07DIAB101"]
+  ],
+  "EL NIDO RD": [
+    [1700, 1722, "07DIAB101"],
+    [1830, 1834, "07DIAB101"]
+  ],
+  "LA CADENA": [
+    [1900, 1984, "07DIAB101"],
+    [1953, 1973, "07DIAB101"]
+  ],
+  "LIVE OAK CAMPGROUND": [
+    [5, 5, "07MDIA802"]
+  ],
+  "MOUNT DIABLO SCENIC BLVD": [
+    [2087, 2595, "07DIAB101"],
+    [2450, 2644, "07DIAB101"]
+  ],
+  "PALMA VIS": [
+    [25, 41, "07DIAB101"]
+  ],
+  "PO BOX": [
+    [866, 866, "07MDIA801"]
+  ],
+  "RANCHITOS DEL SOL": [
+    [1, 99, "07DIAB101"]
+  ],
+  "SOUTHGATE RD": [
+    [9, 9, "07MDIA801"]
+  ],
+  "VERDA DEL CIERVO": [
+    [106, 118, "07DIAB101"],
+    [107, 117, "07DIAB101"]
+  ],
+  "VIA DIABLO": [
+    [2301, 2499, "07DIAB101"]
+  ]
+}

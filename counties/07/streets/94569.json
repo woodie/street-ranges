@@ -1,0 +1,48 @@
+{
+  "CANYON LAKE DR": [
+    [1, 145, "07PRCO101"],
+    [2, 198, "07PRCO101"],
+    [147, 199, "07CROC801"]
+  ],
+  "CARQUINEZ SCENIC DR": [
+    [1, 199, "07PRCO101"],
+    [2, 5302, "07CROC801"],
+    [5501, 5599, "07PRCO101"],
+    [7000, 7098, "07CROC801"],
+    [9000, 9000, "07PRCO101"]
+  ],
+  "CARQUINEZ SCENIC DR DR": [
+    [5795, 5795, "07CROC801"]
+  ],
+  "ERSKINE ST": [
+    [1, 199, "07PRCO101"],
+    [2, 198, "07PRCO101"]
+  ],
+  "MC EWEN RD": [
+    [3, 3, "07PRCO904"]
+  ],
+  "PLAZA EL HAMBRE": [
+    [1, 1, "07PRCO101"]
+  ],
+  "PROSPECT AVE": [
+    [1, 199, "07PRCO101"],
+    [2, 198, "07PRCO101"]
+  ],
+  "RAILROAD AVE": [
+    [2, 98, "07PRCO101"]
+  ],
+  "RESERVOIR ST": [
+    [1, 99, "07PRCO101"],
+    [2, 4, "07PRCO101"]
+  ],
+  "S AVE": [
+    [1, 199, "07PRCO101"],
+    [2, 198, "07PRCO101"]
+  ],
+  "S ST": [
+    [19, 23, "07PRCO101"]
+  ],
+  "SHARENE LN": [
+    [140, 140, "07WLCR122"]
+  ]
+}

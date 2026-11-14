@@ -1,0 +1,19 @@
+{
+  "GRIZZLY PEAK BLVD": [
+    [4380, 4398, "07CALD901"]
+  ],
+  "MANZANITA DR": [
+    [2400, 2400, "07CANY802"]
+  ],
+  "SKYLINE BLVD": [
+    [6700, 6798, "07CALD801"],
+    [6701, 6989, "07CALD801"]
+  ],
+  "STARKEVILLE CT": [
+    [200, 298, "07CALD801"]
+  ],
+  "STARKVILLE CT": [
+    [200, 298, "07CALD801"],
+    [6800, 6898, "07CALD801"]
+  ]
+}

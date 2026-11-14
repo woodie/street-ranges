@@ -1,0 +1,92 @@
+{
+  "BLVD OF THE STARS": [
+    [500, 598, "07CANY101"]
+  ],
+  "BOX CAR RD": [
+    [2, 198, "07CANY101"]
+  ],
+  "BOXCAR LN": [
+    [2, 120, "07CANY101"]
+  ],
+  "DRIVEWAY 24": [
+    [40, 90, "07CANY101"]
+  ],
+  "ESTATES DR": [
+    [1, 99, "07CANY101"],
+    [700, 898, "07CANY101"]
+  ],
+  "FLICKER RDG": [
+    [500, 698, "07CANY101"]
+  ],
+  "FLICKER RIDGE RD": [
+    [590, 650, "07CANY101"]
+  ],
+  "JOHN MCCOSKER RANCH RD": [
+    [860, 870, "07CANY101"]
+  ],
+  "LAUREL LN": [
+    [1, 99, "07CANY805"],
+    [100, 198, "07CANY101"]
+  ],
+  "MADRONE AVE": [
+    [490, 490, "07CANY101"],
+    [495, 495, "07CANY101"]
+  ],
+  "MADRONE WAY": [
+    [1, 99, "07CANY101"],
+    [400, 598, "07CANY101"],
+    [401, 499, "07CANY101"]
+  ],
+  "MANZANITA AVE": [
+    [500, 598, "07CANY101"]
+  ],
+  "MANZANITA WAY": [
+    [400, 598, "07CANY101"]
+  ],
+  "MARIAN MCCOSKER LOOP": [
+    [800, 898, "07CANY101"]
+  ],
+  "MARION MCCOSKER LOOP": [
+    [820, 850, "07CANY101"]
+  ],
+  "NORTHERN RAILWAY": [
+    [180, 280, "07CANY101"]
+  ],
+  "OAK LN": [
+    [1, 99, "07CANY101"],
+    [2, 98, "07CANY101"]
+  ],
+  "OLD HOME RANCH RD": [
+    [880, 880, "07CANY801"]
+  ],
+  "OLD RAILROAD GRADE RD": [
+    [770, 810, "07CANY101"]
+  ],
+  "PINEHURST RD": [
+    [1, 199, "07CANY101"],
+    [2, 398, "07CANY101"]
+  ],
+  "REDWOOD HWY": [
+    [1, 99, "07CANY101"],
+    [200, 598, "07CANY101"],
+    [401, 499, "07CANY101"],
+    [1000, 1098, "07CANY101"]
+  ],
+  "RIDGECREST": [
+    [600, 698, "07CANY101"],
+    [601, 699, "07CANY101"]
+  ],
+  "RIDGECREST RD": [
+    [600, 798, "07CANY101"],
+    [675, 675, "07CANY101"]
+  ],
+  "SCENIC DR": [
+    [890, 900, "07CANY101"]
+  ],
+  "STATE RTE 24": [
+    [2, 98, "07ORDA102"]
+  ],
+  "VICKIS POINT DR": [
+    [800, 998, "07CANY101"]
+  ]
+}

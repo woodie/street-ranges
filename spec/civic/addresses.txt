@@ -1,0 +1,192 @@
+# County elections offices, courthouses and jails: the place, then its address, under its county.
+# Each county line names its precinct map, then its addresses (docs/SOURCES.md has more).
+# `npm run civic` checks each one; copy any line into the lookup to try it by hand.
+
+# Alameda: Live map layer, Live address points
+Alameda County Elections, René C. Davidson Courthouse, 1225 Fallon Street, Oakland, CA 94612
+Santa Rita Jail, 5325 Broder Boulevard, Dublin, CA 94568
+
+# Alpine: SWDB map, Parcels
+Alpine County Elections, 99 Water Street, Markleeville, CA 96120
+
+# Amador: Live map layer, Live address points
+Amador County Elections, 810 Court Street, Jackson, CA 95642
+
+# Butte: Live map layer, Live address points (2020)
+Butte County Elections, 155 Nelson Ave, Oroville, CA 95965
+
+# Calaveras: Live map layer, Live address points
+Calaveras County Elections, 891 Mountain Ranch Road, San Andreas, CA 95249
+
+# Colusa: SWDB map, Parcels
+Colusa County Elections, 546 Jay Street, Colusa, CA 95932
+
+# Contra Costa: Live map layer, Address file
+Contra Costa County Elections, 555 Escobar Street, Martinez, CA 94553
+
+# Del Norte: Live map layer, Parcels
+Del Norte County Elections, 981 H Street, Crescent City, CA 95531
+
+# El Dorado: Map file by request, Street data by request
+El Dorado County Elections, 3883 Ponderosa Road, Shingle Springs, CA 95682
+
+# Fresno: Live map layer, Live address points
+Fresno County Elections, 2221 Kern Street, Fresno, CA 93721
+
+# Glenn: Live map layer, Parcels
+Glenn County Elections, 516 W Sycamore Street, Willows, CA 95988
+
+# Humboldt: SWDB map, Parcels
+Humboldt County Elections, 2426 6th Street, Eureka, CA 95501
+
+# Imperial: Live map layer, Parcels
+Imperial County Elections, 940 W Main Street, El Centro, CA 92243
+
+# Inyo: Live map layer, Live street data
+Inyo County Elections, 168 N Edwards Street, Independence, CA 93526
+
+# Kern: Live map layer, County street centerlines
+Kern County Elections, 1115 Truxtun Avenue, Bakersfield, CA 93301
+
+# Kings: SWDB map, Live address points
+Kings County Elections, 1400 W Lacey Blvd, Hanford, CA 93230
+
+# Lake: SWDB map, Parcels
+Lake County Elections, 325 N Forbes Street, Lakeport, CA 95453
+
+# Lassen: SWDB map, Census TIGER
+Lassen County Elections, 220 S Lassen Street, Susanville, CA 96130
+
+# Los Angeles: Live map layer, Live address points
+Los Angeles County Elections, 12400 Imperial Hwy, Norwalk, CA 90650
+Stanley Mosk Courthouse, 111 N Hill Street, Los Angeles, CA 90012
+Men's Central Jail, 441 Bauchet Street, Los Angeles, CA 90012
+
+# Madera: Live map layer, Live address points
+Madera County Elections, 200 W 4th Street, Madera, CA 93637
+
+# Marin: Live map layer, Live address points
+Marin County Elections, 3501 Civic Center Drive, San Rafael, CA 94903
+
+# Mariposa: Live map layer, Live address points
+Mariposa County Elections, 4982 10th Street, Mariposa, CA 95338
+
+# Mendocino: Live map layer, Address file by request
+Mendocino County Elections, 501 Low Gap Road, Ukiah, CA 95482
+
+# Merced: Live map layer, Live address points
+Merced County Elections, 2222 M Street, Merced, CA 95340
+
+# Modoc: Live map layer, Census TIGER
+Modoc County Elections, 108 E Modoc Street, Alturas, CA 96101
+
+# Mono: Live map layer, Live address points
+Mono County Elections, 74 N School Street, Bridgeport, CA 93517
+
+# Monterey: Map file, Street data file
+Monterey County Elections, 1441 Schilling Place, Salinas, CA 93901
+
+# Napa: Live map layer, Live address points
+Napa County Elections, 1125 Third St, Napa, CA 94559
+
+# Nevada: Live map layer, Parcels
+Nevada County Elections, 950 Maidu Avenue, Nevada City, CA 95959
+
+# Orange: Map file, Live address points
+Orange County Elections, 1300 South Grand Avenue, Santa Ana, CA 92705
+Orange County Central Justice Center, 700 Civic Center Drive West, Santa Ana, CA 92701
+Orange County Men's Jail, 550 N Flower Street, Santa Ana, CA 92703
+
+# Placer: Map file by request, Live address points
+Placer County Elections, 3715 Atherton Rd, Rocklin, CA 95765
+
+# Plumas: SWDB map, Address file
+Plumas County Elections, 520 Main Street, Quincy, CA 95971
+
+# Riverside: Live map layer (June), Live address points
+Riverside County Elections, 2724 Gateway Drive, Riverside, CA 92507
+Riverside Hall of Justice, 4100 Main Street, Riverside, CA 92501
+Robert Presley Detention Center, 4000 Orange Street, Riverside, CA 92501
+
+# Sacramento: Live map layer, Live address points
+Sacramento County Elections, 7000 65th Street, Sacramento, CA 95823
+Sacramento County Courthouse, 500 G Street, Sacramento, CA 95814
+Sacramento County Main Jail, 651 I Street, Sacramento, CA 95814
+
+# San Benito: Live map layer, Live street data
+San Benito County Elections, 1601 Lana Way, Hollister, CA 95023
+
+# San Bernardino: Live map layer, Live address points
+San Bernardino County Elections, 777 E Rialto Avenue, San Bernardino, CA 92415
+San Bernardino Justice Center, 247 West Third Street, San Bernardino, CA 92415
+West Valley Detention Center, 9500 Etiwanda Ave, Rancho Cucamonga, CA 91739
+
+# San Diego: Live map layer, Live address points
+San Diego County Elections, 5600 Overland Avenue, San Diego, CA 92123
+San Diego Hall of Justice, 330 West Broadway, San Diego, CA 92101
+San Diego Central Jail, 1173 Front Street, San Diego, CA 92101
+
+# San Francisco: Map file, Street data file
+San Francisco Department of Elections, City Hall, 1 Dr Carlton B Goodlett Place, San Francisco, CA 94102
+
+# San Joaquin: Live map layer, County street centerlines
+San Joaquin County Elections, 44 N San Joaquin Street, Stockton, CA 95202
+
+# San Luis Obispo: Live map layer, Live address points
+San Luis Obispo County Elections, 1055 Monterey Street, San Luis Obispo, CA 93408
+
+# San Mateo: Live map layer, Live address points
+San Mateo County Elections, 40 Tower Road, San Mateo, CA 94402
+
+# Santa Barbara: Map file, Live address points
+Santa Barbara County Elections, 4440 Calle Real, Santa Barbara, CA 93110
+
+# Santa Clara: Map file by request, Live address points (2020), parcels
+Santa Clara County Elections, 1555 Berger Drive, San Jose, CA 95112
+Santa Clara County Hall of Justice, 190 W Hedding Street, San Jose, CA 95110
+Santa Clara County Main Jail, 150 W Hedding Street, San Jose, CA 95110
+
+# Santa Cruz: Live map layer, Live address points
+Santa Cruz County Elections, 701 Ocean Street, Santa Cruz, CA 95060
+
+# Shasta: Live map layer, Live address points
+Shasta County Elections, 1643 Market Street, Redding, CA 96001
+
+# Sierra: Map file by request, Parcels
+Sierra County Elections, 100 Courthouse Square, Downieville, CA 95936
+
+# Siskiyou: SWDB map, Live address points
+Siskiyou County Elections, 311 Fourth Street, Yreka, CA 96097
+
+# Solano: Live map layer, Live address points
+Solano County Elections, 675 Texas Street, Fairfield, CA 94533
+
+# Sonoma: Live map layer, Live address points
+Sonoma County Elections, 3880 Brickway Blvd, Santa Rosa, CA 95403
+
+# Stanislaus: SWDB map, Live address points
+Stanislaus County Elections, 1021 I Street, Modesto, CA 95354
+
+# Sutter: Live map layer, Live address points
+Sutter County Elections, 1435 Veterans Memorial Circle, Yuba City, CA 95993
+
+# Tehama: SWDB map, Live address points (2021)
+Tehama County Elections, 633 Washington Street, Red Bluff, CA 96080
+
+# Trinity: SWDB map, Live address points
+Trinity County Elections, 11 Court Street, Weaverville, CA 96093
+
+# Tulare: SWDB map, Live address points
+Tulare County Elections, 5300 West Tulare Avenue, Visalia, CA 93277
+
+# Tuolumne: SWDB map, Parcels
+Tuolumne County Elections, 2 S Green Street, Sonora, CA 95370
+
+# Ventura: Live map layer, Live address points
+Ventura County Elections, 800 S Victoria Avenue, Ventura, CA 93009
+
+# Yolo: Live map layer, Live address points
+Yolo County Elections, 625 Court Street, Woodland, CA 95695
+
+# Yuba: SWDB map, Live address points
+Yuba County Elections, 915 8th Street, Marysville, CA 95901
